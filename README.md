@@ -1,7 +1,13 @@
-This is a read me.
+# ohm - A Resistor Scanner
 
-Graeme added this again
+Team Name: 
 
-Trying to make my name work. This is a change.
+Team Members:  Ryan Marks (marksr2), Graeme Crawley (crawleg), Jonathan Brown (brownjs2)
 
-Finally working?
+
+This project is a reimplementation of 
+
+The folders and files for this project are as follows:
+
+Doc - Documentation for the project
+Code - Implementation
