@@ -1,4 +1,4 @@
-package tests;
+package ohm;
 
 import org.junit.Test;
 

@@ -19,12 +19,6 @@ public class Ohm extends Application {
     public static void main(String[] args) throws Exception{
         System.out.println("Hello, world");
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-
-        Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("filename.txt"), "utf-8"));
-        writer.write("something");
-
-
-
         launch(args);
     }
 
