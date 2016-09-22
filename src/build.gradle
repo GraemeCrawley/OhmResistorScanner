@@ -20,6 +20,12 @@ task copyFXML(type: Copy){
     include '**/*.fxml'
 }
 
+
+/*task copyResources(type: Copy){
+    from 'src/main/resources/'
+    into 'build/classes/'
+}*/
+
 task runOhm(type: org.gradle.api.tasks.JavaExec, dependsOn: ['build','copyFXML']) {
     main = 'ohm.Ohm'
     classpath = sourceSets.main.runtimeClasspath

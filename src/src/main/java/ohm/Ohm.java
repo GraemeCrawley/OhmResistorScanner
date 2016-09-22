@@ -9,11 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.opencv.core.Core;
 
-import java.io.BufferedWriter;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-
 public class Ohm extends Application {
 
     public static void main(String[] args) throws Exception{
