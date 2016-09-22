@@ -2,7 +2,6 @@ package ohm; /**
  * Created by jon on 2016-09-20.
  */
 
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,16 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfByte;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.videoio.VideoCapture;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import org.opencv.imgproc.*;
+
+import static ohm.Helpers.matToImage;
 
 public class OhmViewController implements Initializable {
 
@@ -27,7 +22,10 @@ public class OhmViewController implements Initializable {
     public Button startCameraButton;
 
     @FXML
-    private ImageView mainImageView;
+    private ImageView unprocessedImageView;
+
+    @FXML
+    private ImageView processedImageView;
 
 
 
@@ -39,7 +37,8 @@ public class OhmViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.mainImageView.setImage(new Image("file:resources/Resistor.jpg"));
+        this.unprocessedImageView.setImage(new Image("file:resources/Resistor.jpg"));
+        this.processedImageView.setImage(new Image("file:resources/omega.jpg"));
     }
 
     @FXML
@@ -58,8 +57,9 @@ public class OhmViewController implements Initializable {
                             try {
                                 Mat frame = new Mat();
                                 capture.read(frame);
+
                                 Image imageToShow =  matToImage(frame);
-                                mainImageView.setImage(imageToShow);
+                                unprocessedImageView.setImage(imageToShow);
                             } catch (Exception e1) {
                                 System.out.println("Error on Update " + e1);
                             }
@@ -71,29 +71,19 @@ public class OhmViewController implements Initializable {
 
                         }
                         System.out.println("Thread processFrame closed");
-                        try {
-                            capture.release();
-                        } catch (Exception e) {
-                        }
+                        capture.release();
                     }
                 });
                 processFrame.start();
             }
         }
         else {
-            startCameraButton.setText("Stop");
+            startCameraButton.setText("Start");
             cameraOn = false;
         }
     }
 
-    private Image matToImage(Mat frame) throws Exception{
-        MatOfByte bytemat = new MatOfByte();
-        Imgcodecs.imencode(".jpg", frame, bytemat);
-        byte[] bytes = bytemat.toArray();
-        InputStream in = new ByteArrayInputStream(bytes);
-        BufferedImage img = ImageIO.read(in);
-        return SwingFXUtils.toFXImage(img, null);
-    }
+
 
 
 }
