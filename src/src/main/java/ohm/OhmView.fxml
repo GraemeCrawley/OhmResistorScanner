@@ -7,10 +7,11 @@
 
 <VBox xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ohm.OhmViewController">
    <children>
-      <Pane fx:id="layout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+      <Pane fx:id="layout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0">
          <children>
-            <Button fx:id="startCameraButton" layoutX="533.0" layoutY="372.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="27.0" prefWidth="66.0" text="Start" />
-            <ImageView fx:id="mainImageView" fitHeight="400.0" fitWidth="533.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="startCameraButton" layoutY="310.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="47.0" prefWidth="106.0" text="Start" />
+            <ImageView fx:id="unprocessedImageView" fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="processedImageView" fitHeight="300.0" fitWidth="400.0" layoutX="400.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </children>
