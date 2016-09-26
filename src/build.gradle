@@ -30,7 +30,7 @@ task runOhm(type: org.gradle.api.tasks.JavaExec, dependsOn: ['build','copyFXML']
     main = 'ohm.Ohm'
     classpath = sourceSets.main.runtimeClasspath
 
-    //Point this to your openCV installation.
-    systemProperties["java.library.path"]= "/usr/local/Cellar/opencv3/3.1.0_4/share/OpenCV/java"
+    //Point this to your openCV installation. Configure OpenCVPath in a gradle.properties file.
+    systemProperties["java.library.path"]= OpenCVPath
 
 }

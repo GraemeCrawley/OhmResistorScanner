@@ -2,7 +2,6 @@ package ohm;/**
  * Created by jon on 2016-09-20.
  */
 
-import com.sun.deploy.uitoolkit.impl.fx.ui.FXSSV3Dialog;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -17,14 +16,15 @@ public class Ohm extends Application {
 
     private FXMLLoader fxmlLoader;
 
+    //Loads opencv and hands control over to OhmViewController
     public static void main(String[] args) throws Exception{
-        System.out.println("Hello, world");
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        //Required for creation of view and controller.
         URL location = getClass().getResource("OhmView.fxml");
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
@@ -35,6 +35,8 @@ public class Ohm extends Application {
         primaryStage.show();
     }
 
+
+    //Method responsible for safely shutting down the application
     @Override
     public void stop() {
          ((OhmViewController) fxmlLoader.getController()).stop();

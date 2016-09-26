@@ -54,6 +54,8 @@ public class OhmViewController implements Initializable {
                 cameraOn = true;
                 startCameraButton.setText("Stop");
 
+
+                //Create a new thread, capturing frames from the webcam and applying canny edge detection
                 Thread processFrame = new Thread(new Runnable() {
                     @Override
                     public void run() {
