@@ -2,19 +2,19 @@ package ohm; /**
  * Created by jon on 2016-09-20.
  */
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
 import org.opencv.videoio.VideoCapture;
+
 import java.net.URL;
 import java.util.ResourceBundle;
-import org.opencv.imgproc.*;
 
 import static ohm.Helpers.matToImage;
 import static org.opencv.imgproc.Imgproc.*;
@@ -23,13 +23,14 @@ public class OhmViewController implements Initializable {
 
     @FXML
     public Button startCameraButton;
-
     @FXML
     private ImageView unprocessedImageView;
-
     @FXML
     private ImageView processedImageView;
-
+    @FXML
+    private Slider thresholdSlider1;
+    @FXML
+    private Slider thresholdSlider2;
 
 
     private VideoCapture capture = new VideoCapture();
@@ -61,9 +62,12 @@ public class OhmViewController implements Initializable {
                                 Mat frame = new Mat();
                                 capture.read(frame);
                                 Mat cannyEdge = new Mat();
-                                blur(frame,cannyEdge,new Size(2,2));
+                                blur(frame,cannyEdge,new Size(5,5));
                                 cvtColor(cannyEdge,cannyEdge,COLOR_BGR2GRAY);
-                                Canny(cannyEdge,cannyEdge,10, 100);
+                                Canny(cannyEdge,cannyEdge,thresholdSlider1.getValue(), thresholdSlider2.getValue());
+                                //org.opencv.photo.Photo.fastNlMeansDenoising(cannyEdge,cannyEdge);
+                                dilate(cannyEdge,cannyEdge,new Mat());
+                                dilate(cannyEdge,cannyEdge,new Mat());
                                 Image processedToShow = matToImage(cannyEdge);
                                 Image imageToShow =  matToImage(frame);
                                 unprocessedImageView.setImage(imageToShow);
