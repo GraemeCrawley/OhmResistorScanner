@@ -30,3 +30,10 @@ fabric.properties
 *.iml
 # modules.xml
 .idea/
+
+src/gradle.properties
+
+.gradle/
+src/.DS_Store
+src/.gradle/
+src/build/

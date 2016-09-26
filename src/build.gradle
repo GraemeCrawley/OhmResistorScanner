@@ -2,8 +2,7 @@ group 'ca.jonathanbrown'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
-
-sourceCompatibility = 1.5
+apply plugin: 'idea'
 
 repositories {
     mavenCentral()
@@ -11,4 +10,27 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile files(OpenCVJar)
+}
+
+
+task copyFXML(type: Copy){
+    from 'src/main/java/ohm/'
+    into 'build/classes/main/ohm'
+    include '**/*.fxml'
+}
+
+
+/*task copyResources(type: Copy){
+    from 'src/main/resources/'
+    into 'build/classes/'
+}*/
+
+task runOhm(type: org.gradle.api.tasks.JavaExec, dependsOn: ['build','copyFXML']) {
+    main = 'ohm.Ohm'
+    classpath = sourceSets.main.runtimeClasspath
+
+    //Point this to your openCV installation. Configure OpenCVPath in a gradle.properties file.
+    systemProperties["java.library.path"]= OpenCVPath
+
 }
