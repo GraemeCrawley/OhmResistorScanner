@@ -28,7 +28,7 @@ fabric.properties
 # modules.xml
 .idea/
 
-#src/gradle.properties
+src/gradle.properties
 
 .gradle/
 src/.DS_Store
