@@ -6,6 +6,9 @@
 
 ## File-based project format:
 *.iws
+*.aux
+*.log
+*.synctex.gz
 
 ## Plugin-specific files:
 
