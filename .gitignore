@@ -27,3 +27,5 @@ fabric.properties
 *.iml
 # modules.xml
 .idea/
+
+src/gradle.properties
