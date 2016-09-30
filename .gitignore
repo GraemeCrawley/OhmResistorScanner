@@ -33,5 +33,5 @@ src/.DS_Store
 src/.gradle/
 src/build/
 *.aux
-*.sinctex.gz
+*.synctex.gz
 *.log
