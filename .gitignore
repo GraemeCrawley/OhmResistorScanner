@@ -32,3 +32,6 @@ src/gradle.properties
 src/.DS_Store
 src/.gradle/
 src/build/
+*.aux
+*.sinctex.gz
+*.log
