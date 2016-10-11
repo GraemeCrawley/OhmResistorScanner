@@ -3,7 +3,7 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{tabularx}
-
+\usepackage{graphicx}
 \title{SE 3XA3: SRS\\ohm Resistor Scanner}
 
 \author{Team \# 4, ohm
@@ -87,10 +87,43 @@ There are not other subject matter domains that need to be understood or integra
 This work does not need to respond to any external business events, this section is not relevant
 
 \subsection{Business Data Model \& Data Dictionary}
+
 \subsection{The Scope of the Product}
 
 \subsubsection{Product Boundary}
+This project is a simple tool, with the user as the only actor.
+As such the use case diagram is fairly minimal.
 
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{UseCaseDiagram.png}
+	\caption{The use case diagram for the system to be showing the product boundary.}
+    \label{fig:use_case_diagram}
+\end{figure}
+
+\subsubsection{Product Use Case List}
+
+As our products usability improves between phases of functionality, the use case will expand.
+A use case for each phase is provided.
+
+\textbf{ Phase 1 Use Case}
+
+A user launches the app, and seeks to identify a specific resistor.
+They hold the resistor up to the camera and aligns the primary axis resistor with an on screen line.
+The system is constantly scanning, and once a coherent pattern of color bands is identified, the resistance is calculated and displayed.
+Once the system can no longer identify a coherent pattern of color bands, the displayed resistance value dissappears, until a new resistor is identified.
+
+\textbf{ Phase 2 Use Case}
+
+A user launches the app, and seeks to identify a specific resistor.
+The user points the camera in the general direction of the resistor, with little care for accurate framing.
+The system is constantly scanning, and once a coherent pattern of color bands is identified, the resistance is calculated and displayed.
+Once the system can no longer identify a coherent pattern of color bands, the displayed resistance value dissappears, until a new resistor is identified.
+
+\textbf{ Phase 3 Use Case}
+
+A user launches the app, and seeks to find a specific resistor in a group.
+The user points the camera at the group of resistors.
+The system is constantly scanning, and for any coherent pattern of color bands identified, the resistance is calculated and displayed in frame next to the resistor.
 
 \subsection{Functional Requirements}
 
