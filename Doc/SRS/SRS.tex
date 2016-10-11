@@ -4,6 +4,8 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{graphicx}
+\usepackage{float}
+
 \title{SE 3XA3: SRS\\ohm Resistor Scanner}
 
 \author{Team \# 4, ohm
@@ -103,19 +105,23 @@ This work does not need to respond to any external business events, this section
 
 \subsection{Business Data Model \& Data Dictionary}
 
+There is not a bussiness domain to be modelled by this software, as such these sections are not needed.
+
 \subsection{The Scope of the Product}
 
 \subsubsection{Product Boundary}
 This project is a simple tool, with the user as the only actor.
 As such the use case diagram is fairly minimal.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \includegraphics[width=0.8\textwidth]{UseCaseDiagram.png}
 	\caption{The use case diagram for the system to be showing the product boundary.}
     \label{fig:use_case_diagram}
 \end{figure}
 
-\subsubsection{Product Use Case List}
+
+
+\subsubsection{Product Use Cases}
 
 As our products usability improves between phases of functionality, the use case will expand.
 A use case for each phase is provided.
@@ -141,6 +147,41 @@ The user points the camera at the group of resistors.
 The system is constantly scanning, and for any coherent pattern of color bands identified, the resistance is calculated and displayed in frame next to the resistor.
 
 \subsection{Functional Requirements}
+
+The functional requirements format given in the Volere template seems best suited to broad applications with many stakeholders and unclear development order.
+For this document only the description, rationale, and fit criteria for a requirement will be given.
+The requirements will be divided by the phases of development as meeting the goals of a given phase hinges on the completion of the ones before it.
+There will not be a further prioritization of features beyond this phasing.
+
+\subsubsection{ Phase 1 Functional Requirements}
+
+\textbf{Description:} Display text over video stream
+\\ \textbf{Rationale:} To meet the phase 1 use case, the resistance of the scanned resistor must be displayable.
+\\ \textbf{Fit Criterion:} The criterion is exceedingly straightforward, if text can be displayed over the video stream, the requirement is met
+\\ \\
+\textbf{Description: } Identify the resistance of a resistor, two points indicating its primary axis.
+\\ \textbf{Rationale: } In Phase 1 a line will be displayed over the video stream indicating where to position the resistor.
+For greater modularity, and to allow for future phases to build on the source code, the scanning algorithm should work with an arbitrary defined or identified primary axis.
+\\ \textbf{Fit Criterion:} This requirement shall be validated by testing it against human categorized resistors with a human annotated primary axis.
+It shall have an accuracy as defined in the non-functional requirements.
+
+\subsubsection{Phase 2 Functional Requirements}
+
+\textbf{Description:} Identify the primary axis of a resistor arbitrarily positioned in an image. 
+\\ \textbf{Rationale:} As is stated in the Phase 2 use case, we must be able to identify a resistor in any legible orientation.
+The recognized primary axis shall be the same format and structure as is consumed by the resistance identification system so the two can be seamlessly integrated.
+\\ \textbf{Fit Criterion: } This will be verified by running the algorithm against the human annotated primary axis.
+
+\subsubsection{Phase 3 Functional Requirements}
+
+\textbf{Description: } Identify the primary axis of many resistors arbitrarily positioned in an image. 
+\\ \textbf{Rationale: } This is the necessary to meet the phase 3 use case that is not developed in an existing phase 
+\\ \textbf{Fit Criterion: } This will be tested against a number of human annotated examples.
+\\ \\
+\textbf{Description: } Insert transformed text over a given primary axis.
+\\ \textbf{Rationale: } By combining this subsystem with the scanning from phase 1 and axis identification in phase 3 we have the complete system to meet the phase 3 use case.
+\\ \textbf{Fit Criterion: } This will be verified by having text sensibly displayed over the relevant axis of interest.
+
 
 \section{Non-functional Requirements}
 
