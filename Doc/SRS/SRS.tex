@@ -253,6 +253,12 @@ There are many available applications to scan resistors and read resistor colour
 There are currently none.
 
 \subsection{Tasks}
+See the Gantt chart below for an outline of tasks to be completed.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{gantt}
+\end{figure}
+
 \subsection{Migration to the New Product}
 The product is designed in such a way that the core functionality of processing resistor data and outputing the value of the given resistor will never change. Instead, new features will be implemented in order of their priority, determined in the requirements section.
 
@@ -266,9 +272,12 @@ The project contains no components that pose any cost to the development team.
 No training is required to use this application. A user guide will be available in the form of a popup menu when the app is first launched.
 
 \subsection{Waiting Room}
-
+See Phase 2 \& 3 Functional Requirements.
 
 \subsection{Ideas for Solutions}
+Using OpenCV, colours can be "binned" a small number of colours based on a range of RGB values. \\ 
+ie: All colour swith low R, low G and medium to high B can be reduced to simply one shade of blue to make identification easier. \\
+
 
 
 \end{document}
