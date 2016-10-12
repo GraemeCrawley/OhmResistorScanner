@@ -50,7 +50,7 @@ The main stakeholders for this application are the development team and our even
 \section{Project Constraints}
 
 \subsection{Mandated Constraints}
-Constraints for this project can be broken into two categories; developer constraints and device constraints. Developer contraints are constraints that pertain to the development of the application while device constraints are constraints that pertain to the user's device and what is required to use the application. 
+Constraints for this project can be broken into two categories; developer constraints and device constraints. Developer constraints are constraints that pertain to the development of the application while device constraints are constraints that pertain to the user's device and what is required to use the application. 
 \subsubsection{Developer Constraints}
 Developer constraints consist of the due date for the application which is December 7, 2016, the requirement that the application must be a re-implementation of a previously existing application on both Android and Windows, and the requirement that the application must be built at no cost to the developers.
 \subsubsection{Device Constraints}
@@ -81,7 +81,7 @@ Currently there are a few ways they can identify the resistance of the resistors
 
 \item Manual Method
 \subitem The resistor colour code was developed to allow the ease of reading for people. 
-With practise, people can quickly identify resistors by the colour bands, however this is less helpful when searching  for a specific resistor.
+With practice, people can quickly identify resistors by the colour bands, however this is less helpful when searching  for a specific resistor.
 Additionally building proficiency takes time and can be a frustrating slowdown for a beginner, especially if they misidentify components during assembly.
 
 \item Organizational Method
@@ -105,7 +105,7 @@ This work does not need to respond to any external business events, this section
 
 \subsection{Business Data Model \& Data Dictionary}
 
-There is not a bussiness domain to be modelled by this software, as such these sections are not needed.
+There is not a business domain to be modeled by this software, as such these sections are not needed.
 
 \subsection{The Scope of the Product}
 
@@ -131,14 +131,14 @@ A use case for each phase is provided.
 A user launches the app, and seeks to identify a specific resistor.
 They hold the resistor up to the camera and aligns the primary axis resistor with an on screen line.
 The system is constantly scanning, and once a coherent pattern of color bands is identified, the resistance is calculated and displayed.
-Once the system can no longer identify a coherent pattern of color bands, the displayed resistance value dissappears, until a new resistor is identified.
+Once the system can no longer identify a coherent pattern of color bands, the displayed resistance value disappears, until a new resistor is identified.
 
 \textbf{ Phase 2 Use Case}
 
 A user launches the app, and seeks to identify a specific resistor.
 The user points the camera in the general direction of the resistor, with little care for accurate framing.
 The system is constantly scanning, and once a coherent pattern of color bands is identified, the resistance is calculated and displayed.
-Once the system can no longer identify a coherent pattern of color bands, the displayed resistance value dissappears, until a new resistor is identified.
+Once the system can no longer identify a coherent pattern of color bands, the displayed resistance value disappears, until a new resistor is identified.
 
 \textbf{ Phase 3 Use Case}
 
@@ -213,7 +213,7 @@ The recognized primary axis shall be the same format and structure as is consume
 \subsection{Operational and Environmental Requirements}
 \subsubsection{Expected Physical Environment}
 \begin{enumerate}
-\item The environment for the use of the application is in a household (hobyist) or light industrial setting.
+\item The environment for the use of the application is in a household (hobbyist) or light industrial setting.
 \end{enumerate}
 \subsubsection{Productization Requirements}
 \begin{enumerate}
@@ -247,7 +247,7 @@ The application does not feature any requirements specific to certain cultures o
 When it comes to scanning resistors, labelling them with their respective values is just the tip of the iceberg. The team would like to be able to scan a resistor of any size and colour against any surface, or scan by holding the resistor up to the camera. If possible, the application would also allow for a requested ohmage to be inputted and the combination of resistors needed would be highlighted.
 
 \subsection{Off-the-Shelf Solutions}
-There are many available applications to scan resistors and read resistor colour codes. A notable example is an application available on the Google Play store by the name of "Resistor Code Calculator" that allows a user to simply tap-to-highlight the coloured bands of the resistor in order and the app automatically calculates the resistance. The app doesn't solve the problem of colourblind users, but it solves the issue of reading a resistor in a much simpler way than our team's implementation. Similarly, many apps exist on app store that either allow the user to create a virtual circuit, or contain a large about of data about resistors that our application does not provide.
+There are many available applications to scan resistors and read resistor colour codes. A notable example is an application available on the Google Play store by the name of "Resistor Code Calculator" that allows a user to simply tap-to-highlight the coloured bands of the resistor in order and the app automatically calculates the resistance. The app doesn't solve the problem of colour blind users, but it solves the issue of reading a resistor in a much simpler way than our team's implementation. Similarly, many apps exist on app store that either allow the user to create a virtual circuit, or contain a large about of data about resistors that our application does not provide.
 
 \subsection{New Problems}
 There are currently none.
@@ -260,7 +260,7 @@ See the Gantt chart below for an outline of tasks to be completed.
 \end{figure}
 
 \subsection{Migration to the New Product}
-The product is designed in such a way that the core functionality of processing resistor data and outputing the value of the given resistor will never change. Instead, new features will be implemented in order of their priority, determined in the requirements section.
+The product is designed in such a way that the core functionality of processing resistor data and outputting the value of the given resistor will never change. Instead, new features will be implemented in order of their priority, determined in the requirements section.
 
 \subsection{Risks}
 There are technical risks associated with building on the existing resistor product by including features such as the ability to scan multiple resistors at once, or find the requested resistor from an area containing multiple resistors. These risks are mitigated by having a phase-based development plan in which we start with the necessary base of the application and add new features that build on each other in each new phase.
@@ -276,7 +276,7 @@ See Phase 2 \& 3 Functional Requirements.
 
 \subsection{Ideas for Solutions}
 Using OpenCV, colours can be "binned" a small number of colours based on a range of RGB values. \\ 
-ie: All colour swith low R, low G and medium to high B can be reduced to simply one shade of blue to make identification easier. \\
+ie: All colours with low R, low G and medium to high B can be reduced to simply one shade of blue to make identification easier. \\
 
 
 
