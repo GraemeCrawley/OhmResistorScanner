@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="PCM" company="McMaster, CAS Department" webLink="" view-date="2016-09-25" view-index="0" gantt-divider-location="399" resource-divider-location="472" version="2.8.1" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="PCM" company="McMaster, CAS Department" webLink="" view-date="2016-09-18" view-index="0" gantt-divider-location="399" resource-divider-location="472" version="2.8.1" locale="en_CA">
     <description><![CDATA[Simulation of temperature over time for a solar water heating tank incorporating phase change material (PCM).]]></description>
     <view zooming-state="default:6" id="gantt-chart">
-        <field id="tpd3" name="Name" width="222" order="0"/>
-        <field id="tpd4" name="Begin date" width="82" order="1"/>
+        <field id="tpd3" name="Name" width="223" order="0"/>
+        <field id="tpd4" name="Begin date" width="83" order="1"/>
         <field id="tpd5" name="End date" width="89" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="295" order="0"/>
-        <field id="1" name="Default role" width="171" order="1"/>
+        <field id="0" name="Name" width="296" order="0"/>
+        <field id="1" name="Default role" width="172" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -57,7 +57,11 @@
             <task id="32" name="Schedule" color="#8cb6ce" meeting="false" start="2016-10-28" duration="15" complete="0" expand="true"/>
         </task>
         <task id="2" name="Design Doc Rev0 Due" color="#8cb6ce" meeting="true" start="2016-11-11" duration="0" complete="0" expand="true"/>
-        <task id="44" name="Implementation (rev0)" color="#8cb6ce" meeting="false" start="2016-10-06" duration="42" complete="0" expand="true"/>
+        <task id="44" name="Implementation (rev0)" color="#8cb6ce" meeting="false" start="2016-10-06" duration="37" complete="0" expand="true">
+            <task id="191" name="Phase 1" color="#8cb6ce" meeting="false" start="2016-10-06" duration="13" complete="0" expand="true"/>
+            <task id="194" name="Phase 2" color="#8cb6ce" meeting="false" start="2016-10-19" duration="13" complete="0" expand="true"/>
+            <task id="196" name="Phase 3" color="#8cb6ce" meeting="false" start="2016-10-31" duration="12" complete="0" expand="true"/>
+        </task>
         <task id="120" name="Testing (rev0)" color="#8cb6ce" meeting="false" start="2016-11-12" duration="4" complete="0" expand="true">
             <depend id="21" type="2" difference="0" hardness="Strong"/>
             <depend id="98" type="2" difference="0" hardness="Strong"/>
