@@ -1,12 +1,16 @@
 package ohm;
 
 import javafx.scene.image.Image;
+import javafx.util.Pair;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.Point;
 import org.opencv.imgcodecs.Imgcodecs;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by jon on 2016-09-21.
@@ -184,5 +188,42 @@ public class Helpers {
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
+    public static double[] groupTerms(double[] terms, int binSize){
+        double[] groupedTerms = new double[(terms.length+binSize-1)/binSize];
+        for (int i = 0; i < terms.length; i++){
+            int n = i / binSize;
+            if (i % binSize == 0){
+                groupedTerms[n] = terms[i];
+            }else{
+                groupedTerms[n] += terms[i];
+            }
+        }
+        return groupedTerms;
+    }
 
+    public static List<Pair<Integer,Double>> findLocalMaxima(double[] values){
+        List<Pair<Integer,Double>> indexValuePairs= new ArrayList<>(10);
+        for(int i = 1; i < values.length - 1; i++){
+            if (values[i] > values[i-1] && values[i] > values[i+1]){
+                indexValuePairs.add(new Pair<>(i,values[i]));
+            }
+        }
+        return indexValuePairs;
+    }
+
+    public static List<Pair<Integer,Double>> findGlobalMaxima (double[] values, int nMaxima){
+        List<Pair<Integer,Double>> indexValuePairs= new ArrayList<>(values.length);
+        for (int i = 0; i < values.length; i++){
+            indexValuePairs.add(new Pair<>(i,values[i]));
+        }
+        List<Pair<Integer,Double>> sortedPairs = indexValuePairs.stream()
+                        .sorted((o1, o2) -> o1.getValue().compareTo(o2.getValue()))
+                        .collect(Collectors.toList())
+                        .subList(values.length-nMaxima,values.length);
+        return sortedPairs;
+    }
+
+    public static Point onLine(Point start, Point end, double fraction){
+        return new Point(start.x+(end.x-start.x)*fraction,start.y+(end.y-start.y)*fraction);
+    }
 }

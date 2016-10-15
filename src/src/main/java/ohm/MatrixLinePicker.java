@@ -49,17 +49,21 @@ public class MatrixLinePicker extends ImageView implements EventHandler<MouseEve
         // Render circles over the clicked points
         displayImage = sourceImage.clone();
         if (p1 != null){
-            Imgproc.circle(displayImage, p1,3,new Scalar(255, 0, 0, 255),2);
+            Imgproc.circle(displayImage, p1,1,new Scalar(255, 0, 0, 255),1);
         }
         if (p2 != null) {
-            Imgproc.circle(displayImage, p2, 3, new Scalar(255, 0, 0, 255), 2);
+            Imgproc.circle(displayImage, p2, 1, new Scalar(255, 0, 0, 255), 1);
+        }
+
+        // Update the listeners and draw the line
+        if (p1 != null && p2 != null){
+
+            listener.onLinePicked(p1,p2);
+            Imgproc.line(displayImage, p1, p2, new Scalar(128, 128, 128, 50), 1);
+
         }
         this.setImage(Helpers.matToImage(displayImage));
 
-        // Update the listeners
-        if (p1 != null && p2 != null){
-            listener.onLinePicked(p1,p2);
-        }
     }
 
 
