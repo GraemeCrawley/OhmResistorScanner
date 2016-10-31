@@ -73,7 +73,6 @@ public class OhmViewController implements Initializable {
                 for (Point p:points) {
                     Imgproc.circle(processed, p, 1, new Scalar(255, 0, 0, 255), 2);
                 }
-                Imgproc.det
                 return matToImage(processed);
             }
         });
