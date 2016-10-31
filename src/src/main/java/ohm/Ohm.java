@@ -34,11 +34,4 @@ public class Ohm extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-
-
-    //Method responsible for safely shutting down the application
-    @Override
-    public void stop() {
-         ((OhmViewController) fxmlLoader.getController()).stop();
-    }
 }
