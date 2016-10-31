@@ -36,5 +36,7 @@ src/build/
 *.synctex.gz
 *.log
 *.DS_Store
-*.log
-*.syntex.gz
+*.lot
+*.lof
+*.out
+*.toc

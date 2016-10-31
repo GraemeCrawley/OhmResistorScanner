@@ -10,11 +10,11 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
-\title{SE 3XA3: Test Plan\\Title of Project}
-\author{Team \#, Team Name
-		\\ Student 1 name and macid
-		\\ Student 2 name and macid
-		\\ Student 3 name and macid
+\title{SE 3XA3: Test Plan\\ Ohm: Resistor Scanner}
+\author{Team 4, ohm
+		\\ Jonathan Brown, brownjs2
+		\\ Graeme Crawley, crawleg
+		\\ Ryan Marks, marksr2
 }
 \date{\today}
 \input{../Comments}
@@ -36,10 +36,11 @@ Date 2 & 1.1 & Notes\\
 \end{table}
 \newpage
 \pagenumbering{arabic}
-This document ...
 \section{General Information}
 \subsection{Purpose}
+\par This document will describe the testing procedure used to ensure the correct functionality of Group 4's 3XA3 Project, Ohm. While the implementaion of the project is not complete, it is important to have plan tests that verify that the project complies with the specifications and requirements set out in the SRS. These tests are necessary in order to produce a high quality end product, as well as track and manage the progress of the group.
 \subsection{Scope}
+\par The tests prescribed in the test plan should verify the efficacy of the resistor band detection, the colour selection and the resistor body detection (note: the resistor body detection has not yet been implemented).
 \subsection{Acronyms, Abbreviations, and Symbols}
 	
 \begin{table}[hbp]
@@ -64,14 +65,23 @@ Term2 & Definition2\\
 \bottomrule
 \end{tabularx}
 \end{table}	
+
 \subsection{Overview of Document}
+The Test Plan will contain five main sections excluding this introductory one, as well as an appendix. 
+
 \section{Plan}
 	
 \subsection{Software Description}
+Ohm will allow users with a desktop computer or smartphone equipped camera to determine the resistance of a standard 4-band resistor by placing it within the camera frame. The software will, using Opencv, detect and read the colour bands of the resistor automatically to determine it's resistance. This software will be implemented in Java.
 \subsection{Test Team}
+All members of Group 4, Jonathan Brown, Graeme Crawley, and Ryan Marks will be responsible for testing components of the application as well as the application as a whole.
 \subsection{Automated Testing Approach}
+
 \subsection{Testing Tools}
+\par JUnit 4 will be the tool for testing individual modules of the software.
 \subsection{Testing Schedule}
+
+INTSERT TABLE HERE
 		
 See Gantt Chart at the following url ...
 \section{System Test Description}
