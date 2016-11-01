@@ -251,9 +251,10 @@ How test will be performed:
 	
 \section{Comparison to Existing Implementation}	
 				
-\section{Unit Testing Plan}		
+\section{Unit Testing Plan}	
+\par JUnit4 will be used to perform unit testing for this application.	
 \subsection{Unit testing of internal functions}
-\par 
+\par Unit testing will be performed on any independant functions where comparison to expected results is possible. This project features several prime candidates for such testing: expected band locations, and expected colour selection. Once this unit testing is performed these individual modules can be combined and dyamic and functional testing can be performed to verify the final resistance output. Modules featuring image processing (the majority of them) will be tested using a stub to pass them static images in place of camera input. The application behaves quite linearly, allowing for complete test coverage.
 \subsection{Unit testing of output files}		
 \par This project does not feature any output files.
 \bibliographystyle{plainnat}
