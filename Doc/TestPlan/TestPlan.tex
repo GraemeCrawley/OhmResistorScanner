@@ -22,15 +22,14 @@
 \maketitle
 \pagenumbering{roman}
 \tableofcontents
+\newpage
 \listoftables
-\listoffigures
-\begin{table}[bp]
+\begin{table}[h]
 \caption{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+October 31st 2016 & 0.0 & First Revision of Testing Plan\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -41,33 +40,33 @@ Date 2 & 1.1 & Notes\\
 \par This document will describe the testing procedure used to ensure the correct functionality of Group 4's 3XA3 Project, Ohm. While the implementaion of the project is not complete, it is important to have plan tests that verify that the project complies with the specifications and requirements set out in the SRS. These tests are necessary in order to produce a high quality end product, as well as track and manage the progress of the group.
 \subsection{Scope}
 \par The tests prescribed in the test plan should verify the efficacy of the resistor band detection, the colour selection and the resistor body detection (note: the resistor body detection has not yet been implemented).
-\subsection{Acronyms, Abbreviations, and Symbols}
-	
-\begin{table}[hbp]
-\caption{\textbf{Table of Abbreviations}} \label{Table}
-\begin{tabularx}{\textwidth}{p{3cm}X}
-\toprule
-\textbf{Abbreviation} & \textbf{Definition} \\
-\midrule
-Abbreviation1 & Definition1\\
-Abbreviation2 & Definition2\\
-\bottomrule
-\end{tabularx}
-\end{table}
-\begin{table}[!htbp]
-\caption{\textbf{Table of Definitions}} \label{Table}
-\begin{tabularx}{\textwidth}{p{3cm}X}
-\toprule
-\textbf{Term} & \textbf{Definition}\\
-\midrule
-Term1 & Definition1\\
-Term2 & Definition2\\
-\bottomrule
-\end{tabularx}
-\end{table}	
+
+%\subsection{Acronyms, Abbreviations, and Symbols}	
+%\begin{table}[hbp]
+%\caption{\textbf{Table of Abbreviations}} \label{Table}
+%\begin{tabularx}{\textwidth}{p{3cm}X}
+%\toprule
+%\textbf{Abbreviation} & \textbf{Definition} \\
+%\midrule
+%Abbreviation1 & Definition1\\
+%Abbreviation2 & Definition2\\
+%\bottomrule
+%\end{tabularx}
+%\end{table}
+%\begin{table}[!htbp]
+%\caption{\textbf{Table of Definitions}} \label{Table}
+%\begin{tabularx}{\textwidth}{p{3cm}X}
+%\toprule
+%\textbf{Term} & \textbf{Definition}\\
+%\midrule
+%Term1 & Definition1\\
+%Term2 & Definition2\\
+%\bottomrule
+%\end{tabularx}
+%\end{table}	
 
 \subsection{Overview of Document}
-The Test Plan will contain five main sections excluding this introductory one, as well as an appendix. 
+The Test Plan will contain five main sections excluding this introductory one. An outline of the contents of the document can be found in the table of contents.
 
 \section{Plan}
 	
@@ -76,14 +75,11 @@ Ohm will allow users with a desktop computer or smartphone equipped camera to de
 \subsection{Test Team}
 All members of Group 4, Jonathan Brown, Graeme Crawley, and Ryan Marks will be responsible for testing components of the application as well as the application as a whole.
 \subsection{Automated Testing Approach}
-
+Automated testing is inherently difficult with respect to this problem, as much of the testing conducted is required to be supervised and manual. What automated testing can be done will be completed during the unit testing phase and completed using JUnit.
 \subsection{Testing Tools}
-\par JUnit 4 will be the tool for testing individual modules of the software.
+\par JUnit 4 will be the tool for unit testing of the software. JCov will be used to ensure 95\%+ testing coverage.
 \subsection{Testing Schedule}
-
-INTSERT TABLE HERE
-		
-See Gantt Chart at the following url ...
+Please reference the Gantt chart in the project schedule folder of this repository.
 \section{System Test Description}
 	
 \subsection{Tests for Functional Requirements}
@@ -346,12 +342,10 @@ The app be launched and display the warning box within 5 seconds
 
 \section{Tests for Proof of Concept}
 \subsection{Band Identification}
-		
-\paragraph{Title for Test}
 \begin{enumerate}
 \item{PC-BI-1\\}
 \\
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic, Manual
 					
 Initial State: Software not running
 					
@@ -359,23 +353,34 @@ Input: Run Command
 					
 Output: Software displays static image of resistor with no bands selected.
 					
-How test will be performed: 
+How test will be performed: Manual execution.
 					
 \item{PC-BI-2\\}
 \\
-Type: Functional, Dynamic, Manual, Static etc.
+Type: Functional, Dynamic, Manual.
 					
 Initial State: Software running, no axis selected
 					
 Input: Select axis directly across resistor body.
 					
-Output:  A ring centered around
+Output:  A ring centered around each band of the appropriate colour.
 					
-How test will be performed: 
+How test will be performed:  Manual execution.
+
+\item{PC-BI-3\\}
+\\
+Type: Functional, Dynamic, Manual
+					
+Initial State: Software not running
+					
+Input: Select axis incorrectly.
+					
+Output: Exception is thrown
+					
+How test will be performed: Manual execution.
+
 \end{enumerate}
-\subsection{Area of Testing2}
-...
-	
+
 \section{Comparison to Existing Implementation}
 There are two tests that compare the program to the Existing Implementation of the program. Please refer to:
 \begin{itemize}
@@ -383,9 +388,6 @@ There are two tests that compare the program to the Existing Implementation of t
 \item test NF-FDM-15 in Launch Tests for Nonfunctional Requirements 
 \end{itemize}
 
-
-
-				
 \section{Unit Testing Plan}	
 \par JUnit4 will be used to perform unit testing for this application.	
 \subsection{Unit testing of internal functions}
@@ -394,12 +396,4 @@ There are two tests that compare the program to the Existing Implementation of t
 \par This project does not feature any output files.
 \bibliographystyle{plainnat}
 \bibliography{SRS}
-\newpage
-\section{Appendix}
-This is where you can place additional information.
-\subsection{Symbolic Parameters}
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
-\subsection{Usability Survey Questions?}
-This is a section that would be appropriate for some teams.
 \end{document}
