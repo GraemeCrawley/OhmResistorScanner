@@ -71,7 +71,7 @@ The Test Plan will contain five main sections excluding this introductory one. A
 \section{Plan}
 	
 \subsection{Software Description}
-Ohm will allow users with a desktop computer or smartphone equipped camera to determine the resistance of a standard 4-band resistor by placing it within the camera frame. The software will, using Opencv, detect and read the colour bands of the resistor automatically to determine it's resistance. This software will be implemented in Java.
+Ohm will allow users with a desktop computer or smart phone equipped camera to determine the resistance of a standard 4-band resistor by placing it within the camera frame. The software will, using Opencv, detect and read the colour bands of the resistor automatically to determine it's resistance. This software will be implemented in Java.
 \subsection{Test Team}
 All members of Group 4, Jonathan Brown, Graeme Crawley, and Ryan Marks will be responsible for testing components of the application as well as the application as a whole.
 \subsection{Automated Testing Approach}
@@ -80,6 +80,9 @@ Automated testing is inherently difficult with respect to this problem, as much 
 \par JUnit 4 will be the tool for unit testing of the software. JCov will be used to ensure 95\%+ testing coverage.
 \subsection{Testing Schedule}
 Please reference the Gantt chart in the project schedule folder of this repository.
+
+\url{https://gitlab.cas.mcmaster.ca/marksr2/ohm/blob/master/ProjectSchedule/3XA3_Group_4_Gantt_Chart.gan}
+
 \section{System Test Description}
 	
 \subsection{Tests for Functional Requirements}
@@ -281,7 +284,7 @@ Input:
 Give the app and a resistor to a user between the ages of 8 and 70
 					
 Output: 
-The user will be able to identify the value of the resistor
+The user will be able to identify the value of the resistor.
 					
 How test will be performed: 
 The user will be given a resistor and the app. The app will be easy to use and allow the resistance to be measured.
@@ -293,13 +296,13 @@ Initial State:
 App is open, camera is on
 					
 Input: 
-Give the app to a user who doesn't have internet connection
+Give the app to a user who doesn't have Internet connection
 					
 Output: 
 The user will be able to identify the value of the resistor
 					
 How test will be performed: 
-The user will be given a resistor and the app. The app will be easy to use and allow the resistance to be measured without the need for internet.
+The user will be given a resistor and the app. The app will be easy to use and allow the resistance to be measured without the need for Internet.
 
 \end{enumerate}
 \subsubsection{Launch Tests}
@@ -391,7 +394,7 @@ There are two tests that compare the program to the Existing Implementation of t
 \section{Unit Testing Plan}	
 \par JUnit4 will be used to perform unit testing for this application.	
 \subsection{Unit testing of internal functions}
-\par Unit testing will be performed on any independant functions where comparison to expected results is possible. This project features several prime candidates for such testing: expected band locations, and expected colour selection. Once this unit testing is performed these individual modules can be combined and automated dyamic and functional testing can be performed to verify the final resistance output. Modules featuring image processing (the majority of them) will be tested using a stub to pass them static images in place of camera input. The application behaves quite linearly, allowing for complete test coverage.
+\par Unit testing will be performed on any independent functions where comparison to expected results is possible. This project features several prime candidates for such testing: expected band locations, and expected colour selection. Once this unit testing is performed these individual modules can be combined and automated dynamic and functional testing can be performed to verify the final resistance output. Modules featuring image processing (the majority of them) will be tested using a stub to pass them static images in place of camera input. The application behaves quite linearly, allowing for complete test coverage.
 \subsection{Unit testing of output files}		
 \par This project does not feature any output files.
 \bibliographystyle{plainnat}
