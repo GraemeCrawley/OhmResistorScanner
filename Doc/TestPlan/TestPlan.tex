@@ -261,7 +261,7 @@ The user will point the camera so that no resistor is visible on screen.
 \subsubsection{User Tests}
 \begin{enumerate}
 \item{NF-FDM-11\\}
-Type: Functional, Dynamic, Automated
+Type: Functional, Dynamic, Manual
 					
 Initial State: 
 App is open, camera is on
@@ -273,7 +273,7 @@ Output/Result:
 95 resistors or more will be identified accurately
 					
 How test will be performed: 
-100 resistors will be scanned consecutively, their values being displayed on screen. The values will be recorded and compared to he manually calculated values of each resistor. At least 95 resistors will be identified accurately.
+100 resistors will be scanned consecutively by hand, their values being displayed on screen. The values will be recorded and compared to he manually calculated values of each resistor. At least 95 resistors will be identified accurately.
 					
 \item{NF-FDM-12\\}
 Type: Functional, Dynamic, Manual
@@ -333,10 +333,10 @@ Input:
 App is launched
 					
 Output: 
-The app will display the warning box within * seconds
+The app will display the warning box within 5 seconds
 					
 How test will be performed: 
-The app be launched and display the warning box within * seconds
+The app be launched and display the warning box within 5 seconds
 
 
 \end{enumerate}
@@ -376,7 +376,15 @@ How test will be performed:
 \subsection{Area of Testing2}
 ...
 	
-\section{Comparison to Existing Implementation}	
+\section{Comparison to Existing Implementation}
+There are two tests that compare the program to the Existing Implementation of the program. Please refer to:
+\begin{itemize}
+\item test F-FDM-9 in Resistor Scanning for Functional Requirements
+\item test NF-FDM-15 in Launch Tests for Nonfunctional Requirements 
+\end{itemize}
+
+
+
 				
 \section{Unit Testing Plan}	
 \par JUnit4 will be used to perform unit testing for this application.	
