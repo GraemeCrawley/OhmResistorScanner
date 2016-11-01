@@ -87,13 +87,79 @@ See Gantt Chart at the following url ...
 \section{System Test Description}
 	
 \subsection{Tests for Functional Requirements}
-\subsection{Tests for Functional Requirements}
 \subsubsection{User Input}
-		
-\paragraph{Resistor Scanning}
+\paragraph{Warning Box}
 \begin{enumerate}
-\item{test-id1\\}
-Type: Functional, Dynamic, Manual, Static etc.
+\item{F-FDM-1\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+Camera starts, warning box appears over camera view
+					
+How test will be performed: 
+The user will launch the app which will automatically display a warning box upon opening.
+
+\item{F-UDM-2\\}
+Type: Unit, Dynamic, Manual
+					
+Initial State: 
+Warning box is displayed
+					
+Input: 
+"X" on the box is pressed
+					
+Output: 
+Warning box closes, showing camera
+					
+How test will be performed: 
+The user will press the "X" on the warning box, which will then close the warning box.
+
+\item{F-UDM-3\\}
+Type: Unit, Dynamic, Manual
+					
+Initial State: 
+Warning box is displayed
+					
+Input: 
+Screen is pressed anywhere that isn't the "X" on the warning box
+					
+Output: 
+No output
+					
+How test will be performed: 
+The user will press the space around "X" on the warning box, which will do nothing.
+
+\end{enumerate}
+
+\paragraph{Screen}
+\begin{enumerate}
+\item{F-UDM-4\\}
+Type: Unit, Dynamic, Manual
+					
+Initial State: 
+App is open, ready to scan
+					
+Input: 
+Screen is tapped
+					
+Output: 
+No output
+					
+How test will be performed: 
+The user will  tap the screen while the app is running, resulting in no change
+
+\end{enumerate}
+
+\subsubsection{Resistor Scanning}
+\begin{enumerate}
+\item{F-FDM-5\\}
+Type: Functional, Dynamic, Manual
 					
 Initial State: 
 App is open, camera is on
@@ -105,10 +171,10 @@ Output:
 No output
 					
 How test will be performed: 
-The user will point the camera at a resistor without lining up the red line on the app to intersect the four bands of the resistor.
+The user will point the camera at a resistor without lining up the red line on the app to intersect any of the four bands of the resistor.
 					
-\item{test-id2\\}
-Type: Functional, Dynamic, Manual, Static etc.
+\item{F-FDM-6\\}
+Type: Functional, Dynamic, Manual
 					
 Initial State: 
 App is open, camera is on
@@ -119,8 +185,11 @@ Camera is pointed at resistor in correct orientation with red line crossing thro
 Output: 
 No output
 
-\item{test-id3\\}
-Type: Functional, Dynamic, Manual, Static etc.
+How test will be performed: 
+The user will point the camera at a resistor with the red line intersecting one of the four bands of the resistor.
+
+\item{F-FDM-7\\}
+Type: Functional, Dynamic, Manual
 					
 Initial State: 
 App is open, camera is on
@@ -131,8 +200,11 @@ Camera is pointed at resistor in correct orientation with red line crossing thro
 Output: 
 No output	
 
-\item{test-id4\\}
-Type: Functional, Dynamic, Manual, Static etc.
+How test will be performed: 
+The user will point the camera at a resistor with the red line intersecting two of the four bands of the resistor.
+
+\item{F-FDM-8\\}
+Type: Functional, Dynamic, Manual
 					
 Initial State: 
 App is open, camera is on
@@ -143,8 +215,11 @@ Camera is pointed at resistor in correct orientation with red line crossing thro
 Output: 
 No output	
 
-\item{test-id5\\}
-Type: Functional, Dynamic, Manual, Static etc.
+How test will be performed: 
+The user will point the camera at a resistor with the red line intersecting three of the four bands of the resistor.
+
+\item{F-FDM-9\\}
+Type: Functional, Dynamic, Manual
 					
 Initial State: 
 App is open, camera is on
@@ -154,69 +229,121 @@ Camera is pointed at resistor in correct orientation with red line crossing thro
 					
 Output: 
 Resistance value is displayed on the screen	
-					
+
 How test will be performed: 
-\end{enumerate}
-\subsubsection{Area of Testing2}
-...
-\subsection{Tests for Nonfunctional Requirements}
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
-\begin{enumerate}
-\item{test-id1\\}
-Type: 
+The user will point the camera at a resistor with the red line intersecting all four bands of the resistor.
+
+\item{F-FDM-10\\}
+Type: Functional, Dynamic, Manual
 					
 Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
+App is open, camera is on
 					
 Input: 
+Camera is on with no resistor visible on screen
 					
 Output: 
-					
+No output
+
 How test will be performed: 
+The user will point the camera so that no resistor is visible on screen.
+
 \end{enumerate}
-\subsubsection{Area of Testing2}
-...
+
+
+
+
+
+
+
+
 \subsection{Tests for Nonfunctional Requirements}
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+\subsubsection{User Tests}
 \begin{enumerate}
-\item{test-id1\\}
-Type: 
+\item{NF-FDM-11\\}
+Type: Functional, Dynamic, Automated
 					
 Initial State: 
+App is open, camera is on
 					
 Input/Condition: 
+100 resistors scanned
 					
 Output/Result: 
+95 resistors or more will be identified accurately
 					
 How test will be performed: 
+100 resistors will be scanned consecutively, their values being displayed on screen. The values will be recorded and compared to he manually calculated values of each resistor. At least 95 resistors will be identified accurately.
 					
-\item{test-id2\\}
-Type: Functional, Dynamic, Manual, Static etc.
+\item{NF-FDM-12\\}
+Type: Functional, Dynamic, Manual
 					
 Initial State: 
+App is open, camera is on
 					
 Input: 
+Give the app and a resistor to a user between the ages of 8 and 70
 					
 Output: 
+The user will be able to identify the value of the resistor
 					
 How test will be performed: 
+The user will be given a resistor and the app. The app will be easy to use and allow the resistance to be measured.
+
+\item{NF-FDM-13\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Give the app to a user who doesn't have internet connection
+					
+Output: 
+The user will be able to identify the value of the resistor
+					
+How test will be performed: 
+The user will be given a resistor and the app. The app will be easy to use and allow the resistance to be measured without the need for internet.
+
 \end{enumerate}
-\subsubsection{Area of Testing2}
-...
+\subsubsection{Launch Tests}
+\begin{enumerate}
+\item{NF-FDM-14\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+The warning box will display text
+					
+How test will be performed: 
+The app will be launched and display a warning box which contains text. The text will notify the user that the app should not be used in safety critical systems.
+
+\item{NF-FDM-15\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+The app will display the warning box within * seconds
+					
+How test will be performed: 
+The app be launched and display the warning box within * seconds
+
+
+\end{enumerate}
+
+
+
+
 \section{Tests for Proof of Concept}
 \subsection{Band Identification}
 		
