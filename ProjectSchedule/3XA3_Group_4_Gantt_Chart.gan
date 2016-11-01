@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="PCM" company="McMaster, CAS Department" webLink="" view-date="2016-09-25" view-index="0" gantt-divider-location="399" resource-divider-location="472" version="2.8.1" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="PCM" company="McMaster, CAS Department" webLink="" view-date="2016-09-25" view-index="1" gantt-divider-location="399" resource-divider-location="472" version="2.8.1" locale="en_CA">
     <description><![CDATA[Simulation of temperature over time for a solar water heating tank incorporating phase change material (PCM).]]></description>
-    <view zooming-state="default:5" id="gantt-chart">
+    <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Name" width="223" order="0"/>
         <field id="tpd4" name="Begin date" width="83" order="1"/>
         <field id="tpd5" name="End date" width="89" order="2"/>
@@ -64,7 +64,6 @@
             <task id="216" name="Tests for Proof of Concept" color="#8cb6ce" meeting="false" start="2016-10-24" duration="8" complete="0" expand="true"/>
             <task id="218" name="Comparison to Existing Implemetation" color="#8cb6ce" meeting="false" start="2016-10-24" duration="8" complete="0" expand="true"/>
             <task id="230" name="Unit Testing" color="#8cb6ce" meeting="false" start="2016-10-24" duration="8" complete="0" expand="true"/>
-            <task id="232" name="Plan" color="#8cb6ce" meeting="false" start="2016-10-24" duration="8" complete="0" expand="true"/>
             <task id="235" name="Appendix" color="#8cb6ce" meeting="false" start="2016-10-24" duration="8" complete="0" expand="true"/>
         </task>
         <task id="44" name="Implementation (rev0)" color="#8cb6ce" meeting="false" start="2016-10-06" duration="37" complete="0" expand="true">
@@ -110,18 +109,21 @@
     </resources>
     <allocations>
         <allocation task-id="31" resource-id="0" function="Default:0" responsible="true" load="90.0"/>
-        <allocation task-id="29" resource-id="0" function="Default:0" responsible="false" load="90.0"/>
+        <allocation task-id="29" resource-id="0" function="Default:0" responsible="false" load="40.0"/>
         <allocation task-id="32" resource-id="0" function="Default:0" responsible="true" load="10.0"/>
         <allocation task-id="208" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="210" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="216" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="230" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="29" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="31" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="32" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
-        <allocation task-id="216" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="29" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="31" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="32" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="212" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="218" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="235" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
     </allocations>
     <vacations/>
     <previous/>
