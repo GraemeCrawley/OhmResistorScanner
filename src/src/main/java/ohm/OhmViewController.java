@@ -66,7 +66,7 @@ public class OhmViewController implements Initializable {
             }
         });
 
-        this.processedImageView.setRenderer(new LiveImageView.Rednderer() {
+        this.processedImageView.setRenderer(new LiveImageView.Renderer() {
             @Override
             public Image render() {
                 Mat processed = frame.clone();

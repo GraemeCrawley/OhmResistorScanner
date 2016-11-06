@@ -14,6 +14,8 @@ public enum ResistorColour {
     VIOLET(7,50,33,80),
     GREY(8,125,125,125),
     WHITE(9,200,200,200),
+    //GOLD(),
+    //SILVER(),
     BASE(-1,200,170,145);
 
     int value;

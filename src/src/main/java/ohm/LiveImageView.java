@@ -12,7 +12,7 @@ public class LiveImageView extends ImageView {
 
     private final LiveImageView imageView = this;
     private int frameRate = 12;
-    private Rednderer rednderer = null;
+    private Renderer renderer = null;
 
     public LiveImageView() {
         super();
@@ -21,8 +21,8 @@ public class LiveImageView extends ImageView {
             public void run() {
                 boolean running = true;
                 while (running){
-                    if (rednderer != null) {
-                        imageView.setImage(rednderer.render());
+                    if (renderer != null) {
+                        imageView.setImage(renderer.render());
                     }
                     try {
                         Thread.sleep(1000 / frameRate);
@@ -38,11 +38,11 @@ public class LiveImageView extends ImageView {
         this.frameRate = frameRate;
     }
 
-    public void setRenderer(Rednderer newRenderer){
-        this.rednderer = newRenderer;
+    public void setRenderer(Renderer newRenderer){
+        this.renderer = newRenderer;
     }
 
-    interface Rednderer {
+    interface Renderer {
         Image render();
     }
 

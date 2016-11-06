@@ -1,0 +1,402 @@
+\documentclass[12pt, titlepage]{article}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+\title{SE 3XA3: Test Plan\\ Ohm: Resistor Scanner}
+\author{Team 4, ohm
+		\\ Jonathan Brown, brownjs2
+		\\ Graeme Crawley, crawleg
+		\\ Ryan Marks, marksr2
+}
+\date{\today}
+\input{../Comments}
+\begin{document}
+\maketitle
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\listoftables
+\begin{table}[h]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+October 31st 2016 & 0.0 & First Revision of Testing Plan\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\newpage
+\pagenumbering{arabic}
+\section{General Information}
+\subsection{Purpose}
+\par This document will describe the testing procedure used to ensure the correct functionality of Group 4's 3XA3 Project, Ohm. While the implementaion of the project is not complete, it is important to have plan tests that verify that the project complies with the specifications and requirements set out in the SRS. These tests are necessary in order to produce a high quality end product, as well as track and manage the progress of the group.
+\subsection{Scope}
+\par The tests prescribed in the test plan should verify the efficacy of the resistor band detection, the colour selection and the resistor body detection (note: the resistor body detection has not yet been implemented).
+
+%\subsection{Acronyms, Abbreviations, and Symbols}	
+%\begin{table}[hbp]
+%\caption{\textbf{Table of Abbreviations}} \label{Table}
+%\begin{tabularx}{\textwidth}{p{3cm}X}
+%\toprule
+%\textbf{Abbreviation} & \textbf{Definition} \\
+%\midrule
+%Abbreviation1 & Definition1\\
+%Abbreviation2 & Definition2\\
+%\bottomrule
+%\end{tabularx}
+%\end{table}
+%\begin{table}[!htbp]
+%\caption{\textbf{Table of Definitions}} \label{Table}
+%\begin{tabularx}{\textwidth}{p{3cm}X}
+%\toprule
+%\textbf{Term} & \textbf{Definition}\\
+%\midrule
+%Term1 & Definition1\\
+%Term2 & Definition2\\
+%\bottomrule
+%\end{tabularx}
+%\end{table}	
+
+\subsection{Overview of Document}
+The Test Plan will contain five main sections excluding this introductory one. An outline of the contents of the document can be found in the table of contents.
+
+\section{Plan}
+	
+\subsection{Software Description}
+Ohm will allow users with a desktop computer or smart phone equipped camera to determine the resistance of a standard 4-band resistor by placing it within the camera frame. The software will, using Opencv, detect and read the colour bands of the resistor automatically to determine it's resistance. This software will be implemented in Java.
+\subsection{Test Team}
+All members of Group 4, Jonathan Brown, Graeme Crawley, and Ryan Marks will be responsible for testing components of the application as well as the application as a whole.
+\subsection{Automated Testing Approach}
+Automated testing is inherently difficult with respect to this problem, as much of the testing conducted is required to be supervised and manual. What automated testing can be done will be completed during the unit testing phase and completed using JUnit.
+\subsection{Testing Tools}
+\par JUnit 4 will be the tool for unit testing of the software. JCov will be used to ensure 95\%+ testing coverage.
+\subsection{Testing Schedule}
+Please reference the Gantt chart in the project schedule folder of this repository.
+
+\url{https://gitlab.cas.mcmaster.ca/marksr2/ohm/blob/master/ProjectSchedule/3XA3_Group_4_Gantt_Chart.gan}
+
+\section{System Test Description}
+	
+\subsection{Tests for Functional Requirements}
+\subsubsection{User Input}
+\paragraph{Warning Box}
+\begin{enumerate}
+\item{F-FDM-1\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+Camera starts, warning box appears over camera view
+					
+How test will be performed: 
+The user will launch the app which will automatically display a warning box upon opening.
+
+\item{F-UDM-2\\}
+Type: Unit, Dynamic, Manual
+					
+Initial State: 
+Warning box is displayed
+					
+Input: 
+"X" on the box is pressed
+					
+Output: 
+Warning box closes, showing camera
+					
+How test will be performed: 
+The user will press the "X" on the warning box, which will then close the warning box.
+
+\item{F-UDM-3\\}
+Type: Unit, Dynamic, Manual
+					
+Initial State: 
+Warning box is displayed
+					
+Input: 
+Screen is pressed anywhere that isn't the "X" on the warning box
+					
+Output: 
+No output
+					
+How test will be performed: 
+The user will press the space around "X" on the warning box, which will do nothing.
+
+\end{enumerate}
+
+\paragraph{Screen}
+\begin{enumerate}
+\item{F-UDM-4\\}
+Type: Unit, Dynamic, Manual
+					
+Initial State: 
+App is open, ready to scan
+					
+Input: 
+Screen is tapped
+					
+Output: 
+No output
+					
+How test will be performed: 
+The user will  tap the screen while the app is running, resulting in no change
+
+\end{enumerate}
+
+\subsubsection{Resistor Scanning}
+\begin{enumerate}
+\item{F-FDM-5\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in incorrect orientation
+					
+Output: 
+No output
+					
+How test will be performed: 
+The user will point the camera at a resistor without lining up the red line on the app to intersect any of the four bands of the resistor.
+					
+\item{F-FDM-6\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in correct orientation with red line crossing through first stripe from either side
+					
+Output: 
+No output
+
+How test will be performed: 
+The user will point the camera at a resistor with the red line intersecting one of the four bands of the resistor.
+
+\item{F-FDM-7\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in correct orientation with red line crossing through two stripes from either side
+					
+Output: 
+No output	
+
+How test will be performed: 
+The user will point the camera at a resistor with the red line intersecting two of the four bands of the resistor.
+
+\item{F-FDM-8\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in correct orientation with red line crossing through three stripes from either side
+					
+Output: 
+No output	
+
+How test will be performed: 
+The user will point the camera at a resistor with the red line intersecting three of the four bands of the resistor.
+
+\item{F-FDM-9\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in correct orientation with red line crossing through four stripes from either side
+					
+Output: 
+Resistance value is displayed on the screen	
+
+How test will be performed: 
+The user will point the camera at a resistor with the red line intersecting all four bands of the resistor.
+
+\item{F-FDM-10\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is on with no resistor visible on screen
+					
+Output: 
+No output
+
+How test will be performed: 
+The user will point the camera so that no resistor is visible on screen.
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+\subsection{Tests for Nonfunctional Requirements}
+\subsubsection{User Tests}
+\begin{enumerate}
+\item{NF-FDM-11\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input/Condition: 
+100 resistors scanned
+					
+Output/Result: 
+95 resistors or more will be identified accurately
+					
+How test will be performed: 
+100 resistors will be scanned consecutively by hand, their values being displayed on screen. The values will be recorded and compared to he manually calculated values of each resistor. At least 95 resistors will be identified accurately.
+					
+\item{NF-FDM-12\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Give the app and a resistor to a user between the ages of 8 and 70
+					
+Output: 
+The user will be able to identify the value of the resistor.
+					
+How test will be performed: 
+The user will be given a resistor and the app. The app will be easy to use and allow the resistance to be measured.
+
+\item{NF-FDM-13\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Give the app to a user who doesn't have Internet connection
+					
+Output: 
+The user will be able to identify the value of the resistor
+					
+How test will be performed: 
+The user will be given a resistor and the app. The app will be easy to use and allow the resistance to be measured without the need for Internet.
+
+\end{enumerate}
+\subsubsection{Launch Tests}
+\begin{enumerate}
+\item{NF-FDM-14\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+The warning box will display text
+					
+How test will be performed: 
+The app will be launched and display a warning box which contains text. The text will notify the user that the app should not be used in safety critical systems.
+
+\item{NF-FDM-15\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+The app will display the warning box within 5 seconds
+					
+How test will be performed: 
+The app be launched and display the warning box within 5 seconds
+
+
+\end{enumerate}
+
+
+
+
+\section{Tests for Proof of Concept}
+\subsection{Band Identification}
+\begin{enumerate}
+\item{PC-BI-1\\}
+\\
+Type: Functional, Dynamic, Manual
+					
+Initial State: Software not running
+					
+Input: Run Command
+					
+Output: Software displays static image of resistor with no bands selected.
+					
+How test will be performed: Manual execution.
+					
+\item{PC-BI-2\\}
+\\
+Type: Functional, Dynamic, Manual.
+					
+Initial State: Software running, no axis selected
+					
+Input: Select axis directly across resistor body.
+					
+Output:  A ring centered around each band of the appropriate colour.
+					
+How test will be performed:  Manual execution.
+
+\item{PC-BI-3\\}
+\\
+Type: Functional, Dynamic, Manual
+					
+Initial State: Software not running
+					
+Input: Select axis incorrectly.
+					
+Output: Exception is thrown
+					
+How test will be performed: Manual execution.
+
+\end{enumerate}
+
+\section{Comparison to Existing Implementation}
+There are two tests that compare the program to the Existing Implementation of the program. Please refer to:
+\begin{itemize}
+\item test F-FDM-9 in Resistor Scanning for Functional Requirements
+\item test NF-FDM-15 in Launch Tests for Nonfunctional Requirements 
+\end{itemize}
+
+\section{Unit Testing Plan}	
+\par JUnit4 will be used to perform unit testing for this application.	
+\subsection{Unit testing of internal functions}
+\par Unit testing will be performed on any independent functions where comparison to expected results is possible. This project features several prime candidates for such testing: expected band locations, and expected colour selection. Once this unit testing is performed these individual modules can be combined and automated dynamic and functional testing can be performed to verify the final resistance output. Modules featuring image processing (the majority of them) will be tested using a stub to pass them static images in place of camera input. The application behaves quite linearly, allowing for complete test coverage.
+\subsection{Unit testing of output files}		
+\par This project does not feature any output files.
+\bibliographystyle{plainnat}
+\bibliography{SRS}
+\end{document}
