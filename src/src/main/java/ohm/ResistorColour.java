@@ -1,5 +1,7 @@
 package ohm;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
 /**
  * @author Jonathan Brown
  */
@@ -55,6 +57,7 @@ public enum ResistorColour {
             }
 
         }
+        if (closestColour == null) throw new RuntimeException();
         return closestColour;
     }
 
@@ -67,6 +70,7 @@ public enum ResistorColour {
      * @return The distance in RGB space between the sample colour and the known resistor colour.
      */
     private static double distance(int r, int g, int b, ResistorColour c){
+        if (c == null) throw new IllegalArgumentException("C cannot be null");
         final double dR = c.red - r;
         final double dG = c.green - g;
         final double dB = c.blue - b;
