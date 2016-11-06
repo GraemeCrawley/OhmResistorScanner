@@ -1,7 +1,7 @@
 package ohm;
 
 /**
- * Created by jon on 2016-11-06.
+ * @author Jonathan Brown
  */
 public enum ResistorColour {
     BLACK(0,0,0,0),
@@ -21,6 +21,13 @@ public enum ResistorColour {
     double green;
     double blue;
 
+    /**
+     *
+     * @param v The number represented by the colour in the calculation of the resistor's ohmage.
+     * @param r The red value of the colour in RGB space. Ranges between 0 and 255.
+     * @param g The green value of the colour in RGB space. Ranges between 0 and 255.
+     * @param b The blue value of the colour in RGB space. Ranges between 0 and 255.
+     */
     ResistorColour(int v, double r, double g, double b){
         value = v;
         red = r;
@@ -28,6 +35,13 @@ public enum ResistorColour {
         blue = b;
     }
 
+    /**
+     * Function takes in a sampled colour from the images and attempts to fit it to the closest known colour a resistor can possess.
+     * @param r The red colour value of the colour to be fit.
+     * @param g The green colour value of the colour to be fit.
+     * @param b The blue colour value of the colour to be fit.
+     * @return The known colour that best represents the sampled colour.
+     */
     public static ResistorColour fit(int r, int g, int b){
         double minDistance = Double.MAX_VALUE;
         ResistorColour closestColour = null;
@@ -42,6 +56,14 @@ public enum ResistorColour {
         return closestColour;
     }
 
+    /**
+     *
+     * @param r The red colour value of the colour to be fit.
+     * @param g The green colour value of the colour to be fit.
+     * @param b The blue colour value of the colour to be fit.
+     * @param c The ResistorColour that the sample colour is being compared to.
+     * @return The distance in RGB space between the sample colour and the known resistor colour.
+     */
     private static double distance(int r, int g, int b, ResistorColour c){
         final double dR = c.red - r;
         final double dG = c.green - g;
