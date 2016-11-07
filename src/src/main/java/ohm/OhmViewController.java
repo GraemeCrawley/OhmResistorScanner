@@ -15,6 +15,7 @@ import org.opencv.core.Scalar;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,8 +71,32 @@ public class OhmViewController implements Initializable {
             @Override
             public Image render() {
                 Mat processed = frame.clone();
+                int i = 0;
+                double m;
+                double n;
+                Point temp = null;
+                Point a;
                 for (Point p:points) {
-                    Imgproc.circle(processed, p, 1, new Scalar(255, 0, 0, 255), 2);
+                    System.out.println("Point value: " + p.x + " " + p.y);
+                    Imgproc.circle(processed, p, 1, new Scalar(255,0,0,255), 2);
+                    System.out.println("I: " + i);
+                    if (i % 2 != 0) {
+                        //Getting average between two points
+                        m = (temp.x + p.x)/2;
+                        n = (temp.y + p.y)/2;
+                        a = new Point(m,n);
+                        System.out.println("Point a value: " + a.x + " " + a.y);
+                        System.out.println("COLOR: " + processed.get((int)m,(int)n));
+                        //Centerpoint
+                        Imgproc.circle(processed, a, 1, new Scalar(0,0,0,0), 6);
+
+                        //Color
+                        Imgproc.circle(processed, a, 5, new Scalar(processed.get((int)m,(int)n)), 3);
+                    }
+                    else{
+                        temp = p;
+                    }
+                    i++;
                 }
                 return matToImage(processed);
             }
