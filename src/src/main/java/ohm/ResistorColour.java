@@ -1,7 +1,4 @@
 package ohm;
-
-import com.sun.javaws.exceptions.InvalidArgumentException;
-
 /**
  * @author Jonathan Brown
  */
