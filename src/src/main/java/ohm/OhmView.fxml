@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import ohm.LiveImageView?>
-<?import ohm.MatrixLinePicker?>
+<?import ohm.ResistorAxisPickerView?>
 <VBox xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ohm.OhmViewController">
    <children>
       <Pane fx:id="layout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0">
          <children>
             <Button fx:id="startCameraButton" layoutX="5.0" layoutY="310.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="47.0" prefWidth="101.0" text="Start" />
-            <MatrixLinePicker fx:id="linePickerImageView" fitWidth="400.0" pickOnBounds="true" preserveRatio="true"/>
+            <ResistorAxisPickerView fx:id="resistorAxisPickerView" fitWidth="400.0" pickOnBounds="true" preserveRatio="true"/>
             <LiveImageView fx:id="processedImageView" fitWidth="400.0" layoutX="400.0" pickOnBounds="true" preserveRatio="true" />
             <Slider fx:id="thresholdSlider1" layoutX="120.0" layoutY="333.0" max="250.0" prefHeight="22.0" prefWidth="140.0" />
             <Label layoutX="120.0" layoutY="310.0" prefHeight="22.0" prefWidth="140.0" text="Threshold 1" />

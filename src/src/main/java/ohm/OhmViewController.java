@@ -6,21 +6,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
-import javafx.util.Pair;
 import ohm.ImageProcessing.BandReader;
 import ohm.Input.ImageInput;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 import static ohm.Helpers.*;
 
@@ -29,7 +25,7 @@ public class OhmViewController implements Initializable {
     @FXML
     public Button startCameraButton;
     @FXML
-    private MatrixLinePicker linePickerImageView;
+    private ResistorAxisPickerView resistorAxisPickerView;
     @FXML
     private LiveImageView processedImageView;
     @FXML
@@ -45,22 +41,23 @@ public class OhmViewController implements Initializable {
         final Image src = imageInput.getImage();
         final Mat frame = imageInput.getMat();
 
-        linePickerImageView.setImage(frame);
-        linePickerImageView.setListener(new MatrixLinePicker.Listener() {
-            @Override
-            public void onLinePicked(Point p1, Point p2) {points = BandReader.read(frame,p1,p2);
-            }
-        });
+        resistorAxisPickerView.setImage(frame);
+        resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(frame,p1,p2));
 
-        this.processedImageView.setRenderer(new LiveImageView.Rednderer() {
-            @Override
-            public Image render() {
-                Mat processed = frame.clone();
-                for (Point p:points) {
-                    Imgproc.circle(processed, p, 1, new Scalar(255, 0, 0, 255), 2);
-                }
-                return matToImage(processed);
+        this.processedImageView.setRenderer(() -> {
+            Mat processed = frame.clone();
+            for (int i = 0; i < Math.min(points.size()-1, 7); i = i + 2){
+                Point p1 = points.get(i);
+                Point p2 = points.get(i+1);
+                Point midpoint = new Point((p1.x + p2.x)/2, (p1.y + p2.y)/2);
+                Imgproc.circle(processed, p1, 1, new Scalar(255, 0, 0, 255), 2);
+                Imgproc.circle(processed, p2, 1, new Scalar(255, 0, 0, 255), 2);
+                Imgproc.circle(processed, midpoint, 10, new Scalar(processed.get((int) midpoint.y, (int) midpoint.x)), 2);
+                Imgproc.putText(processed, Integer.toString(i),p1,1,1,new Scalar(255,255,255,255));
+                Imgproc.putText(processed, Integer.toString(i+1),p2,2,.7,new Scalar(255,255,255,255));
+
             }
+            return matToImage(processed);
         });
 
 

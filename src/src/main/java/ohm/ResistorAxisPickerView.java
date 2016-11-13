@@ -12,7 +12,7 @@ import org.opencv.imgproc.Imgproc;
  * This class displays an opencv Mat as an image and allows the user to pick
  * two endpoints of a line. Once two valid points, a listener is called
  */
-public class MatrixLinePicker extends ImageView implements EventHandler<MouseEvent>{
+public class ResistorAxisPickerView extends ImageView implements EventHandler<MouseEvent>{
 
     private Point p1 = null;
     private Point p2 = null;
