@@ -38,7 +38,7 @@ public class MatrixLinePicker extends ImageView implements EventHandler<MouseEve
             p2 = new Point(matX,matY);
         }else {
             // If both points exist, replace the closer one
-            if (Helpers.dist(p1,click) < Helpers.dist(p2,click)){
+            if (dist(p1,click) < dist(p2,click)){
                 p1 = click;
             }else{
                 p2 = click;
@@ -88,7 +88,14 @@ public class MatrixLinePicker extends ImageView implements EventHandler<MouseEve
         this.listener = listener;
     }
 
+    public static double dist(Point p1,Point p2){
+        double deltaX = p1.x - p2.x;
+        double deltaY = p1.y - p2.y;
+        return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    }
+
     interface Listener{
         void onLinePicked(Point p1, Point p2);
     }
+
 }

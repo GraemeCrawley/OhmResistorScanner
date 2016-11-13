@@ -1,6 +1,4 @@
-package ohm; /**
- * Created by jon on 2016-09-20.
- */
+package ohm;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.util.Pair;
+import ohm.ImageProcessing.BandReader;
+import ohm.Input.ImageInput;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
@@ -41,28 +41,14 @@ public class OhmViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        final Image src = new Image("file:resources/1k.jpg");
-        final Mat frame = Imgcodecs.imread("resources/1k.jpg");
+        ImageInput imageInput = new ImageInput();
+        final Image src = imageInput.getImage();
+        final Mat frame = imageInput.getMat();
 
         linePickerImageView.setImage(frame);
         linePickerImageView.setListener(new MatrixLinePicker.Listener() {
             @Override
-            public void onLinePicked(Point p1, Point p2) {
-                // When a line is picked we do this math that's been produced
-                // by trial and error. This is subject to change, and will have
-                // a clearer explanation when it's closer to done.
-
-                double[][] sample = boxSample(frame,p1, p2,(int)dist(p1,p2),40);
-                double[][] diff = diff(sample);
-                System.out.println("Color Derrivate Magnitude for selected line");
-                double[] terms = Arrays.stream(rollingAverageFilter(diff,2))
-                        .mapToDouble(d -> Math.log(1+Helpers.mag(d)))
-                        .toArray();
-                double[] groupedTerms = Helpers.groupTerms(terms,3);
-                Arrays.stream(groupedTerms).forEach(d -> System.out.println(d));
-
-                List<Pair<Integer, Double>> localMaxima = findLocalMaxima(groupedTerms);
-                points = localMaxima.stream().map(pair -> onLine(p1,p2,pair.getKey()*1.0/groupedTerms.length)).collect(Collectors.toList());
+            public void onLinePicked(Point p1, Point p2) {points = BandReader.read(frame,p1,p2);
             }
         });
 
@@ -73,7 +59,6 @@ public class OhmViewController implements Initializable {
                 for (Point p:points) {
                     Imgproc.circle(processed, p, 1, new Scalar(255, 0, 0, 255), 2);
                 }
-                Imgproc.det
                 return matToImage(processed);
             }
         });
