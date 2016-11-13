@@ -13,8 +13,8 @@ public class ImageInput implements Input {
     Mat mat;
 
     public ImageInput(){
-        img = new Image("file:resources/1k.jpg");
-        mat = Imgcodecs.imread("resources/1k.jpg");
+        img = new Image("file:resources/resistor-sample.jpg");
+        mat = Imgcodecs.imread("resources/resistor-sample.jpg");
     }
 
 
