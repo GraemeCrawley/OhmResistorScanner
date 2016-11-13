@@ -14,7 +14,7 @@ public enum ResistorColour {
     //GOLD(),
     //SILVER(),
     BASE(-1,200,170,145);
-    int value;
+    public int value;
     double red;
     double green;
     double blue;
@@ -51,6 +51,11 @@ public enum ResistorColour {
         if (closestColour == null) throw new RuntimeException();
         return closestColour;
     }
+
+    public static ResistorColour fit(double r, double g, double b){
+        return ResistorColour.fit((int) r, (int) g, (int) b);
+    }
+
     /**
      *
      * @param r The red colour value of the colour to be fit.
