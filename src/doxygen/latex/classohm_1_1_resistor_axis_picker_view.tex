@@ -1,0 +1,62 @@
+\hypertarget{classohm_1_1_resistor_axis_picker_view}{}\section{ohm.\+Resistor\+Axis\+Picker\+View Class Reference}
+\label{classohm_1_1_resistor_axis_picker_view}\index{ohm.\+Resistor\+Axis\+Picker\+View@{ohm.\+Resistor\+Axis\+Picker\+View}}
+Inheritance diagram for ohm.\+Resistor\+Axis\+Picker\+View\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classohm_1_1_resistor_axis_picker_view}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+interface {\bfseries Listener}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classohm_1_1_resistor_axis_picker_view_a2920c90ed17285d7c7a1c93bdc72c429}{}\label{classohm_1_1_resistor_axis_picker_view_a2920c90ed17285d7c7a1c93bdc72c429} 
+void {\bfseries handle} (Mouse\+Event event)
+\item 
+void \hyperlink{classohm_1_1_resistor_axis_picker_view_a9c5a8a703fcad60662496c9d18e5a557}{set\+Image} (Mat new\+Image)
+\item 
+void \hyperlink{classohm_1_1_resistor_axis_picker_view_ab8d6349385ce137a6c08fee819bbaf8b}{set\+Listener} (Listener listener)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classohm_1_1_resistor_axis_picker_view_a961236b719a3819a5dd770bb607f5e78}{}\label{classohm_1_1_resistor_axis_picker_view_a961236b719a3819a5dd770bb607f5e78} 
+static double {\bfseries dist} (Point p1, Point p2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class displays an opencv Mat as an image and allows the user to pick two endpoints of a line. Once two valid points, a listener is called 
+
+\subsection{Member Function Documentation}
+\hypertarget{classohm_1_1_resistor_axis_picker_view_a9c5a8a703fcad60662496c9d18e5a557}{}\label{classohm_1_1_resistor_axis_picker_view_a9c5a8a703fcad60662496c9d18e5a557} 
+\index{ohm\+::\+Resistor\+Axis\+Picker\+View@{ohm\+::\+Resistor\+Axis\+Picker\+View}!set\+Image@{set\+Image}}
+\index{set\+Image@{set\+Image}!ohm\+::\+Resistor\+Axis\+Picker\+View@{ohm\+::\+Resistor\+Axis\+Picker\+View}}
+\subsubsection{\texorpdfstring{set\+Image()}{setImage()}}
+{\footnotesize\ttfamily void ohm.\+Resistor\+Axis\+Picker\+View.\+set\+Image (\begin{DoxyParamCaption}\item[{Mat}]{new\+Image }\end{DoxyParamCaption})}
+
+Set the matrix to display 
+\begin{DoxyParams}{Parameters}
+{\em new\+Image} & Image to be set as the image to be displayed in the UI \\
+\hline
+\end{DoxyParams}
+\hypertarget{classohm_1_1_resistor_axis_picker_view_ab8d6349385ce137a6c08fee819bbaf8b}{}\label{classohm_1_1_resistor_axis_picker_view_ab8d6349385ce137a6c08fee819bbaf8b} 
+\index{ohm\+::\+Resistor\+Axis\+Picker\+View@{ohm\+::\+Resistor\+Axis\+Picker\+View}!set\+Listener@{set\+Listener}}
+\index{set\+Listener@{set\+Listener}!ohm\+::\+Resistor\+Axis\+Picker\+View@{ohm\+::\+Resistor\+Axis\+Picker\+View}}
+\subsubsection{\texorpdfstring{set\+Listener()}{setListener()}}
+{\footnotesize\ttfamily void ohm.\+Resistor\+Axis\+Picker\+View.\+set\+Listener (\begin{DoxyParamCaption}\item[{Listener}]{listener }\end{DoxyParamCaption})}
+
+Assign a line listener to be updated when new points are selected 
+\begin{DoxyParams}{Parameters}
+{\em listener} & Object that triggers responds to a mouse click inside the view. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+java/ohm/Resistor\+Axis\+Picker\+View.\+java\end{DoxyCompactItemize}

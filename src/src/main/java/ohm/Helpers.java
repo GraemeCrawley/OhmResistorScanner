@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by jon on 2016-09-21.
+ * Module featuring static methods used by multiple other modules in order to perform common computations. Will be eliminated in final release.
  */
 public class Helpers {
 

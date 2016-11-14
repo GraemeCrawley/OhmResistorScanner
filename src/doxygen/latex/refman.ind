@@ -1,0 +1,136 @@
+\begin{theindex}
+
+  \item {box\+Sample}
+    \subitem {ohm\+::\+Image\+Processing\+::\+Band\+Reader}, 
+		\hyperpage{18}
+
+  \indexspace
+
+  \item {Camera\+Input}, \hyperpage{13}
+  \item {Colour\+Mapping}, \hyperpage{11}
+  \item {componentwise\+Mean}
+    \subitem {ohm\+::\+Image\+Processing\+::\+Band\+Reader}, 
+		\hyperpage{19}
+
+  \indexspace
+
+  \item {diff}
+    \subitem {ohm\+::\+Image\+Processing\+::\+Band\+Reader}, 
+		\hyperpage{19}
+  \item {dist}
+    \subitem {ohm\+::\+Image\+Processing\+::\+Band\+Reader}, 
+		\hyperpage{19}
+
+  \indexspace
+
+  \item {fit}
+    \subitem {ohm\+::\+Value\+Identification\+::\+Resistor\+Colour}, 
+		\hyperpage{31, 32}
+
+  \indexspace
+
+  \item {get\+Image}
+    \subitem {ohm\+::\+Input\+::\+Camera\+Input}, \hyperpage{23}
+    \subitem {ohm\+::\+Input\+::\+Image\+Input}, \hyperpage{25}
+    \subitem {ohm\+::\+Input\+::\+Input}, \hyperpage{26}
+  \item {get\+Mat}
+    \subitem {ohm\+::\+Input\+::\+Camera\+Input}, \hyperpage{23}
+    \subitem {ohm\+::\+Input\+::\+Image\+Input}, \hyperpage{25}
+    \subitem {ohm\+::\+Input\+::\+Input}, \hyperpage{26}
+
+  \indexspace
+
+  \item {Image\+Input}, \hyperpage{14}
+    \subitem {ohm\+::\+Input\+::\+Image\+Input}, \hyperpage{24}
+  \item {Image\+Processing}, \hyperpage{15}
+  \item {initialize}
+    \subitem {ohm\+::userinterface\+::\+Ohm\+View\+Controller}, 
+		\hyperpage{28}
+  \item {Input}, \hyperpage{9}, \hyperpage{15}
+
+  \indexspace
+
+  \item {mag}
+    \subitem {ohm\+::\+Image\+Processing\+::\+Band\+Reader}, 
+		\hyperpage{21}
+  \item {Module used to analyze the line of pixels selected by the user through the U\+I. It uses high values of the differential of the R\+G\+B colours to detect edges of bands.}, 
+		\hyperpage{12}
+
+  \indexspace
+
+  \item {ohm.\+Helpers}, \hyperpage{23}
+  \item {ohm.\+Image\+Processing.\+Band\+Reader}, \hyperpage{17}
+  \item {ohm.\+Image\+Processing.\+Ohm\+Image\+Processor}, 
+		\hyperpage{27}
+  \item {ohm.\+Image\+Processing.\+Resistor\+Body\+ID}, \hyperpage{30}
+  \item {ohm.\+Input.\+Camera\+Input}, \hyperpage{22}
+  \item {ohm.\+Input.\+Image\+Input}, \hyperpage{24}
+  \item {ohm.\+Input.\+Input}, \hyperpage{25}
+  \item {ohm.\+Ohm}, \hyperpage{27}
+  \item {ohm.\+userinterface.\+Live\+Image\+View}, \hyperpage{26}
+  \item {ohm.\+userinterface.\+Ohm\+View\+Controller}, \hyperpage{28}
+  \item {ohm.\+userinterface.\+Resistor\+Axis\+Picker\+View}, 
+		\hyperpage{29}
+  \item {ohm.\+Value\+Identification.\+Resistor\+Colour}, 
+		\hyperpage{30}
+  \item {ohm\+::\+Image\+Processing\+::\+Band\+Reader}
+    \subitem {box\+Sample}, \hyperpage{18}
+    \subitem {componentwise\+Mean}, \hyperpage{19}
+    \subitem {diff}, \hyperpage{19}
+    \subitem {dist}, \hyperpage{19}
+    \subitem {mag}, \hyperpage{21}
+    \subitem {read}, \hyperpage{21}
+    \subitem {rolling\+Average\+Filter}, \hyperpage{21}
+    \subitem {sample}, \hyperpage{22}
+  \item {ohm\+::\+Input\+::\+Camera\+Input}
+    \subitem {get\+Image}, \hyperpage{23}
+    \subitem {get\+Mat}, \hyperpage{23}
+  \item {ohm\+::\+Input\+::\+Image\+Input}
+    \subitem {get\+Image}, \hyperpage{25}
+    \subitem {get\+Mat}, \hyperpage{25}
+    \subitem {Image\+Input}, \hyperpage{24}
+  \item {ohm\+::\+Input\+::\+Input}
+    \subitem {get\+Image}, \hyperpage{26}
+    \subitem {get\+Mat}, \hyperpage{26}
+  \item {ohm\+::\+Value\+Identification\+::\+Resistor\+Colour}
+    \subitem {fit}, \hyperpage{31, 32}
+    \subitem {Resistor\+Colour}, \hyperpage{31}
+  \item {ohm\+::userinterface\+::\+Ohm\+View\+Controller}
+    \subitem {initialize}, \hyperpage{28}
+  \item {ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View}
+    \subitem {set\+Image}, \hyperpage{29}
+    \subitem {set\+Listener}, \hyperpage{29}
+
+  \indexspace
+
+  \item {read}
+    \subitem {ohm\+::\+Image\+Processing\+::\+Band\+Reader}, 
+		\hyperpage{21}
+  \item {Resistor\+Colour}
+    \subitem {ohm\+::\+Value\+Identification\+::\+Resistor\+Colour}, 
+		\hyperpage{31}
+  \item {rolling\+Average\+Filter}
+    \subitem {ohm\+::\+Image\+Processing\+::\+Band\+Reader}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {sample}
+    \subitem {ohm\+::\+Image\+Processing\+::\+Band\+Reader}, 
+		\hyperpage{22}
+  \item {set\+Image}
+    \subitem {ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View}, 
+		\hyperpage{29}
+  \item {set\+Listener}
+    \subitem {ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View}, 
+		\hyperpage{29}
+
+  \indexspace
+
+  \item {User\+Interface}, \hyperpage{10}, \hyperpage{15}
+
+  \indexspace
+
+  \item {Value\+Identification}, \hyperpage{15}
+
+\end{theindex}

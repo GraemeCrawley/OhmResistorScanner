@@ -1,7 +1,15 @@
 package ohm.ImageProcessing;
 
 /**
- * Created by jon on 2016-11-13.
+ * @defgroup ResistorID
+ * @addtogroup ResistorID
+ * @{
+ */
+
+/**
+ * @breif Module to be used for identifying arbitrarily placed resistors in an image. Not yet implemented. Expected time is by Rev-1 Demo.
  */
 public class ResistorBodyID {
 }
+
+/** @} */

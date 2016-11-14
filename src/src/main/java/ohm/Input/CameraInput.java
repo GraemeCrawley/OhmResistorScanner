@@ -4,8 +4,14 @@ import javafx.scene.image.Image;
 import org.opencv.core.Mat;
 
 /**
- * Created by jon on 2016-11-13.
+ * @addtogroup CameraInput
+ * @{
  */
+
+/**
+ *
+ * @brief Instances of this class are to be used to receive input from device camera. Currently unimplemented.
+ * */
 public class CameraInput implements Input {
 
     @Override
@@ -18,3 +24,5 @@ public class CameraInput implements Input {
         return null;
     }
 }
+
+/** @} */

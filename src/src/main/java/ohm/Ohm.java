@@ -25,7 +25,7 @@ public class Ohm extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         //Required for creation of view and controller.
-        URL location = getClass().getResource("OhmView.fxml");
+        URL location = getClass().getResource("userinterface/OhmView.fxml");
         fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
         fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());

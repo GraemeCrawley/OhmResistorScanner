@@ -5,14 +5,21 @@ import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
 /**
- * Created by jon on 2016-11-13.
- */
+ * @author Jonathan Brown
+ * */
 public interface Input {
 
-
+    /**
+     * Used to retrieve a matrix representation of the input (used by Opencv libraries).
+     * @return Matrix representation of input.
+     */
     public Mat getMat();
+
+    /**
+     * Used to retrieve a image representation of the input (used by JavaFX).
+     * @return Image representation of input.
+     */
     public Image getImage();
-
-
-
 }
+
+/** @} */

@@ -10,15 +10,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by jon on 2016-11-13.
+ * @defgroup BandLocation
+ * Module used to analyze the line of pixels selected by the user through the UI. It uses high values of the differential of the RGB colours to detect edges of bands.
+ * @addtogroup BandLocation
+ * @{
+ */
+
+/**
+ * @author Ryan Marks & Jonathan Brown
+ * @brief Module used to analyze the line of pixels selected by the user through the UI. It uses high values of the differential of the RGB colours to detect edges of bands.
  */
 public class BandReader {
 
-
+    /**
+     * @param frame Image to Sample.
+     * @param p1 Starting point of the sampling line.
+     * @param p2 Ending point of the sampling line.
+     * @return List of points along the line that are likely band edges.
+     */
     public static List<Point> read(Mat frame, Point p1, Point p2){
         double[][] sample = boxSample(frame,p1, p2,(int)dist(p1,p2),40);
         double[][] diff = diff(sample);
-        System.out.println("Color Derrivate Magnitude for selected line");
         double[] terms = Arrays.stream(rollingAverageFilter(diff,2))
                 .mapToDouble(d -> Math.log(1+mag(d)))
                 .toArray();
@@ -40,7 +52,7 @@ public class BandReader {
      * @param end The end of the sampling line
      * @param nSamples The number or linear samples to take along the sampling line
      * @param boxWidth the length of the normal sampling line.
-     * @return
+     * @return An array containing the average rgb values (represented as double[]) in the sampling window.
      */
     public static double[][] boxSample(Mat mat, Point start, Point end, int nSamples, double boxWidth){
         // Both points must be in the bounds of the matrix
@@ -75,7 +87,7 @@ public class BandReader {
      * This method is used to apply a rolling average filter to vector data.
      * @param sample An array of ( arrays of doubles representing an individual vector sample)
      * @param windowRadius The number of samples on either side of a given sample to incorporate into the average
-     * @return
+     * @return An array containing the average RGB value sampled along the line.
      */
     public static double[][] rollingAverageFilter(double[][] sample, int windowRadius){
         int windowWidth = 1 + windowRadius;
@@ -103,8 +115,8 @@ public class BandReader {
 
     /**
      * Calculate the mean of an array of vectors.
-     * @param samples
-     * @return
+     * @param samples Array of RGB vectors represented as double[]
+     * @return The average of all vectors within the input array (represented as a double[])
      */
     public static double[] componentwiseMean(double[][] samples){
         double[] mean = new double[samples[0].length];
@@ -155,7 +167,7 @@ public class BandReader {
     /**
      * Take the discrete derivative of a series of vectors.
      * @param y A series of vectors
-     * @return
+     * @return y', the derivative of the input represented as a array of vectors (double[]).
      */
     public static double[][] diff (double[][] y){
         double[][] result = new double[y.length - 1][];
@@ -173,8 +185,8 @@ public class BandReader {
 
     /**
      * Calculate the magnitude of a given vector
-     * @param vect
-     * @return
+     * @param vect Input vector
+     * @return The magnitude of the input vector
      */
     public static double mag(double[] vect){
         double sumComponentsSquared = 0;
@@ -184,11 +196,18 @@ public class BandReader {
         return Math.sqrt(sumComponentsSquared);
     }
 
+    /**
+     * Calcualte the distance between two points.
+     * @param p1 Point 1.
+     * @param p2 Point 2.
+     * @return Distance between p1 and p2.
+     */
     public static double dist(Point p1,Point p2){
         double deltaX = p1.x - p2.x;
         double deltaY = p1.y - p2.y;
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
+
 
     public static double[] groupTerms(double[] terms, int binSize){
         double[] groupedTerms = new double[(terms.length+binSize-1)/binSize];
@@ -229,3 +248,5 @@ public class BandReader {
         return new Point(start.x+(end.x-start.x)*fraction,start.y+(end.y-start.y)*fraction);
     }
 }
+
+/** @} */
