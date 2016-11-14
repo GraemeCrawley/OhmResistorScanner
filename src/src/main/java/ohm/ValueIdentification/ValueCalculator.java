@@ -7,7 +7,7 @@ package ohm.ValueIdentification;
  */
 
 /**
- * @brief
+ * @brief Object used to calculate the resistance of the resistor based on the mapped colours.
  */
 public class ValueCalculator {
 }
