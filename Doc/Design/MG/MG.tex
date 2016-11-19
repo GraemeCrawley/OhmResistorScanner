@@ -72,19 +72,27 @@
 The resistance scanner project is the re-implementation of an open-source software application that allows a user to scan a resistor using their camera and read an on screen value representing the resistance of that resistor.
 
 \subsection{Context}
-\par This document is the Module Guide (MG). The Module Guide, written after the SRS, is used as an outline for the implementaion of all functional and nonfunctional specified in the SRS. This is done by the decomposition of the system into modules, showing it's structure and design. A brief explination of each module is given and the requirements outlined in the SRS are directly mapped to their modular implementations. An explination of the relationships between each module are also given. This is useful both for devlopers and maintainers as it allows them to more easily identify parts of the software.
+\par This document is the Module Guide (MG). The Module Guide, written after the SRS, is used as an outline for the implementation of all functional and nonfunctional specified in the SRS. This is done by the decomposition of the system into modules, showing it's structure and design. A brief explanation of each module is given and the requirements outlined in the SRS are directly mapped to their modular implementations. An explanation of the relationships between each module are also given. This is useful both for developers and maintainers as it allows them to more easily identify parts of the software.
 \par For a more detailed description of the individual components of the system, the MIS is used to explain the semantics and syntax of the member functions of the classes used in the implementation of the modules.
 
 \subsection{Design Principles}
 This project implements the design principles of Single Responsibility, Separation of Concerns and Least Knowledge.
 \begin{itemize}
-\item \textbf{Single Responsibility:} 
-\item \textbf{Separation of Concerns:}
-\item \textbf{Principle of Least Knowledge:}
+\item \textbf{Single Responsibility:} Each module should only be responsible for the completion of one task.
+\item \textbf{Separation of Concerns:} Requirements should be satisfied by as few modules as possible and large degrees of interdependence avoided. 
+\item \textbf{Principle of Least Knowledge:} Each module should be implemented with as little knowledge of the other modules of the system as possible.
 \end{itemize}
 
 \subsection{Document Structure}
-
+The document structure is as follows:
+\begin{itemize}
+\item Section 2 lists Anticipated and Unlikely Changes to the system’s implementation. This list is used for the Traceability Matrices later in the document.
+\item Section 3 details the explains the Module Hierarchy as well as gives a list of all modules present in the design. 
+\item Section 4 explains the Connection Between Requirements and Design, which details how the software requirements are related to the modules.
+\item Section 5 provides the Module Decomposition, detailing the module name, secret, and service/responsibility for each module.
+\item Section 6 provides the Traceability Matrices. The first matrix connects the requirements to the modules in order to all future developers to better understand which parts of the system fulfill which requirements. The second matrix connects anticipated changes from Section 2 to the modules.
+\item Section 7 provides the Uses Hierarchy for the project, which shows the uses relations between modules.
+\end{itemize}
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
@@ -158,9 +166,9 @@ actually be implemented.
 
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
-\par The system was designed to satisfy the requirements defined in the SRS. In order to make the system easier to implement on both Desktop and Android, it was written using Java and lacks onscreen buttons. The simple user interface also makes it easier to operate and removes any language requirement. OpenCV was chosen as the image processing library due to its availability, in-depth documentation, and broad functionality. OpenCV allows the system to display text, and read images to identify a resistor using two points. 
-The system was designed to have all data and functionality stored in the app to avoid the need for internet access. This, in addition to the fact that the app is broken down into modules to avoid complexity, allows it to be built for durability, removing the need to maintain after launch or require live support. The application’s modularity is key when dealing with an algorithmically complex problem as modifications to one part of the algorithmic process should not cause issues in other parts.
-\par The Hardware-Hiding Modules are useful in makind the application multiplatform as it allows the rest of the system to run independant of the hardware. The User Inteface Module is responsible for the fulfillment of the usability requirements. Finally, the Software Decision modules must adhere to the performance requirements, ensuring fast performance and high accuracy.
+\par The system was designed to satisfy the requirements defined in the SRS. In order to make the system easier to implement on both Desktop and Android, it was written using Java and lacks on-screen buttons. The simple user interface also makes it easier to operate and removes any language requirement. OpenCV was chosen as the image processing library due to its availability, in-depth documentation, and broad functionality. OpenCV allows the system to display text, and read images to identify a resistor using two points. 
+The system was designed to have all data and functionality stored in the app to avoid the need for internet access. This, in addition to the fact that the app is broken down into modules to avoid complexity, allows it to be built for durability, removing the need to maintain after launch or require live support. The application's modularity is key when dealing with an algorithmically complex problem as modifications to one part of the algorithmic process should not cause issues in other parts.
+\par The Hardware-Hiding Modules are useful in making the application multi-platform as it allows the rest of the system to run independent of the hardware. The User Interface Module is responsible for the fulfillment of the usability requirements. Finally, the Software Decision modules must adhere to the performance requirements, ensuring fast performance and high accuracy.
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -213,7 +221,7 @@ If a dash (\emph{--}) is shown, this means that the module is not a leaf and wil
 \subsection{Software Decision Module}
 
 \begin{description}
-\item[Secrets:] The algroithms and data structures used to perform the analysis of input frames.
+\item[Secrets:] The algorithms and data structures used to perform the analysis of input frames.
 \item[Services:] Computes the resulting resistance based on some input image produced by the Hardware Hiding modules.
   % Changes in these modules are more likely to be motivated by a desire to
   % improve performance than by externally imposed changes.
@@ -314,6 +322,9 @@ NF17 &\mref{mUI}  \\
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
+
+\section{Schedule}
+Please view the Gantt Chart in the Project Schedule directory of this repository.
 
 %\section*{References}
 
