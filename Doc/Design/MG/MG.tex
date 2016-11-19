@@ -65,94 +65,37 @@
 \pagenumbering{arabic}
 
 \section{Introduction}
+\subsection{Overview}
+The resistance scanner project is the re-implementation of an open-source software application that allows a user to scan a resistor using their camera and read an on screen value representing the resistance of that resistor.
 
-Decomposing a system into modules is a commonly accepted approach to developing
-software.  A module is a work assignment for a programmer or programming
-team~\citep{ParnasEtAl1984}.  We advocate a decomposition
-based on the principle of information hiding~\citep{Parnas1972a}.  This
-principle supports design for change, because the ``secrets'' that each module
-hides represent likely future changes.  Design for change is valuable in SC,
-where modifications are frequent, especially during initial development as the
-solution space is explored.  
+\subsection{Context}
+\par This document is the Module Guide (MG). The Module Guide, written after the SRS, is used as an outline for the implementaion of all functional and nonfunctional specified in the SRS. This is done by the decomposition of the system into modules, showing it's structure and design. A brief explination of each module is given and the requirements outlined in the SRS are directly mapped to their modular implementations. An explination of the relationships between each module are also given. This is useful both for devlopers and maintainers as it allows them to more easily identify parts of the software.
+\par For a more detailed description of the individual components of the system, the MIS is used to explain the semantics and syntax of the member functions of the classes used in the implementation of the modules.
 
-Our design follows the rules layed out by \citet{ParnasEtAl1984}, as follows:
+\subsection{Design Principles}
+This project implements the design principles of Single Responsibility, Separation of Concerns and Least Knowledge.
 \begin{itemize}
-\item System details that are likely to change independently should be the
-  secrets of separate modules.
-\item Each data structure is used in only one module.
-\item Any other program that requires information stored in a module's data
-  structures must obtain it by calling access programs belonging to that module.
+\item \textbf{Single Responsibility:} 
+\item \textbf{Separation of Concerns:}
+\item \textbf{Principle of Least Knowledge:}
 \end{itemize}
-
-After completing the first stage of the design, the Software Requirements
-Specification (SRS), the Module Guide (MG) is developed~\citep{ParnasEtAl1984}. The MG
-specifies the modular structure of the system and is intended to allow both
-designers and maintainers to easily identify the parts of the software.  The
-potential readers of this document are as follows:
-
-\begin{itemize}
-\item New project members: This document can be a guide for a new project member
-  to easily understand the overall structure and quickly find the
-  relevant modules they are searching for.
-\item Maintainers: The hierarchical structure of the module guide improves the
-  maintainers' understanding when they need to make changes to the system. It is
-  important for a maintainer to update the relevant sections of the document
-  after changes have been made.
-\item Designers: Once the module guide has been written, it can be used to
-  check for consistency, feasibility and flexibility. Designers can verify the
-  system in various ways, such as consistency among modules, feasibility of the
-  decomposition, and flexibility of the design.
-\end{itemize}
-
-The rest of the document is organized as follows. Section
-\ref{SecChange} lists the anticipated and unlikely changes of the software
-requirements. Section \ref{SecMH} summarizes the module decomposition that
-was constructed according to the likely changes. Section \ref{SecConnection}
-specifies the connections between the software requirements and the
-modules. Section \ref{SecMD} gives a detailed description of the
-modules. Section \ref{SecTM} includes two traceability matrices. One checks
-the completeness of the design against the requirements provided in the SRS. The
-other shows the relation between anticipated changes and the modules. Section
-\ref{SecUse} describes the use relation between modules.
 
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
-This section lists possible changes to the system. According to the likeliness
-of the change, the possible changes are classified into two
-categories. Anticipated changes are listed in Section \ref{SecAchange}, and
-unlikely changes are listed in Section \ref{SecUchange}.
-
 \subsection{Anticipated Changes} \label{SecAchange}
-
-Anticipated changes are the source of the information that is to be hidden
-inside the modules. Ideally, changing one of the anticipated changes will only
-require changing the one module that hides the associated decision. The approach
-adapted here is called design for
-change.
-
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The method of retrieving input images (Camera/Static Image).
+\item[\refstepcounter{acnum} \actheacnum \label{acAxis}:] The method of determining the axis of a resistor.
+\item[\refstepcounter{acnum} \actheacnum \label{acPlatform}:] The platform of the application (Desktop to Mobile).
 \end{description}
 
 \subsection{Unlikely Changes} \label{SecUchange}
-
-The module design should be as general as possible. However, a general system is
-more complex. Sometimes this complexity is not necessary. Fixing some design
-decisions at the system architecture stage can simplify the software design. If
-these decision should later need to be changed, then many parts of the design
-will potentially need to be modified. Hence, it is not intended that these
-decisions will be changed.
-
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] There will always be
-  a source of input data external to the software.
-\item ...
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] The format of the output data.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The method used to scan the bands resistor.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The method used to get colours from the bands of the resistor.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The method used to calculate values from the resistor colours.
+\item[\refstepcounter{ucnum} \uctheucnum \label{ucInput}:] The content of the output.
 \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
@@ -162,11 +105,21 @@ in a hierarchy decomposed by secrets in Table \ref{TblMH}. The modules listed
 below, which are leaves in the hierarchy tree, are the modules that will
 actually be implemented.
 
-\begin{description}
-\item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
-\end{description}
-
+\begin{table}[h]
+\centering
+\label{my-label}
+\begin{tabular}{cl}
+\hline
+\multicolumn{1}{l}{\textbf{Module Number}} & \textbf{Module Name}    \\ \hline
+\textbf{M1}                                & Camera Input Module     \\ \hline
+\textbf{M2}                                & Image Input Module      \\ \hline
+\textbf{M3}                                & User Interface Module   \\ \hline
+\textbf{M4}                                & Resistor ID Module      \\ \hline
+\textbf{M5}                                & Band Location Module    \\ \hline
+\textbf{M6}                                & Colour Mapping Module   \\ \hline
+\textbf{M7}                                & Value Calculator Module \\ \hline
+\end{tabular}
+\end{table}
 
 \begin{table}[h!]
 \centering
@@ -175,28 +128,28 @@ actually be implemented.
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding Module} & ~ \\
+{Hardware-Hiding Module} 
+& Camera Input Module\\
+& Image Input Module \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{1}{0.3\textwidth}{Behaviour-Hiding Module}
+& User Interface Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{4}{0.3\textwidth}{Software Decision Module}
+& Resistor ID Module \\
+& Band Location Module \\
+& Colour Mapping Module \\
+& Value Calculator Module\\
 \bottomrule
 
 \end{tabular}
 \caption{Module Hierarchy}
 \label{TblMH}
 \end{table}
+
+
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
@@ -206,21 +159,15 @@ between requirements and modules is listed in Table \ref{TblRT}.
 
 \section{Module Decomposition} \label{SecMD}
 
-Modules are decomposed according to the principle of ``information hiding''
-proposed by \citet{ParnasEtAl1984}. The \emph{Secrets} field in a module
-decomposition is a brief statement of the design decision hidden by the
-module. The \emph{Services} field specifies \emph{what} the module will do
-without documenting \emph{how} to do it. For each module, a suggestion for the
-implementing software is given under the \emph{Implemented By} title. If the
-entry is \emph{OS}, this means that the module is provided by the operating
-system or by standard programming language libraries.  Also indicate if the
-module will be implemented specifically for the software.
+The \emph{Secrets} field in a module decomposition is a brief statement of the design decision hidden by the module. 
+The \emph{Services} field specifies \emph{what} the module will do without documenting \emph{how} to do it. 
+For each module, a suggestion for the implementing software is given under the \emph{Implemented By} title. 
+If the entry is \emph{OS}, this means that the module is provided by the operating system or by standard programming language libraries.
+Also indicate if the module will be implemented specifically for the software.
 
-Only the leaf modules in the
-hierarchy have to be implemented. If a dash (\emph{--}) is shown, this means
-that the module is not a leaf and will not have to be implemented. Whether or
-not this module is implemented depends on the programming language
-selected.
+Only the leaf modules in the hierarchy have to be implemented. 
+If a dash (\emph{--}) is shown, this means that the module is not a leaf and will not have to be implemented. 
+Whether or not this module is implemented depends on the programming language selected.
 
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
