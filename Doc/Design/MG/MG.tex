@@ -45,12 +45,7 @@
 
 \maketitle
 
-\pagenumbering{roman}
-\tableofcontents
-\listoftables
-\listoffigures
-
-\begin{table}[bp]
+\begin{table}[h]
 \caption{\bf Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
@@ -59,6 +54,14 @@
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+
 
 \newpage
 
@@ -111,13 +114,13 @@ actually be implemented.
 \begin{tabular}{cl}
 \hline
 \multicolumn{1}{l}{\textbf{Module Number}} & \textbf{Module Name}    \\ \hline
-\textbf{M1}                                & Camera Input Module     \\ \hline
-\textbf{M2}                                & Image Input Module      \\ \hline
-\textbf{M3}                                & User Interface Module   \\ \hline
-\textbf{M4}                                & Resistor ID Module      \\ \hline
-\textbf{M5}                                & Band Location Module    \\ \hline
-\textbf{M6}                                & Colour Mapping Module   \\ \hline
-\textbf{M7}                                & Value Calculator Module \\ \hline
+\textbf{\refstepcounter{mnum} \mthemnum \label{mCI}}                                & Camera Input Module     \\ \hline
+\textbf{\refstepcounter{mnum} \mthemnum \label{mII}}                                & Image Input Module      \\ \hline
+\textbf{\refstepcounter{mnum} \mthemnum \label{mUI}}                                & User Interface Module   \\ \hline
+\textbf{\refstepcounter{mnum} \mthemnum \label{mRID}}                                & Resistor ID Module      \\ \hline
+\textbf{\refstepcounter{mnum} \mthemnum \label{mBL}}                                & Band Location Module    \\ \hline
+\textbf{\refstepcounter{mnum} \mthemnum \label{mCM}}                                & Colour Mapping Module   \\ \hline
+\textbf{\refstepcounter{mnum} \mthemnum \label{mVC}}                                & Value Calculator Module \\ \hline
 \end{tabular}
 \end{table}
 
@@ -169,55 +172,85 @@ Only the leaf modules in the hierarchy have to be implemented.
 If a dash (\emph{--}) is shown, this means that the module is not a leaf and will not have to be implemented. 
 Whether or not this module is implemented depends on the programming language selected.
 
-\subsection{Hardware Hiding Modules (\mref{mHH})}
+\subsection{Hardware Hiding Modules}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
-\item[Implemented By:] OS
+\item[Secrets:] System Camera or File System
+\item[Services:] Provides input frames to the modules involved in image processing (M4, M5).
+\item[Implemented By:] Operating System \& OpenCV
+\end{description}
+
+\subsubsection{Camera Input Module (\mref{mCI})}
+\begin{description}
+\item[Secrets:] Camera Hardware
+\item[Services:] Provides images produced by the camera in displayable formats and as a matrix of RGB vectors.
+\item[Implemented By:] Operating System \& OpenCV
+\end{description}
+
+\subsubsection{Image Input Module (\mref{mII})}
+\begin{description}
+\item[Secrets:] File System
+\item[Services:] Provides images stored locally in displayable formats and as a matrix of RGB vectors.
+\item[Implemented By:] Operating System
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
+\item[Secrets:]  Combination and use of Software Decision modules.
+\item[Services:] Describes the behaviour of the application. Acts as a bridge between the Hardware Hiding and Software Decision modules.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{User Interface Module (\mref{mUI})}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
+\item[Secrets:] View and View Controller
+\item[Services:] Displays the results of any calculations performed by the software decision module and allows for user input.
+\item[Implemented By:] ohm
 \end{description}
-
-\subsubsection{Etc.}
-
 
 \subsection{Software Decision Module}
 
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
+\item[Secrets:] The algroithms and data structures used to perform the analysis of input frames.
+\item[Services:] Computes the resulting resistance based on some input image produced by the Hardware Hiding modules.
   % Changes in these modules are more likely to be motivated by a desire to
   % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Implemented By:] ohm \& OpenCV
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Resistor ID Module (\mref{mRID})}
+
+\begin{description}
+\item[Secrets:] Method of Body and Axis Identification
+\item[Services:] Provides the location of the main axis of the resistor for further processing.
+\item[Implemented By:] ohm \& OpenCV
+\end{description}
+
+\subsubsection{Band Location Module (\mref{mBL})}
+
+\begin{description}
+\item[Secrets:] Band Detection and Sampling Method
+\item[Services:] Provides the colours and relative locations of each band of the resistor.
+\item[Implemented By:] ohm
+\end{description}
+
+\subsubsection{Colour Mapping Module (\mref{mCM})}
+
+\begin{description}
+\item[Secrets:] Algorithm to map sampled colours to known possible colours a resistor can take on.
+\item[Services:] Produces the most likely real life colour of a band and it's value used in the computation of a resistor value.
+\item[Implemented By:] ohm
+\end{description}
+
+\subsubsection{Value Calculator Module (\mref{mVC})}
+
+\begin{description}
+\item[Secrets:] Method of calculating resistance.
+\item[Services:] Calculates the resistance of the resistor based on the 
+\item[Implemented By:] ohm
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -232,17 +265,25 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+FR1 & \mref{mUI}  \\
+FR2 & \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF1 &  \mref{mUI}  \\
+NF2 & \mref{mUI}  \\
+NF3 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF4 & \mref{mUI}  \\
+NF5 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF6 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF7 & \mref{mII}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF8 & \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF9 & \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF10 & \mref{mUI}  \\
+NF11 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF12 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF13 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF14 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF15 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF16 & \mref{mCI}, \mref{mII}, \mref{mUI}, \mref{mRID}, \mref{mBL}, \mref{mCM}, \mref{mVC}\\
+NF17 &\mref{mUI}  \\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -255,18 +296,9 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acInput} & \mref{mII}\\
+\acref{acAxis} & \mref{mRID}\\
+\acref{acPlatform} & \mref{mCI}, \mref{mII}, \mref{mUI} \\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
