@@ -83,6 +83,9 @@ This project implements the design principles of Single Responsibility, Separati
 \item \textbf{Principle of Least Knowledge:}
 \end{itemize}
 
+\subsection{Document Structure}
+
+
 \section{Anticipated and Unlikely Changes} \label{SecChange}
 
 \subsection{Anticipated Changes} \label{SecAchange}
@@ -155,10 +158,9 @@ actually be implemented.
 
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
-
-The design of the system is intended to satisfy the requirements developed in
-the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table \ref{TblRT}.
+\par The system was designed to satisfy the requirements defined in the SRS. In order to make the system easier to implement on both Desktop and Android, it was written using Java and lacks onscreen buttons. The simple user interface also makes it easier to operate and removes any language requirement. OpenCV was chosen as the image processing library due to its availability, in-depth documentation, and broad functionality. OpenCV allows the system to display text, and read images to identify a resistor using two points. 
+The system was designed to have all data and functionality stored in the app to avoid the need for internet access. This, in addition to the fact that the app is broken down into modules to avoid complexity, allows it to be built for durability, removing the need to maintain after launch or require live support. The application’s modularity is key when dealing with an algorithmically complex problem as modifications to one part of the algorithmic process should not cause issues in other parts.
+\par The Hardware-Hiding Modules are useful in makind the application multiplatform as it allows the rest of the system to run independant of the hardware. The User Inteface Module is responsible for the fulfillment of the usability requirements. Finally, the Software Decision modules must adhere to the performance requirements, ensuring fast performance and high accuracy.
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -167,17 +169,15 @@ The \emph{Services} field specifies \emph{what} the module will do without docum
 For each module, a suggestion for the implementing software is given under the \emph{Implemented By} title. 
 If the entry is \emph{OS}, this means that the module is provided by the operating system or by standard programming language libraries.
 Also indicate if the module will be implemented specifically for the software.
-
 Only the leaf modules in the hierarchy have to be implemented. 
 If a dash (\emph{--}) is shown, this means that the module is not a leaf and will not have to be implemented. 
-Whether or not this module is implemented depends on the programming language selected.
 
 \subsection{Hardware Hiding Modules}
 
 \begin{description}
 \item[Secrets:] System Camera or File System
 \item[Services:] Provides input frames to the modules involved in image processing (M4, M5).
-\item[Implemented By:] Operating System \& OpenCV
+\item[Implemented By:] --
 \end{description}
 
 \subsubsection{Camera Input Module (\mref{mCI})}
@@ -217,7 +217,7 @@ Whether or not this module is implemented depends on the programming language se
 \item[Services:] Computes the resulting resistance based on some input image produced by the Hardware Hiding modules.
   % Changes in these modules are more likely to be motivated by a desire to
   % improve performance than by externally imposed changes.
-\item[Implemented By:] ohm \& OpenCV
+\item[Implemented By:] --
 \end{description}
 
 \subsubsection{Resistor ID Module (\mref{mRID})}
@@ -252,6 +252,7 @@ Whether or not this module is implemented depends on the programming language se
 \item[Implemented By:] ohm
 \end{description}
 
+\newpage
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
@@ -307,20 +308,9 @@ NF17 &\mref{mUI}  \\
 
 \section{Use Hierarchy Between Modules} \label{SecUse}
 
-In this section, the uses hierarchy between modules is
-provided. \citet{Parnas1978} said of two programs A and B that A {\em uses} B if
-correct execution of B may be necessary for A to complete the task described in
-its specification. That is, A {\em uses} B if there exist situations in which
-the correct functioning of A depends upon the availability of a correct
-implementation of B.  Figure \ref{FigUH} illustrates the use relation between
-the modules. It can be seen that the graph is a directed acyclic graph
-(DAG). Each level of the hierarchy offers a testable and usable subset of the
-system, and modules in the higher level of the hierarchy are essentially simpler
-because they use modules from the lower levels.
-
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{useshierarchy}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
