@@ -1,0 +1,188 @@
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader}{}\section{ohm.\+Image\+Processing.\+Band\+Reader Class Reference}
+\label{classohm_1_1_image_processing_1_1_band_reader}\index{ohm.\+Image\+Processing.\+Band\+Reader@{ohm.\+Image\+Processing.\+Band\+Reader}}
+
+
+Module used to analyze the line of pixels selected by the user through the UI. It uses high values of the differential of the R\+GB colours to detect edges of bands.  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static List$<$ Point $>$ \hyperlink{classohm_1_1_image_processing_1_1_band_reader_a509d4c14ff8fd2816a0e6e8341fd549b}{read} (Mat frame, Point p1, Point p2)
+\item 
+static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classohm_1_1_image_processing_1_1_band_reader_a2e83767f5674f1463cb0168df8d073fa}{box\+Sample} (Mat mat, Point start, Point end, int n\+Samples, double box\+Width)
+\item 
+static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classohm_1_1_image_processing_1_1_band_reader_aabe4b424365cdc920b0ff8f4e7194f0f}{rolling\+Average\+Filter} (double\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classohm_1_1_image_processing_1_1_band_reader_a19841f2d731de48d3e4b1f0b2cbe2ee8}{sample}, int window\+Radius)
+\item 
+static double \mbox{[}$\,$\mbox{]} \hyperlink{classohm_1_1_image_processing_1_1_band_reader_accce69c7e643760e6952c2328b79e067}{componentwise\+Mean} (double\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} samples)
+\item 
+static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classohm_1_1_image_processing_1_1_band_reader_a19841f2d731de48d3e4b1f0b2cbe2ee8}{sample} (Mat mat, Point start, Point end, int n\+Samples)
+\item 
+static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} \hyperlink{classohm_1_1_image_processing_1_1_band_reader_abe546887928066f1743f775c01493110}{diff} (double\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} y)
+\item 
+static double \hyperlink{classohm_1_1_image_processing_1_1_band_reader_ac2ee0b6de8f02e13da47d02c5d7a1bc8}{mag} (double\mbox{[}$\,$\mbox{]} vect)
+\item 
+static double \hyperlink{classohm_1_1_image_processing_1_1_band_reader_aa3ef8a552a5abc52201bd0e9f9eeb900}{dist} (Point p1, Point p2)
+\item 
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_abcc381a61a6a9e1fb0445599e3bb75f6}{}\label{classohm_1_1_image_processing_1_1_band_reader_abcc381a61a6a9e1fb0445599e3bb75f6} 
+static double \mbox{[}$\,$\mbox{]} {\bfseries group\+Terms} (double\mbox{[}$\,$\mbox{]} terms, int bin\+Size)
+\item 
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_a46a858c5c6f885911d0e7ec549943141}{}\label{classohm_1_1_image_processing_1_1_band_reader_a46a858c5c6f885911d0e7ec549943141} 
+static List$<$ Pair$<$ Integer, Double $>$ $>$ {\bfseries find\+Local\+Maxima} (double\mbox{[}$\,$\mbox{]} values)
+\item 
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_a47dfacb42d8def145a59303e52073c94}{}\label{classohm_1_1_image_processing_1_1_band_reader_a47dfacb42d8def145a59303e52073c94} 
+static List$<$ Pair$<$ Integer, Double $>$ $>$ {\bfseries find\+Global\+Maxima} (double\mbox{[}$\,$\mbox{]} values, int n\+Maxima)
+\item 
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_a9a9a7aec0df75f13f97fad3a4f985eca}{}\label{classohm_1_1_image_processing_1_1_band_reader_a9a9a7aec0df75f13f97fad3a4f985eca} 
+static Point {\bfseries on\+Line} (Point start, Point end, double fraction)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Module used to analyze the line of pixels selected by the user through the UI. It uses high values of the differential of the R\+GB colours to detect edges of bands. 
+
+\begin{DoxyAuthor}{Author}
+Ryan Marks \& Jonathan Brown 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_a2e83767f5674f1463cb0168df8d073fa}{}\label{classohm_1_1_image_processing_1_1_band_reader_a2e83767f5674f1463cb0168df8d073fa} 
+\index{ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}!box\+Sample@{box\+Sample}}
+\index{box\+Sample@{box\+Sample}!ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{box\+Sample()}{boxSample()}}
+{\footnotesize\ttfamily static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} ohm.\+Image\+Processing.\+Band\+Reader.\+box\+Sample (\begin{DoxyParamCaption}\item[{Mat}]{mat,  }\item[{Point}]{start,  }\item[{Point}]{end,  }\item[{int}]{n\+Samples,  }\item[{double}]{box\+Width }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This method takes something Ryan made up called a box sample. At n\+Samples points along the line from start to end, a line of samples are take along a line of length box\+Width, normal to and centred on the sampling line 
+\begin{DoxyParams}{Parameters}
+{\em mat} & The matrix being sampled \\
+\hline
+{\em start} & The start of the sampling line \\
+\hline
+{\em end} & The end of the sampling line \\
+\hline
+{\em n\+Samples} & The number or linear samples to take along the sampling line \\
+\hline
+{\em box\+Width} & the length of the normal sampling line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array containing the average rgb values (represented as double\mbox{[}\mbox{]}) in the sampling window. 
+\end{DoxyReturn}
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_accce69c7e643760e6952c2328b79e067}{}\label{classohm_1_1_image_processing_1_1_band_reader_accce69c7e643760e6952c2328b79e067} 
+\index{ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}!componentwise\+Mean@{componentwise\+Mean}}
+\index{componentwise\+Mean@{componentwise\+Mean}!ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{componentwise\+Mean()}{componentwiseMean()}}
+{\footnotesize\ttfamily static double \mbox{[}$\,$\mbox{]} ohm.\+Image\+Processing.\+Band\+Reader.\+componentwise\+Mean (\begin{DoxyParamCaption}\item[{double}]{samples\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Calculate the mean of an array of vectors. 
+\begin{DoxyParams}{Parameters}
+{\em samples} & Array of R\+GB vectors represented as double\mbox{[}\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The average of all vectors within the input array (represented as a double\mbox{[}\mbox{]}) 
+\end{DoxyReturn}
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_abe546887928066f1743f775c01493110}{}\label{classohm_1_1_image_processing_1_1_band_reader_abe546887928066f1743f775c01493110} 
+\index{ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}!diff@{diff}}
+\index{diff@{diff}!ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{diff()}{diff()}}
+{\footnotesize\ttfamily static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} ohm.\+Image\+Processing.\+Band\+Reader.\+diff (\begin{DoxyParamCaption}\item[{double}]{y\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Take the discrete derivative of a series of vectors. 
+\begin{DoxyParams}{Parameters}
+{\em y} & A series of vectors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+y\textquotesingle{}, the derivative of the input represented as a array of vectors (double\mbox{[}\mbox{]}). 
+\end{DoxyReturn}
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_aa3ef8a552a5abc52201bd0e9f9eeb900}{}\label{classohm_1_1_image_processing_1_1_band_reader_aa3ef8a552a5abc52201bd0e9f9eeb900} 
+\index{ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}!dist@{dist}}
+\index{dist@{dist}!ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{dist()}{dist()}}
+{\footnotesize\ttfamily static double ohm.\+Image\+Processing.\+Band\+Reader.\+dist (\begin{DoxyParamCaption}\item[{Point}]{p1,  }\item[{Point}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Calcualte the distance between two points. 
+\begin{DoxyParams}{Parameters}
+{\em p1} & Point 1. \\
+\hline
+{\em p2} & Point 2. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Distance between p1 and p2. 
+\end{DoxyReturn}
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_ac2ee0b6de8f02e13da47d02c5d7a1bc8}{}\label{classohm_1_1_image_processing_1_1_band_reader_ac2ee0b6de8f02e13da47d02c5d7a1bc8} 
+\index{ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}!mag@{mag}}
+\index{mag@{mag}!ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{mag()}{mag()}}
+{\footnotesize\ttfamily static double ohm.\+Image\+Processing.\+Band\+Reader.\+mag (\begin{DoxyParamCaption}\item[{double \mbox{[}$\,$\mbox{]}}]{vect }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Calculate the magnitude of a given vector 
+\begin{DoxyParams}{Parameters}
+{\em vect} & \hyperlink{namespace_input}{Input} vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The magnitude of the input vector 
+\end{DoxyReturn}
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_a509d4c14ff8fd2816a0e6e8341fd549b}{}\label{classohm_1_1_image_processing_1_1_band_reader_a509d4c14ff8fd2816a0e6e8341fd549b} 
+\index{ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}!read@{read}}
+\index{read@{read}!ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily static List$<$Point$>$ ohm.\+Image\+Processing.\+Band\+Reader.\+read (\begin{DoxyParamCaption}\item[{Mat}]{frame,  }\item[{Point}]{p1,  }\item[{Point}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Image to Sample. \\
+\hline
+{\em p1} & Starting point of the sampling line. \\
+\hline
+{\em p2} & Ending point of the sampling line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of points along the line that are likely band edges. 
+\end{DoxyReturn}
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_aabe4b424365cdc920b0ff8f4e7194f0f}{}\label{classohm_1_1_image_processing_1_1_band_reader_aabe4b424365cdc920b0ff8f4e7194f0f} 
+\index{ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}!rolling\+Average\+Filter@{rolling\+Average\+Filter}}
+\index{rolling\+Average\+Filter@{rolling\+Average\+Filter}!ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{rolling\+Average\+Filter()}{rollingAverageFilter()}}
+{\footnotesize\ttfamily static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} ohm.\+Image\+Processing.\+Band\+Reader.\+rolling\+Average\+Filter (\begin{DoxyParamCaption}\item[{double}]{sample\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]},  }\item[{int}]{window\+Radius }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+This method is used to apply a rolling average filter to vector data. 
+\begin{DoxyParams}{Parameters}
+{\em sample} & An array of ( arrays of doubles representing an individual vector sample) \\
+\hline
+{\em window\+Radius} & The number of samples on either side of a given sample to incorporate into the average \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array containing the average R\+GB value sampled along the line. 
+\end{DoxyReturn}
+\hypertarget{classohm_1_1_image_processing_1_1_band_reader_a19841f2d731de48d3e4b1f0b2cbe2ee8}{}\label{classohm_1_1_image_processing_1_1_band_reader_a19841f2d731de48d3e4b1f0b2cbe2ee8} 
+\index{ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}!sample@{sample}}
+\index{sample@{sample}!ohm\+::\+Image\+Processing\+::\+Band\+Reader@{ohm\+::\+Image\+Processing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{sample()}{sample()}}
+{\footnotesize\ttfamily static double \mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]} ohm.\+Image\+Processing.\+Band\+Reader.\+sample (\begin{DoxyParamCaption}\item[{Mat}]{mat,  }\item[{Point}]{start,  }\item[{Point}]{end,  }\item[{int}]{n\+Samples }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Take a linear sampling from a matrix at a given number of points along a line 
+\begin{DoxyParams}{Parameters}
+{\em mat} & The matrix to be sampled \\
+\hline
+{\em start} & The start of the sampling line \\
+\hline
+{\em end} & The end of the sampling line \\
+\hline
+{\em n\+Samples} & The number of samples to take along the line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The samples taken 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+java/ohm/\+Image\+Processing/Band\+Reader.\+java\end{DoxyCompactItemize}

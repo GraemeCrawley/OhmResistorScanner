@@ -1,0 +1,67 @@
+\hypertarget{classohm_1_1userinterface_1_1_resistor_axis_picker_view}{}\section{ohm.\+userinterface.\+Resistor\+Axis\+Picker\+View Class Reference}
+\label{classohm_1_1userinterface_1_1_resistor_axis_picker_view}\index{ohm.\+userinterface.\+Resistor\+Axis\+Picker\+View@{ohm.\+userinterface.\+Resistor\+Axis\+Picker\+View}}
+
+
+This class displays an opencv Mat as an image and allows the user to pick two endpoints of a line. Once two valid points, a listener is called.  
+
+
+Inheritance diagram for ohm.\+userinterface.\+Resistor\+Axis\+Picker\+View\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classohm_1_1userinterface_1_1_resistor_axis_picker_view}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+interface {\bfseries Listener}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classohm_1_1userinterface_1_1_resistor_axis_picker_view_a18f03b2e9fbfd47ce86d525dbd9aadd7}{}\label{classohm_1_1userinterface_1_1_resistor_axis_picker_view_a18f03b2e9fbfd47ce86d525dbd9aadd7} 
+void {\bfseries handle} (Mouse\+Event event)
+\item 
+void \hyperlink{classohm_1_1userinterface_1_1_resistor_axis_picker_view_aca0066d9015235e9379505a8e89543b1}{set\+Image} (Mat new\+Image)
+\item 
+void \hyperlink{classohm_1_1userinterface_1_1_resistor_axis_picker_view_a78a2696e3a51570963bbf23870bee204}{set\+Listener} (Listener listener)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classohm_1_1userinterface_1_1_resistor_axis_picker_view_a09ec66453bd16e8f693d7bddc16aed9e}{}\label{classohm_1_1userinterface_1_1_resistor_axis_picker_view_a09ec66453bd16e8f693d7bddc16aed9e} 
+static double {\bfseries dist} (Point p1, Point p2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class displays an opencv Mat as an image and allows the user to pick two endpoints of a line. Once two valid points, a listener is called. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classohm_1_1userinterface_1_1_resistor_axis_picker_view_aca0066d9015235e9379505a8e89543b1}{}\label{classohm_1_1userinterface_1_1_resistor_axis_picker_view_aca0066d9015235e9379505a8e89543b1} 
+\index{ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View@{ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View}!set\+Image@{set\+Image}}
+\index{set\+Image@{set\+Image}!ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View@{ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View}}
+\subsubsection{\texorpdfstring{set\+Image()}{setImage()}}
+{\footnotesize\ttfamily void ohm.\+userinterface.\+Resistor\+Axis\+Picker\+View.\+set\+Image (\begin{DoxyParamCaption}\item[{Mat}]{new\+Image }\end{DoxyParamCaption})}
+
+Set the matrix to display 
+\begin{DoxyParams}{Parameters}
+{\em new\+Image} & Image to be set as the image to be displayed in the UI \\
+\hline
+\end{DoxyParams}
+\hypertarget{classohm_1_1userinterface_1_1_resistor_axis_picker_view_a78a2696e3a51570963bbf23870bee204}{}\label{classohm_1_1userinterface_1_1_resistor_axis_picker_view_a78a2696e3a51570963bbf23870bee204} 
+\index{ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View@{ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View}!set\+Listener@{set\+Listener}}
+\index{set\+Listener@{set\+Listener}!ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View@{ohm\+::userinterface\+::\+Resistor\+Axis\+Picker\+View}}
+\subsubsection{\texorpdfstring{set\+Listener()}{setListener()}}
+{\footnotesize\ttfamily void ohm.\+userinterface.\+Resistor\+Axis\+Picker\+View.\+set\+Listener (\begin{DoxyParamCaption}\item[{Listener}]{listener }\end{DoxyParamCaption})}
+
+Assign a line listener to be updated when new points are selected 
+\begin{DoxyParams}{Parameters}
+{\em listener} & Object that triggers responds to a mouse click inside the view. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+java/ohm/userinterface/Resistor\+Axis\+Picker\+View.\+java\end{DoxyCompactItemize}
