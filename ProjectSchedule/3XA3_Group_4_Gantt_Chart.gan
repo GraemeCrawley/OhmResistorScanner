@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="PCM" company="McMaster, CAS Department" webLink="" view-date="2016-10-16" view-index="1" gantt-divider-location="399" resource-divider-location="472" version="2.8.1" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="PCM" company="McMaster, CAS Department" webLink="" view-date="2016-10-16" view-index="1" gantt-divider-location="399" resource-divider-location="472" version="2.8.1" locale="en_US">
     <description><![CDATA[Simulation of temperature over time for a solar water heating tank incorporating phase change material (PCM).]]></description>
     <view zooming-state="default:5" id="gantt-chart">
-        <field id="tpd3" name="Name" width="214" order="0"/>
+        <field id="tpd3" name="Name" width="213" order="0"/>
         <field id="tpd4" name="Begin date" width="80" order="1"/>
-        <field id="tpd5" name="End date" width="86" order="2"/>
+        <field id="tpd5" name="End date" width="85" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="296" order="0"/>
-        <field id="1" name="Default role" width="172" order="1"/>
+        <field id="0" name="Name" width="295" order="0"/>
+        <field id="1" name="Default role" width="171" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -118,9 +118,9 @@
         <task id="10" name="Final Doc Due" color="#8cb6ce" meeting="true" start="2016-12-07" duration="0" complete="0" expand="true"/>
     </tasks>
     <resources>
-        <resource id="0" name="Jonathan Brown" function="Default:0" contacts="" phone=""/>
-        <resource id="1" name="Ryan Marks" function="Default:0" contacts="" phone=""/>
-        <resource id="2" name="Graeme Crawley" function="Default:0" contacts="" phone=""/>
+        <resource id="0" name="Jonathan Brown" function="1" contacts="" phone=""/>
+        <resource id="1" name="Ryan Marks" function="1" contacts="" phone=""/>
+        <resource id="2" name="Graeme Crawley" function="1" contacts="" phone=""/>
     </resources>
     <allocations>
         <allocation task-id="31" resource-id="0" function="Default:0" responsible="true" load="90.0"/>
@@ -157,4 +157,7 @@
     <vacations/>
     <previous/>
     <roles roleset-name="Default"/>
+    <roles>
+        <role id="1" name="Developer"/>
+    </roles>
 </project>
