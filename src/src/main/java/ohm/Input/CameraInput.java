@@ -2,6 +2,14 @@ package ohm.Input;
 
 import javafx.scene.image.Image;
 import org.opencv.core.Mat;
+import javafx.embed.swing.SwingFXUtils;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.videoio.VideoCapture;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 /**
  * @addtogroup CameraInput
@@ -14,13 +22,79 @@ import org.opencv.core.Mat;
  * */
 public class CameraInput implements Input {
 
-    @Override
-    public Mat getRGB() {
-        return null;
+    private VideoCapture capture = new VideoCapture(0);
+    private boolean cameraOn = false;
+    private int videodevice = 0;
+
+    Image imageToShow;
+    Mat frame;
+
+
+    public CameraInput(){
+        System.out.println("Button was clicked");
+        if(!cameraOn){
+            this.capture.open(videodevice);
+            if (capture.isOpened()){
+                cameraOn = true;
+                System.out.println("STOP INSIDE");
+                Thread processFrame = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        while (cameraOn) {
+                            System.out.println("Inside Thread");
+                            try {
+                                frame = new Mat();
+                                capture.read(frame);
+                                System.out.println("read frame");
+                                imageToShow =  matToImage(frame);
+                                System.out.println("mat to image");
+                            } catch (Exception e1) {
+                                System.out.println("Error on Update " + e1);
+                            }
+                            try {
+                                Thread.sleep(10);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        System.out.println("Thread processFrame closed");
+                        try {
+                            capture.release();
+                        } catch (Exception e) {
+                        }
+                    }
+                });
+                processFrame.start();
+            }
+        }
+        else {
+            System.out.println("STOP");
+            cameraOn = false;
+        }
+    }
+
+    private Image matToImage(Mat frame) throws Exception{
+        MatOfByte bytemat = new MatOfByte();
+        Imgcodecs.imencode(".jpg", frame, bytemat);
+        byte[] bytes = bytemat.toArray();
+        InputStream in = new ByteArrayInputStream(bytes);
+        BufferedImage img = ImageIO.read(in);
+        return SwingFXUtils.toFXImage(img, null);
+    }
+
+    public Mat getMat() {
+        System.out.println(frame);
+        return frame;
     }
 
     @Override
     public Image getImage() {
+        System.out.println(imageToShow);
+        return imageToShow;
+    }
+
+    @Override
+    public Mat getRGB() {
         return null;
     }
 
