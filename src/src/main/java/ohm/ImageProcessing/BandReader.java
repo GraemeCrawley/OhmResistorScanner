@@ -13,14 +13,16 @@ import java.util.stream.Collectors;
 
 /**
  * @defgroup BandLocation
- * Module used to analyze the line of pixels selected by the user through the UI. It uses high values of the differential of the RGB colours to detect edges of bands.
+ * Module used to analyze the line of pixels selected by the user through the UI.
+ * It uses high values of the differential of the RGB colours to detect edges of bands.
  * @addtogroup BandLocation
  * @{
  */
 
 /**
  * @author Ryan Marks & Jonathan Brown
- * @brief Module used to analyze the line of pixels selected by the user through the UI. It uses high values of the differential of the RGB colours to detect edges of bands.
+ * @brief Module used to analyze the line of pixels selected by the user through the UI.
+ * It uses high values of the differential of the RGB colours to detect edges of bands.
  */
 public class BandReader {
 
@@ -32,7 +34,7 @@ public class BandReader {
      */
     public static List<Point> read(Mat frame, Point p1, Point p2){
         Mat img = frame.clone();
-        Imgproc.medianBlur(img,img,17);
+        Imgproc.medianBlur(img,img,15);
         double[][] sample = boxSample(img,p1, p2,(int)dist(p1,p2),40);
         double[][] diff = diff(sample);
         double[] terms = Arrays.stream(rollingAverageFilter(diff,2))
@@ -43,7 +45,8 @@ public class BandReader {
 
         List<Pair<Integer, Double>> localMaxima = findLocalMaxima(groupedTerms);
 
-        return localMaxima.stream().map(pair -> onLine(p1,p2,pair.getKey()*1.0/groupedTerms.length)).collect(Collectors.toList());
+        return localMaxima.stream().map(pair -> onLine(p1,p2,pair.getKey()*1.0/groupedTerms.length))
+                .collect(Collectors.toList());
     }
 
     /**

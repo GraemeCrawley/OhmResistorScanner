@@ -16,7 +16,7 @@ import java.awt.geom.Arc2D;
  */
 public enum ResistorColour {
     BLACK(0,20,20,20),
-    BROWN(1,70,45,35),
+    BROWN(1,122,73,40),
     RED(2,155,20,35),
     ORANGE(3,245,105,30),
     YELLOW(4,200,200,55),
@@ -25,9 +25,9 @@ public enum ResistorColour {
     VIOLET(7,50,33,80),
     GREY(8,125,125,125),
     WHITE(9,200,200,200),
-    GOLD(-5,140,110,50),
+    GOLD(-5,140,110,50);
     //SILVER(),
-    BASE(-1,200,170,145);
+    //BASE(-1,200,170,145);
     public int value;
     float[] rgb;
     float[] hsb;
@@ -190,10 +190,10 @@ public enum ResistorColour {
 
     private static float LABDistance(float l, float a, float b, ResistorColour c){
         if (c == null) throw new IllegalArgumentException("C cannot be null");
-        final float dL = c.lab[0] - l;
-        final float dA = c.lab[1] - a;
-        final float dB = c.lab[2] - b;
-        final float distance = (float)  Math.sqrt(dL*dL + dA*dA + dB*dB);
+        final float dL = Math.abs(c.lab[0] - l);
+        final float dA = Math.abs(c.lab[1] - a);
+        final float dB = Math.abs(c.lab[2] - b);
+        final float distance = (float)  Math.pow(dL*dL*dL + dA*dA*dA + dB*dB*dB, .3333);
         return distance;
 
     }

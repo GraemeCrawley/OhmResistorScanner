@@ -31,7 +31,7 @@ task myJavadocs(type: Javadoc) {
     into 'build/classes/'
 }*/
 
-task runOhm(type: org.gradle.api.tasks.JavaExec, dependsOn: ['build','copyFXML']) {
+task runOhm(type: org.gradle.api.tasks.JavaExec, dependsOn: ['classes','copyFXML']) {
     main = 'ohm.Ohm'
     classpath = sourceSets.main.runtimeClasspath
 

@@ -13,9 +13,19 @@ public class ValueCalculator {
     final double resistance;
     final double precision;
 
-    ValueCalculator(ResistorColour bandOne, ResistorColour bandTwo, ResistorColour exponentBand, int precisionBand){
-        resistance = (bandOne.value * 10 + bandTwo.value)*Math.pow(10,exponentBand.value);
-        precision = precisionBand;
+    public ValueCalculator(ResistorColour a, ResistorColour b, ResistorColour c, ResistorColour d){
+        if (d.value < 0){
+            resistance = (a.value * 10 + b.value)*Math.pow(10,c.value);
+            precision = d.value;
+        }
+        else{
+            resistance = (d.value * 10 + c.value)*Math.pow(10,b.value);
+            precision = a.value * -1;
+        }
+    }
+
+    public String getValue(){
+        return Double.toString((int) resistance) + " +- " + precision + "%";
     }
 }
 
