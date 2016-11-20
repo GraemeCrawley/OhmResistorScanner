@@ -8,6 +8,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ohm.userinterface.OhmViewController;
 import org.opencv.core.Core;
 
 import java.net.URL;
@@ -34,4 +35,11 @@ public class Ohm extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+
+    /*
+    //Method responsible for safely shutting down the application
+    @Override
+    public void stop() {
+        ((OhmViewController) fxmlLoader.getController()).stop();
+    }*/
 }

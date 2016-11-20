@@ -3,6 +3,8 @@ package ohm.ImageProcessing;
 import javafx.util.Pair;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +31,9 @@ public class BandReader {
      * @return List of points along the line that are likely band edges.
      */
     public static List<Point> read(Mat frame, Point p1, Point p2){
-        double[][] sample = boxSample(frame,p1, p2,(int)dist(p1,p2),40);
+        Mat img = frame.clone();
+        Imgproc.medianBlur(img,img,17);
+        double[][] sample = boxSample(img,p1, p2,(int)dist(p1,p2),40);
         double[][] diff = diff(sample);
         double[] terms = Arrays.stream(rollingAverageFilter(diff,2))
                 .mapToDouble(d -> Math.log(1+mag(d)))

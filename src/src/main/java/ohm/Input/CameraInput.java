@@ -15,12 +15,17 @@ import org.opencv.core.Mat;
 public class CameraInput implements Input {
 
     @Override
-    public Mat getMat() {
+    public Mat getRGB() {
         return null;
     }
 
     @Override
     public Image getImage() {
+        return null;
+    }
+
+    @Override
+    public Mat getLAB() {
         return null;
     }
 }

@@ -15,6 +15,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.awt.color.ColorSpace;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,24 +52,26 @@ public class OhmViewController implements Initializable {
      * Method used to "glue" together the front and back end of the application.
      */
     public void initialize(URL url, ResourceBundle rb) {
-        Input imageInput = new ImageInput();
+        Input imageInput = new ImageInput("resistor");
         final Image src = imageInput.getImage();
-        final Mat frame = imageInput.getMat();
+        final Mat rgbframe = imageInput.getRGB();
+        final Mat labframe = imageInput.getLAB();
 
-        resistorAxisPickerView.setImage(frame);
-        resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(frame,p1,p2));
+        resistorAxisPickerView.setImage(rgbframe);
+        resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(rgbframe,p1,p2));
 
         this.processedImageView.setRenderer(() -> {
-            Mat processed = frame.clone();
+            Mat processed = rgbframe.clone();
             for (int i = 0; i < Math.min(points.size()-1, 7); i = i + 2){
                 Point p1 = points.get(i);
                 Point p2 = points.get(i+1);
                 Point midpoint = new Point((p1.x + p2.x)/2, (p1.y + p2.y)/2);
-                Scalar colourAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
-                ResistorColour resistorColourAtMidpoint = ResistorColour.fit(colourAtMidpoint.val[2], colourAtMidpoint.val[1], colourAtMidpoint.val[0]);
-                Imgproc.circle(processed, p1, 1, new Scalar(255, 0, 0), 2);
-                Imgproc.circle(processed, p2, 1, new Scalar(255, 0, 0), 2);
-                Imgproc.circle(processed, midpoint, 10, colourAtMidpoint, 2);
+                Scalar colourAtMidpoint = new Scalar(labframe.get((int) midpoint.y, (int) midpoint.x));
+                ResistorColour resistorColourAtMidpoint = ResistorColour.fit(colourAtMidpoint.val[0], colourAtMidpoint.val[1], colourAtMidpoint.val[2], ColorSpace.TYPE_Lab);
+                Scalar rgbAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
+                Imgproc.circle(processed, p1, 1, new Scalar(0, 0, 255), 2);
+                Imgproc.circle(processed, p2, 1, new Scalar(0, 0, 255), 2);
+                Imgproc.circle(processed, midpoint, 10, rgbAtMidpoint, 2);
                 Imgproc.putText(processed, Integer.toString(resistorColourAtMidpoint.value),p1,1,1,new Scalar(255,255,255));
 
             }

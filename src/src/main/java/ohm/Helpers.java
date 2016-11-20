@@ -6,6 +6,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfByte;
 import org.opencv.core.Point;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ public class Helpers {
 
     public static Image matToImage(Mat mat) {
         try {
+            Mat bgr = mat.clone();
+            Imgproc.cvtColor(mat,bgr,Imgproc.COLOR_RGB2BGR);
             MatOfByte byteMat = new MatOfByte();
-            Imgcodecs.imencode(".bmp", mat, byteMat);
+            Imgcodecs.imencode(".bmp", bgr, byteMat);
             return new Image(new ByteArrayInputStream(byteMat.toArray()));
         }catch (Exception e){
             e.printStackTrace();
