@@ -20,6 +20,11 @@ task copyFXML(type: Copy){
     include '**/*.fxml'
 }
 
+task myJavadocs(type: Javadoc) {
+    source = sourceSets.main.allJava
+}
+
+
 
 /*task copyResources(type: Copy){
     from 'src/main/resources/'
