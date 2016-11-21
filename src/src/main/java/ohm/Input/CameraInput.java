@@ -1,15 +1,18 @@
 package ohm.Input;
 
 import javafx.scene.image.Image;
+import ohm.userinterface.OhmViewController;
 import org.opencv.core.Mat;
 import javafx.embed.swing.SwingFXUtils;
 import org.opencv.core.MatOfByte;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import org.opencv.imgproc.Imgproc;
 
 /**
  * @addtogroup CameraInput
@@ -25,9 +28,10 @@ public class CameraInput implements Input {
     private VideoCapture capture = new VideoCapture(0);
     private boolean cameraOn = false;
     private int videodevice = 0;
+    ImageInput img = new ImageInput();
 
-    Image imageToShow;
-    Mat frame;
+    Image imageToShow= img.getImage();
+    Mat frame = img.getRGB();
 
 
     public CameraInput(){
@@ -43,7 +47,6 @@ public class CameraInput implements Input {
                         while (cameraOn) {
                             System.out.println("Inside Thread");
                             try {
-                                frame = new Mat();
                                 capture.read(frame);
                                 System.out.println("read frame");
                                 imageToShow =  matToImage(frame);
@@ -82,11 +85,6 @@ public class CameraInput implements Input {
         return SwingFXUtils.toFXImage(img, null);
     }
 
-    public Mat getMat() {
-        System.out.println(frame);
-        return frame;
-    }
-
     @Override
     public Image getImage() {
         System.out.println(imageToShow);
@@ -95,7 +93,8 @@ public class CameraInput implements Input {
 
     @Override
     public Mat getRGB() {
-        return null;
+        System.out.println(frame);
+        return frame;
     }
 
     @Override
