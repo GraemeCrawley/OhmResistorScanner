@@ -47,3 +47,5 @@ src/gradlew.bat
 *.lof
 *.out
 *.toc
+
+src/Android/OpenCV-android-sdk
