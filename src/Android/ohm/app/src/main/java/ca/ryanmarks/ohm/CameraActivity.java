@@ -79,7 +79,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         setContentView(R.layout.activity_camera);
 
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.camera_view);
-        mOpenCvCameraView.setMaxFrameSize(640/2,310/2);
+        mOpenCvCameraView.setMaxFrameSize(640,310);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
     }
@@ -122,6 +122,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     Mat mGray;
 
 
+    String resistance="None seen";
 
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         int width = 300;
@@ -134,11 +135,11 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         Mat labFrame = processed.clone();
         Imgproc.cvtColor(processed,labFrame, Imgproc.COLOR_RGB2Lab);
 
-        Point left = new Point(processed.width()/8,processed.height()/2);
-        Point right = new Point(processed.width()*7/8,processed.height()/2);
+        Point left = new Point(processed.width()/3,processed.height()/2);
+        Point right = new Point(processed.width()*2/3,processed.height()/2);
 
 
-        List<Point> points = BandReader.read(processed,left,right);
+        List<Point> points = BandReader.read(labFrame,left,right);
 
 
         ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
@@ -163,8 +164,10 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
         if (values.size() == 4){
             ValueCalculator vc = new ValueCalculator(values.get(0),values.get(1), values.get(2),values.get(3));
-            Imgproc.putText(processed,vc.getValue(), new Point(200,340),1,3,new Scalar(0,0,0));
+            resistance = vc.getValue();
         }
+        Imgproc.putText(processed,resistance, new Point(0,45),1,1,new Scalar(0,0,0));
+
 
         return processed;
     }

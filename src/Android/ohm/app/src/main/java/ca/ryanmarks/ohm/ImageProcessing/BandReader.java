@@ -34,12 +34,13 @@ public class BandReader {
      */
     public static List<Point> read(Mat frame, Point p1, Point p2){
         Mat img = frame;
-        //Imgproc.medianBlur(img,img,5);
-        double[][] sample = boxSample(img,p1, p2,(int)dist(p1,p2),20);
+        //Imgproc.medianBlur(img,img,3);
+        double[][] sample = boxSample(img,p1, p2,(int)dist(p1,p2),30);
         double[][] diff = diff(sample);
         double[][] averaged = rollingAverageFilter(diff,2);
         double[] terms = new double[averaged.length];
         for (int i = 0; i < averaged.length; i++) {
+            averaged[i][0] = averaged[i][0] * 2/10;
             terms[i] = Math.log(1+mag(averaged[i]));
         }
         double[] groupedTerms = groupTerms(terms,3);
