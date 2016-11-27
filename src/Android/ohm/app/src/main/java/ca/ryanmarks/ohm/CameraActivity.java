@@ -34,6 +34,8 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +57,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS: {
                     Log.i(TAG, "OpenCV loaded successfully");
+                    ResistorColour.train(new InputStreamReader(getApplicationContext().getResources().openRawResource(R.raw.train)));
                     zcv.enableView();
                 }
                 break;
@@ -80,10 +83,9 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         setContentView(R.layout.activity_camera);
 
         zcv = (Zoomcameraview) findViewById(R.id.camera_view);
-        //zcv.setMaxFrameSize(640,310);
+        zcv.setMaxFrameSize(640/2,310/2);
         zcv.setVisibility(SurfaceView.VISIBLE);
         zcv.setCvCameraViewListener(this);
-
     }
 
     @Override
@@ -124,46 +126,56 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     Mat mGray;
 
 
-    String resistance="None seen";
+    String resistance = "None seen";
+
+    private Scalar getColorFromCode(int id){
+        switch (id){
+            case 0:
+                return new Scalar(10,10,10);
+            case 1:
+                return new Scalar(165,42,42);
+            case 2:
+                return new Scalar(255,0,0);
+            case 3:
+                return new Scalar(255,69,0);
+            case 4:
+                return new Scalar(255,255,0);
+            case 5:
+                return new Scalar(0,255,0);
+            case 11:
+                return new Scalar(255,255,102);
+            default:
+                return new Scalar(120,120,120);
+        }
+    }
 
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        Mat processed =  inputFrame.rgba();
-
-        Mat labFrame = processed.clone();
-            Imgproc.cvtColor(processed, labFrame, Imgproc.COLOR_RGB2Lab);
-
-            Point left = new Point(processed.width() / 3, processed.height() / 2);
-            Point right = new Point(processed.width() * 2 / 3, processed.height() / 2);
+        Mat processed = inputFrame.rgba();
 
 
-            List<Point> points = BandReader.read(labFrame, left, right);
+        Point left = new Point(processed.width() / 3, processed.height() / 2);
+        Point right = new Point(processed.width() * 2 / 3, processed.height() / 2);
 
+        for (int i = 0; i < processed.height(); i++){
+            for (int j = 0; j < processed.width(); j++){
+                double[] point = processed.get(i,j);
+                int color = ResistorColour.fit((float) point[0],(float)point[1],(float)point[2]);
+                if (color != 0)
+                    processed.put(i,j,getColorFromCode(color).val);
 
-            ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
-            for (int i = 0; i < Math.min(points.size() - 1, 7); i = i + 2) {
-                Point p1 = points.get(i);
-                Point p2 = points.get(i + 1);
-                Point midpoint = new Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
-                Scalar colourAtMidpoint = new Scalar(labFrame.get((int) midpoint.y, (int) midpoint.x));
-                ResistorColour resistorColourAtMidpoint = ResistorColour
-                        .fit(colourAtMidpoint.val[0], colourAtMidpoint.val[1],
-                                colourAtMidpoint.val[2], 1);
-                Scalar rgbAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
-                Imgproc.circle(processed, p1, 1, new Scalar(0, 0, 255), 2);
-                Imgproc.circle(processed, p2, 1, new Scalar(0, 0, 255), 2);
-                Imgproc.circle(processed, midpoint, 10, rgbAtMidpoint, 2);
-                Imgproc.putText(processed,
-                        Integer.toString(resistorColourAtMidpoint.value), p1, 1, 1, new Scalar(255, 255, 255));
-                values.add(resistorColourAtMidpoint);
             }
+        }
 
-            Imgproc.line(processed, left, right, new Scalar(255, 0, 0), 1);
 
-            if (values.size() == 4) {
-                ValueCalculator vc = new ValueCalculator(values.get(0), values.get(1), values.get(2), values.get(3));
-                resistance = vc.getValue();
-            }
-            Imgproc.putText(processed, resistance, new Point(100, 200), 1, 6, new Scalar(0, 0, 0),5);
+        ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
+
+        Imgproc.line(processed, left, right, new Scalar(255, 0, 0), 1);
+
+        if (values.size() == 4) {
+            ValueCalculator vc = new ValueCalculator(values.get(0), values.get(1), values.get(2), values.get(3));
+            resistance = vc.getValue();
+        }
+        Imgproc.putText(processed, resistance, new Point(100, 200), 1, 6, new Scalar(0, 0, 0), 5);
 
 
         return processed;
