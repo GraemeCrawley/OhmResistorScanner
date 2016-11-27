@@ -5,6 +5,7 @@ import ohm.userinterface.OhmViewController;
 import org.opencv.core.Mat;
 import javafx.embed.swing.SwingFXUtils;
 import org.opencv.core.MatOfByte;
+import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
@@ -31,7 +32,8 @@ public class CameraInput implements Input {
     ImageInput img = new ImageInput();
 
     Image imageToShow= img.getImage();
-    Mat frame = img.getRGB();
+    Mat rgb = img.getRGB();
+    Mat lab = img.getLAB();
 
 
     public CameraInput(){
@@ -47,9 +49,13 @@ public class CameraInput implements Input {
                         while (cameraOn) {
                             System.out.println("Inside Thread");
                             try {
-                                capture.read(frame);
+                                capture.read(rgb);
+                                Imgproc.resize(rgb, rgb,new Size(576,360));
+                                Imgproc.cvtColor(rgb,rgb,Imgproc.COLOR_BGR2RGB);
+                                lab = rgb.clone();
+                                Imgproc.cvtColor(rgb,lab,Imgproc.COLOR_RGB2Lab);
                                 System.out.println("read frame");
-                                imageToShow =  matToImage(frame);
+                                imageToShow =  matToImage(rgb);
                                 System.out.println("mat to image");
                             } catch (Exception e1) {
                                 System.out.println("Error on Update " + e1);
@@ -93,13 +99,12 @@ public class CameraInput implements Input {
 
     @Override
     public Mat getRGB() {
-        System.out.println(frame);
-        return frame;
+        return rgb;
     }
 
     @Override
     public Mat getLAB() {
-        return null;
+        return lab;
     }
 }
 

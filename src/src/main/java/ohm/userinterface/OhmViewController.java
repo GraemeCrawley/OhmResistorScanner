@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
+import ohm.Input.CameraInput;
 import ohm.ValueIdentification.ResistorColour;
 import ohm.ImageProcessing.BandReader;
 import ohm.Input.ImageInput;
@@ -53,10 +54,11 @@ public class OhmViewController implements Initializable {
      * Method used to "glue" together the front and back end of the application.
      */
     public void initialize(URL url, ResourceBundle rb) {
-        Input imageInput = new ImageInput("resistor-sample");
-        final Image src = imageInput.getImage();
-        final Mat rgbframe = imageInput.getRGB();
-        final Mat labframe = imageInput.getLAB();
+        Input CameraInput = new CameraInput();
+        final Image src = CameraInput.getImage();
+        final Mat rgbframe = CameraInput.getRGB();
+        final Mat labframe = CameraInput.getLAB();
+
 
         resistorAxisPickerView.setImage(rgbframe);
         resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(rgbframe,p1,p2));
