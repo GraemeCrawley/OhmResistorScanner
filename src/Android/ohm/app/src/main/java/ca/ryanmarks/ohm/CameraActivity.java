@@ -1,6 +1,7 @@
 package ca.ryanmarks.ohm;
 
 import android.annotation.SuppressLint;
+import android.hardware.Camera;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,7 +45,7 @@ import ca.ryanmarks.ohm.ValueIdentification.ValueCalculator;
 public class CameraActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private static final String TAG = "OCVSample::Activity";
 
-    private CameraBridgeViewBase mOpenCvCameraView;
+    private Zoomcameraview zcv;
     private boolean mIsJavaCamera = true;
     private MenuItem mItemSwitchCamera = null;
 
@@ -54,7 +55,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS: {
                     Log.i(TAG, "OpenCV loaded successfully");
-                    mOpenCvCameraView.enableView();
+                    zcv.enableView();
                 }
                 break;
                 default: {
@@ -78,10 +79,11 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
         setContentView(R.layout.activity_camera);
 
-        mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.camera_view);
-        mOpenCvCameraView.setMaxFrameSize(640,310);
-        mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
-        mOpenCvCameraView.setCvCameraViewListener(this);
+        zcv = (Zoomcameraview) findViewById(R.id.camera_view);
+        //zcv.setMaxFrameSize(640,310);
+        zcv.setVisibility(SurfaceView.VISIBLE);
+        zcv.setCvCameraViewListener(this);
+
     }
 
     @Override
@@ -108,8 +110,8 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     }
 
     public void disableCamera() {
-        if (mOpenCvCameraView != null)
-            mOpenCvCameraView.disableView();
+        if (zcv != null)
+            zcv.disableView();
     }
 
     public void onCameraViewStarted(int width, int height) {
@@ -125,48 +127,43 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     String resistance="None seen";
 
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        int width = 300;
-        int height = 150;
         Mat processed =  inputFrame.rgba();
-        int centreY = processed.height()/2;
-        int centreX = processed.width()/2;
 
-        //processed = processed.submat(centreY-height/2,centreY+height/2,centreX-width/2, centreX+width/2);
         Mat labFrame = processed.clone();
-        Imgproc.cvtColor(processed,labFrame, Imgproc.COLOR_RGB2Lab);
+            Imgproc.cvtColor(processed, labFrame, Imgproc.COLOR_RGB2Lab);
 
-        Point left = new Point(processed.width()/3,processed.height()/2);
-        Point right = new Point(processed.width()*2/3,processed.height()/2);
-
-
-        List<Point> points = BandReader.read(labFrame,left,right);
+            Point left = new Point(processed.width() / 3, processed.height() / 2);
+            Point right = new Point(processed.width() * 2 / 3, processed.height() / 2);
 
 
-        ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
-        for (int i = 0; i < Math.min(points.size()-1, 7); i = i + 2){
-            Point p1 = points.get(i);
-            Point p2 = points.get(i+1);
-            Point midpoint = new Point((p1.x + p2.x)/2, (p1.y + p2.y)/2);
-            Scalar colourAtMidpoint = new Scalar(labFrame.get((int) midpoint.y, (int) midpoint.x));
-            ResistorColour resistorColourAtMidpoint = ResistorColour
-                    .fit(colourAtMidpoint.val[0], colourAtMidpoint.val[1],
-                            colourAtMidpoint.val[2], 1);
-            Scalar rgbAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
-            Imgproc.circle(processed, p1, 1, new Scalar(0, 0, 255), 2);
-            Imgproc.circle(processed, p2, 1, new Scalar(0, 0, 255), 2);
-            Imgproc.circle(processed, midpoint, 10, rgbAtMidpoint, 2);
-            Imgproc.putText(processed,
-                    Integer.toString(resistorColourAtMidpoint.value),p1,1,1,new Scalar(255,255,255));
-            values.add(resistorColourAtMidpoint);
-        }
+            List<Point> points = BandReader.read(labFrame, left, right);
 
-        Imgproc.line(processed,left,right,new Scalar(255,0,0),1);
 
-        if (values.size() == 4){
-            ValueCalculator vc = new ValueCalculator(values.get(0),values.get(1), values.get(2),values.get(3));
-            resistance = vc.getValue();
-        }
-        Imgproc.putText(processed,resistance, new Point(0,45),1,1,new Scalar(0,0,0));
+            ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
+            for (int i = 0; i < Math.min(points.size() - 1, 7); i = i + 2) {
+                Point p1 = points.get(i);
+                Point p2 = points.get(i + 1);
+                Point midpoint = new Point((p1.x + p2.x) / 2, (p1.y + p2.y) / 2);
+                Scalar colourAtMidpoint = new Scalar(labFrame.get((int) midpoint.y, (int) midpoint.x));
+                ResistorColour resistorColourAtMidpoint = ResistorColour
+                        .fit(colourAtMidpoint.val[0], colourAtMidpoint.val[1],
+                                colourAtMidpoint.val[2], 1);
+                Scalar rgbAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
+                Imgproc.circle(processed, p1, 1, new Scalar(0, 0, 255), 2);
+                Imgproc.circle(processed, p2, 1, new Scalar(0, 0, 255), 2);
+                Imgproc.circle(processed, midpoint, 10, rgbAtMidpoint, 2);
+                Imgproc.putText(processed,
+                        Integer.toString(resistorColourAtMidpoint.value), p1, 1, 1, new Scalar(255, 255, 255));
+                values.add(resistorColourAtMidpoint);
+            }
+
+            Imgproc.line(processed, left, right, new Scalar(255, 0, 0), 1);
+
+            if (values.size() == 4) {
+                ValueCalculator vc = new ValueCalculator(values.get(0), values.get(1), values.get(2), values.get(3));
+                resistance = vc.getValue();
+            }
+            Imgproc.putText(processed, resistance, new Point(100, 200), 1, 6, new Scalar(0, 0, 0),5);
 
 
         return processed;
