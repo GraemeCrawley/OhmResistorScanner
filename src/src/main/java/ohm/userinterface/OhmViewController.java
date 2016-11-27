@@ -11,9 +11,9 @@ import ohm.ImageProcessing.BandReader;
 import ohm.Input.ImageInput;
 import ohm.Input.Input;
 import ohm.ValueIdentification.ValueCalculator;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
+import org.opencv.core.*;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.CLAHE;
 import org.opencv.imgproc.Imgproc;
 
 import java.awt.color.ColorSpace;
@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Vector;
 
 import static ohm.Helpers.*;
 
@@ -53,7 +54,7 @@ public class OhmViewController implements Initializable {
      * Method used to "glue" together the front and back end of the application.
      */
     public void initialize(URL url, ResourceBundle rb) {
-        Input imageInput = new ImageInput("/color_data/IMG_20161127_112548");
+        Input imageInput = new ImageInput("color_data/M8/Screenshot_2016-11-27-15-19-56");
         final Image src = imageInput.getImage();
         final Mat rgbframe = imageInput.getRGB();
         final Mat labframe = imageInput.getLAB();
@@ -102,13 +103,40 @@ public class OhmViewController implements Initializable {
                 Imgproc.putText(processed,vc.getValue(), new Point(0,340),1,3,new Scalar(0,0,0));
             } */
 
-
             Mat processed = rgbframe.clone();
-            Imgproc.medianBlur(processed,processed,15);
+            //Imgproc.medianBlur(processed,processed,15);
+            Mat img_hist_equalized = new Mat();
+            Imgproc.cvtColor(processed,img_hist_equalized,Imgproc.COLOR_RGB2Lab);
+            List<Mat> matList = new Vector<Mat>();
+            Core.split(img_hist_equalized,matList);
+
+            CLAHE clahe = Imgproc.createCLAHE();
+            clahe.setClipLimit(1);
+            Mat dst = new Mat();
+            clahe.apply(matList.get(0),dst);
+            dst.copyTo(matList.get(0));
+
+            //Imgproc.equalizeHist(matList.get(0),matList.get(0));
+
+            Core.merge(matList,img_hist_equalized);
+            Imgproc.cvtColor(img_hist_equalized,processed,Imgproc.COLOR_Lab2RGB);
+
+            /*
+            Mat kernel = Mat.ones(40,1, CvType.CV_32FC1);
+            Core.multiply( kernel, new Scalar(1.0/40), kernel );
+            Imgproc.filter2D(processed, processed, -1, kernel,new Point(-1,-1), 0);*/
+
+            //Imgproc.boxFilter(processed,processed,-1,new Size(3,15));
 
 
             Point left = new Point(processed.width() / 3, processed.height() / 2);
             Point right = new Point(processed.width() * 2 / 3, processed.height() / 2);
+            Mat temp =new Mat();
+            //Imgproc.medianBlur(processed,processed,9);
+
+            Imgproc.cvtColor(processed,temp, Imgproc.COLOR_RGB2BGR);
+            Imgcodecs.imwrite("resources/" + "output.jpg",temp);
+
 
             for (int i = 0; i < processed.height(); i++){
                 for (int j = 0; j < processed.width(); j++){
@@ -123,7 +151,7 @@ public class OhmViewController implements Initializable {
 
             ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
 
-            Imgproc.line(processed, left, right, new Scalar(255, 0, 0), 1);
+            //Imgproc.line(processed, left, right, new Scalar(255, 0, 0), 1);
 
             return matToImage(processed);
         });

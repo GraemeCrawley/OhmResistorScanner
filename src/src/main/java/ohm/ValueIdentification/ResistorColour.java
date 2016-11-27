@@ -39,11 +39,12 @@ public enum ResistorColour {
     BASE(10);
     int value;
     static KNearest KNN;
+    static DTrees dt;
 
     static {
         try{
             System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-            CSVReader reader = new CSVReader(new FileReader("resources/color_data/train.csv"));
+            CSVReader reader = new CSVReader(new FileReader("resources/color_data/new_train.csv"));
             List values = reader.readAll();
             List trainValues = values.subList(1,values.size());
             String[] row = (String []) trainValues.get(0);
@@ -53,6 +54,10 @@ public enum ResistorColour {
             createResults(trainValues,trainResponses);
             KNN = KNearest.create();
             KNN.train(trainSamples,0,trainResponses);
+            //dt = DTrees.create();
+            //dt.train(trainSamples,0,trainResponses);
+//            System.out.println(dt.isTrained());
+  //          System.out.println(dt.isClassifier());
 
         }
         catch (Exception e){
@@ -97,8 +102,14 @@ public enum ResistorColour {
         int i = 0;
         for(Object value: values){
             String[] array = (String[]) value;
+            float[] lab = new float[3];
+            float[] rgb = new float[3];
+            for (int j = 0; j < array.length-1; j++){
+                rgb[j] = Float.parseFloat(array[j]);
+            }
+            rgb2lab(rgb[0],rgb[1],rgb[2],lab);
             for(int j = 0; j < array.length-1; j++){
-                samples.put(i,j,new float[] {Float.parseFloat(array[j])});
+                samples.put(i,j,new float[] {lab[j]});
             }
             i++;
         }
@@ -198,10 +209,13 @@ public enum ResistorColour {
 
 
     public static int fit(float r, float g, float b){
-        Mat testSample = new MatOfFloat(new float[] {r,g,b}).t();
+        float[] rgb = new float[] {r,g,b};
+        float[] lab = new float[3];
+        rgb2lab(r,g,b,lab);
+        Mat testSample = new MatOfFloat(lab).t();
         Mat result = new Mat(1,1,CvType.CV_32SC1);
-        KNN.findNearest(testSample,3,result);
-
+        KNN.findNearest(testSample,1,result);
+        //dt.predict(testSample,result,0);
         return (int) result.get(0,0)[0];
     }
 
