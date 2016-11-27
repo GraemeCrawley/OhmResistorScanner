@@ -44,7 +44,7 @@ public class ImageInput implements Input {
         rgb = Imgcodecs.imread("resources/" + name + ".jpg");
         Imgproc.resize(rgb, rgb,new Size(576,360));
         Mat temp = rgb.clone();
-        Imgproc.medianBlur(rgb,temp,17);
+        Imgproc.medianBlur(rgb,temp,15);
         Imgcodecs.imwrite("resources/" + name + "-blurred.jpg",temp);
         Imgproc.cvtColor(rgb,rgb,Imgproc.COLOR_BGR2RGB);
         lab = rgb.clone();

@@ -35,9 +35,9 @@ public class BandReader {
     public static List<Point> read(Mat frame, Point p1, Point p2){
         Mat img = frame.clone();
         Imgproc.medianBlur(img,img,15);
-        double[][] sample = boxSample(img,p1, p2,(int)dist(p1,p2),40);
+        double[][] sample = boxSample(img,p1, p2,(int)dist(p1,p2),20);
         double[][] diff = diff(sample);
-        double[] terms = Arrays.stream(rollingAverageFilter(diff,2))
+        double[] terms = Arrays.stream(rollingAverageFilter(diff,1))
                 .mapToDouble(d -> Math.log(1+mag(d)))
                 .toArray();
         double[] groupedTerms = groupTerms(terms,3);
@@ -188,6 +188,20 @@ public class BandReader {
         }
 
         return result;
+    }
+
+    /**
+     * Calculate the magnitude of a given vector
+     * @param vect Input vector
+     * @return The magnitude of the input vector
+     */
+    public static double abmag(double[] vect){
+        double sumComponentsSquared = 0;
+        for (int i = 1; i < 3; i ++) {
+            double component = vect[i];
+            sumComponentsSquared += component * component;
+        }
+        return Math.sqrt(sumComponentsSquared);
     }
 
     /**

@@ -13,14 +13,14 @@ public class ValueCalculator {
     final double resistance;
     final double precision;
 
-    public ValueCalculator(ResistorColour a, ResistorColour b, ResistorColour c, ResistorColour d){
-        if (d.value < 0){
-            resistance = (a.value * 10 + b.value)*Math.pow(10,c.value);
-            precision = d.value;
+    public ValueCalculator(Integer a, Integer b, Integer c, Integer d){
+        if (d > 10){
+            resistance = (a * 10 + b)*Math.pow(10,c);
+            precision = d;
         }
         else{
-            resistance = (d.value * 10 + c.value)*Math.pow(10,b.value);
-            precision = a.value * -1;
+            resistance = (d * 10 + c)*Math.pow(10,b);
+            precision = a * -1;
         }
     }
 

@@ -53,23 +53,23 @@ public class OhmViewController implements Initializable {
      * Method used to "glue" together the front and back end of the application.
      */
     public void initialize(URL url, ResourceBundle rb) {
-        Input imageInput = new ImageInput("resistor-sample");
+        Input imageInput = new ImageInput("360");
         final Image src = imageInput.getImage();
         final Mat rgbframe = imageInput.getRGB();
         final Mat labframe = imageInput.getLAB();
 
         resistorAxisPickerView.setImage(rgbframe);
-        resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(rgbframe,p1,p2));
+        resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(labframe,p1,p2));
 
         this.processedImageView.setRenderer(() -> {
             Mat processed = rgbframe.clone();
-            ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
+            ArrayList<Integer> values = new ArrayList<Integer>();
             for (int i = 0; i < Math.min(points.size()-1, 7); i = i + 2){
                 Point p1 = points.get(i);
                 Point p2 = points.get(i+1);
                 Point midpoint = new Point((p1.x + p2.x)/2, (p1.y + p2.y)/2);
                 Scalar colourAtMidpoint = new Scalar(labframe.get((int) midpoint.y, (int) midpoint.x));
-                ResistorColour resistorColourAtMidpoint = ResistorColour
+                int resistorColourAtMidpoint = ResistorColour
                         .fit(colourAtMidpoint.val[0], colourAtMidpoint.val[1],
                                 colourAtMidpoint.val[2], ColorSpace.TYPE_Lab);
                 Scalar rgbAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
@@ -77,12 +77,24 @@ public class OhmViewController implements Initializable {
                 Imgproc.circle(processed, p2, 1, new Scalar(0, 0, 255), 2);
                 Imgproc.circle(processed, midpoint, 10, rgbAtMidpoint, 2);
                 Imgproc.putText(processed,
-                        Integer.toString(resistorColourAtMidpoint.value),p1,1,1,new Scalar(255,255,255));
+                        Integer.toString(resistorColourAtMidpoint),p1,1,1,new Scalar(255,255,255));
                 values.add(resistorColourAtMidpoint);
+
+
+               /* Mat labprocessed = processed.clone();
+                Imgproc.cvtColor(processed, labprocessed, Imgproc.COLOR_RGB2Lab);
+                for(int j = 0; j < labprocessed.cols(); j ++){
+                    for (int k = 0; k < labprocessed.rows(); k++){
+                        double[] toPut = labprocessed.get(k,j);
+                        toPut[0] = 128;
+                        labprocessed.put(k,j,toPut);
+                    }
+                }
+                Imgproc.cvtColor(labprocessed, processed, Imgproc.COLOR_Lab2RGB);*/
             }
             if (values.size() == 4){
                 ValueCalculator vc = new ValueCalculator(values.get(0),values.get(1), values.get(2),values.get(3));
-                Imgproc.putText(processed,vc.getValue(), new Point(200,340),1,3,new Scalar(0,0,0));
+                Imgproc.putText(processed,vc.getValue(), new Point(0,340),1,3,new Scalar(0,0,0));
             }
             return matToImage(processed);
         });
