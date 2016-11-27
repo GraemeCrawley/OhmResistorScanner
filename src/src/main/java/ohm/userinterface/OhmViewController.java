@@ -53,22 +53,27 @@ public class OhmViewController implements Initializable {
      * Method used to "glue" together the front and back end of the application.
      */
     public void initialize(URL url, ResourceBundle rb) {
-        Input imageInput = new ImageInput("360");
+        Input imageInput = new ImageInput("/color_data/IMG_20161127_112548");
         final Image src = imageInput.getImage();
         final Mat rgbframe = imageInput.getRGB();
         final Mat labframe = imageInput.getLAB();
 
         resistorAxisPickerView.setImage(rgbframe);
-        resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(labframe,p1,p2));
+        resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(rgbframe,p1,p2));
+
+
+
+
 
         this.processedImageView.setRenderer(() -> {
+            /*
             Mat processed = rgbframe.clone();
             ArrayList<Integer> values = new ArrayList<Integer>();
             for (int i = 0; i < Math.min(points.size()-1, 7); i = i + 2){
                 Point p1 = points.get(i);
                 Point p2 = points.get(i+1);
                 Point midpoint = new Point((p1.x + p2.x)/2, (p1.y + p2.y)/2);
-                Scalar colourAtMidpoint = new Scalar(labframe.get((int) midpoint.y, (int) midpoint.x));
+                Scalar colourAtMidpoint = new Scalar(rgbframe.get((int) midpoint.y, (int) midpoint.x));
                 int resistorColourAtMidpoint = ResistorColour
                         .fit(colourAtMidpoint.val[0], colourAtMidpoint.val[1],
                                 colourAtMidpoint.val[2], ColorSpace.TYPE_Lab);
@@ -90,17 +95,76 @@ public class OhmViewController implements Initializable {
                         labprocessed.put(k,j,toPut);
                     }
                 }
-                Imgproc.cvtColor(labprocessed, processed, Imgproc.COLOR_Lab2RGB);*/
+                Imgproc.cvtColor(labprocessed, processed, Imgproc.COLOR_Lab2RGB);
             }
             if (values.size() == 4){
                 ValueCalculator vc = new ValueCalculator(values.get(0),values.get(1), values.get(2),values.get(3));
                 Imgproc.putText(processed,vc.getValue(), new Point(0,340),1,3,new Scalar(0,0,0));
+            } */
+
+
+            Mat processed = rgbframe.clone();
+            Imgproc.medianBlur(processed,processed,15);
+
+
+            Point left = new Point(processed.width() / 3, processed.height() / 2);
+            Point right = new Point(processed.width() * 2 / 3, processed.height() / 2);
+
+            for (int i = 0; i < processed.height(); i++){
+                for (int j = 0; j < processed.width(); j++){
+                    double[] point = processed.get(i,j);
+                    int color = ResistorColour.fit((float) point[0],(float)point[1],(float)point[2]);
+                    if (color != 0)
+                        processed.put(i,j,getColorFromCode(color));
+
+                }
             }
+
+
+            ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
+
+            Imgproc.line(processed, left, right, new Scalar(255, 0, 0), 1);
+
             return matToImage(processed);
         });
 
 
+
+
+
     }
+
+    private double[] getColorFromCode(int id){
+        switch (id){
+            case 0:
+                return new double[] {10,10,10};
+            case 1:
+                return new double[] {165,42,42};
+            case 2:
+                return new double[] {255,0,0};
+            case 3:
+                return new double[] {255,69,0};
+            case 4:
+                return new double[] {255,255,0};
+            case 5:
+                return new double[] {0,255,0};
+            case 6:
+                return new double[] {0,0,255};
+            case 7:
+                return new double[] {255,0,255};
+            case 8:
+                return new double[] {100,0,100};
+            case 9:
+                return new double[] {255,255,255};
+            case 10:
+                return new double[] {217,163,108};
+            case 11:
+                return new double[] {128,128,50};
+            default:
+                return new double[] {120,120,120};
+        }
+    }
+
 
     @FXML
     public void buttonClicked(ActionEvent actionEvent) {
