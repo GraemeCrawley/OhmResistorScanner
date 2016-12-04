@@ -3,6 +3,7 @@ package ohm.ValueIdentification;
 /**
  * @defgroup ValueCalculator
  * @author Jonathan Brown
+ *
  *@{
  */
 
@@ -14,13 +15,16 @@ public class ValueCalculator {
     final double precision;
 
     public ValueCalculator(Integer a, Integer b, Integer c, Integer d){
-        if (d > 10){
+        b = b >= 10 ? 3 : b;
+        c = c >= 10 ? 3 : c;
+
+        if (d >= 10){
             resistance = (a * 10 + b)*Math.pow(10,c);
-            precision = d;
+            precision = 5;
         }
         else{
             resistance = (d * 10 + c)*Math.pow(10,b);
-            precision = a * -1;
+            precision = 5;
         }
     }
 

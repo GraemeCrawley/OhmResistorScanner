@@ -1,0 +1,1 @@
+gradle runOhm &> /dev/null

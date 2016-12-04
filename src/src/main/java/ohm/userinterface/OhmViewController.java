@@ -3,9 +3,11 @@ package ohm.userinterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import ohm.ValueIdentification.ResistorColour;
 import ohm.ImageProcessing.BandReader;
 import ohm.Input.ImageInput;
@@ -17,6 +19,7 @@ import org.opencv.imgproc.CLAHE;
 import org.opencv.imgproc.Imgproc;
 
 import java.awt.color.ColorSpace;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,10 +57,21 @@ public class OhmViewController implements Initializable {
      * Method used to "glue" together the front and back end of the application.
      */
     public void initialize(URL url, ResourceBundle rb) {
-        Input imageInput = new ImageInput("color_data/M8/Screenshot_2016-11-27-15-19-56");
+
+
+    }
+
+    private void loadImage(File imageFile){
+
+        String imageName = imageFile.getName();
+        int pos = imageName.lastIndexOf(".");
+        String imageNameNoExt = pos > 0 ? imageName.substring(0, pos) : imageName;
+
+        Input imageInput = new ImageInput(imageNameNoExt);
         final Image src = imageInput.getImage();
         final Mat rgbframe = imageInput.getRGB();
         final Mat labframe = imageInput.getLAB();
+
 
         resistorAxisPickerView.setImage(rgbframe);
         resistorAxisPickerView.setListener((p1, p2) -> points = BandReader.read(rgbframe,p1,p2));
@@ -67,8 +81,8 @@ public class OhmViewController implements Initializable {
 
 
         this.processedImageView.setRenderer(() -> {
-            /*
             Mat processed = rgbframe.clone();
+
             ArrayList<Integer> values = new ArrayList<Integer>();
             for (int i = 0; i < Math.min(points.size()-1, 7); i = i + 2){
                 Point p1 = points.get(i);
@@ -77,7 +91,7 @@ public class OhmViewController implements Initializable {
                 Scalar colourAtMidpoint = new Scalar(rgbframe.get((int) midpoint.y, (int) midpoint.x));
                 int resistorColourAtMidpoint = ResistorColour
                         .fit(colourAtMidpoint.val[0], colourAtMidpoint.val[1],
-                                colourAtMidpoint.val[2], ColorSpace.TYPE_Lab);
+                                colourAtMidpoint.val[2], ColorSpace.TYPE_RGB);
                 Scalar rgbAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
                 Imgproc.circle(processed, p1, 1, new Scalar(0, 0, 255), 2);
                 Imgproc.circle(processed, p2, 1, new Scalar(0, 0, 255), 2);
@@ -85,24 +99,14 @@ public class OhmViewController implements Initializable {
                 Imgproc.putText(processed,
                         Integer.toString(resistorColourAtMidpoint),p1,1,1,new Scalar(255,255,255));
                 values.add(resistorColourAtMidpoint);
-
-
-               /* Mat labprocessed = processed.clone();
-                Imgproc.cvtColor(processed, labprocessed, Imgproc.COLOR_RGB2Lab);
-                for(int j = 0; j < labprocessed.cols(); j ++){
-                    for (int k = 0; k < labprocessed.rows(); k++){
-                        double[] toPut = labprocessed.get(k,j);
-                        toPut[0] = 128;
-                        labprocessed.put(k,j,toPut);
-                    }
-                }
-                Imgproc.cvtColor(labprocessed, processed, Imgproc.COLOR_Lab2RGB);
             }
             if (values.size() == 4){
                 ValueCalculator vc = new ValueCalculator(values.get(0),values.get(1), values.get(2),values.get(3));
-                Imgproc.putText(processed,vc.getValue(), new Point(0,340),1,3,new Scalar(0,0,0));
-            } */
+                Imgproc.putText(processed,vc.getValue(), new Point(0,340),2,1.5,new Scalar(0,0,0),2
+                );
+            }
 
+            /*
             Mat processed = rgbframe.clone();
             //Imgproc.medianBlur(processed,processed,15);
             Mat img_hist_equalized = new Mat();
@@ -128,16 +132,16 @@ public class OhmViewController implements Initializable {
 
             //Imgproc.boxFilter(processed,processed,-1,new Size(3,15));
 
-
+            /*
             Point left = new Point(processed.width() / 3, processed.height() / 2);
             Point right = new Point(processed.width() * 2 / 3, processed.height() / 2);
             Mat temp =new Mat();
             //Imgproc.medianBlur(processed,processed,9);
 
-            Imgproc.cvtColor(processed,temp, Imgproc.COLOR_RGB2BGR);
-            Imgcodecs.imwrite("resources/" + "output.jpg",temp);
+            //Imgproc.cvtColor(processed,temp, Imgproc.COLOR_RGB2BGR);
+            //Imgcodecs.imwrite("resources/" + "output.jpg",temp);
 
-
+            /*
             for (int i = 0; i < processed.height(); i++){
                 for (int j = 0; j < processed.width(); j++){
                     double[] point = processed.get(i,j);
@@ -146,20 +150,10 @@ public class OhmViewController implements Initializable {
                         processed.put(i,j,getColorFromCode(color));
 
                 }
-            }
-
-
-            ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
-
+            }*/
             //Imgproc.line(processed, left, right, new Scalar(255, 0, 0), 1);
-
             return matToImage(processed);
         });
-
-
-
-
-
     }
 
     private double[] getColorFromCode(int id){
@@ -196,7 +190,10 @@ public class OhmViewController implements Initializable {
 
     @FXML
     public void buttonClicked(ActionEvent actionEvent) {
-
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Image");
+        File picked = fileChooser.showOpenDialog(((Node)actionEvent.getTarget()).getScene().getWindow());
+        loadImage(picked);
     }
 }
 

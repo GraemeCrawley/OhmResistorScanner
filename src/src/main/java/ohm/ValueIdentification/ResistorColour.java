@@ -44,7 +44,7 @@ public enum ResistorColour {
     static {
         try{
             System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-            CSVReader reader = new CSVReader(new FileReader("resources/color_data/new_train.csv"));
+            CSVReader reader = new CSVReader(new FileReader("resources/color_data/train.csv"));
             List values = reader.readAll();
             List trainValues = values.subList(1,values.size());
             String[] row = (String []) trainValues.get(0);

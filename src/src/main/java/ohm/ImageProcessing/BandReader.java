@@ -34,7 +34,7 @@ public class BandReader {
      */
     public static List<Point> read(Mat frame, Point p1, Point p2){
         Mat img = frame.clone();
-        Imgproc.medianBlur(img,img,15);
+        Imgproc.medianBlur(img,img,13);
         double[][] sample = boxSample(img,p1, p2,(int)dist(p1,p2),20);
         double[][] diff = diff(sample);
         double[] terms = Arrays.stream(rollingAverageFilter(diff,1))

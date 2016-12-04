@@ -2,10 +2,15 @@ package ohm.Input;
 
 import javafx.scene.image.Image;
 import org.omg.CORBA.IMP_LIMIT;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.CLAHE;
 import org.opencv.imgproc.Imgproc;
+
+import java.util.List;
+import java.util.Vector;
 
 /**
  * @addtogroup ImageInput
@@ -49,6 +54,18 @@ public class ImageInput implements Input {
         Imgproc.cvtColor(rgb,rgb,Imgproc.COLOR_BGR2RGB);
         lab = rgb.clone();
         Imgproc.cvtColor(rgb,lab,Imgproc.COLOR_RGB2Lab);
+        Mat img_hist_equalized = new Mat();
+        Imgproc.cvtColor(rgb,img_hist_equalized,Imgproc.COLOR_RGB2Lab);
+        List<Mat> matList = new Vector<Mat>();
+        Core.split(img_hist_equalized,matList);
+
+        CLAHE clahe = Imgproc.createCLAHE();
+        clahe.setClipLimit(1);
+        Mat dst = new Mat();
+        clahe.apply(matList.get(0),dst);
+        dst.copyTo(matList.get(0));
+        Core.merge(matList,img_hist_equalized);
+        Imgproc.cvtColor(img_hist_equalized,rgb,Imgproc.COLOR_Lab2RGB);
     }
 
     /**

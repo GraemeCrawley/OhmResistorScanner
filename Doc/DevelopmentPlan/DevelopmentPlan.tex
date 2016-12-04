@@ -25,7 +25,6 @@
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
 2016-09-30 & Ryan M, Jonathan B, Graeme C & Initial Revision\\
-Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -38,11 +37,12 @@ Date2 & Name(s) & Description of changes\\
 Ohm will be developed with the end user always in mind. It is with that direction that we have planned to build ohm in a way that allows for constant development and improvement, always iterating on a previous design while ensuring the core functionality is kept intact.
 
 \section{Team Meeting Plan}
-The team will have one mandatory meeting per week, with two meetings that can be called if deemed necessary by one of the group members. The mandatory meeting time will be 4:30 on Monday. The optional meeting times will be Friday at 1:30 and Tuesday 11:30.
+The team will have meetings every week on Mondays  during the lab periods. In addition to this, the team will have two meetings that can be called if deemed necessary by one of the group members. The optional meeting times will be Friday at 1:30 PM and Tuesday at 11:30 AM. The team leader will take meeting notes and upload them to the group chat.
+
 
 \section{Team Communication Plan}
 
-Our communication plan is to use a Group Facebook Chat for all synchronous communication between team members.
+Our communication plan is to use a Group Facebook chat for all synchronous communication between team members.
 This was chosen because of the ubiquity of Facebook Messenger and the fact that we all check it more often than we check email.
 For asynchronous communication GitLab issues will be used for work that is yet to be done, and Gitlab merge requests to review work that has been done.
 Any communication between team members and people external to the team (Course staff, technical mentors, etc.) should be reported into the Facebook chat, 
@@ -57,16 +57,16 @@ Graeme Crawley - Java \\
 
 \section{Git Workflow Plan}
 
-We will follow a feature branching model for source code and a linear commit process for document changes.
+We will follow a feature branching model for source code and a linear commit process for document changes. Branches will be named based on the feature they are implementing and versions will be identified based on their comments.
 In addition we will mandate code review and merge requests to force understanding of all code.
 Merge requests should be "Thumbs Upped" on Gitlab by both other developers before being merged by the author however this is not a hard rule:
 If a developer feels they must commit code to master or merge without approval they can, so long as they can feel the circumstances are justifiable.
 This was chosen over the gitflow model as gitflow's benefits are for tracking a software system with regular releases that must be maintained.
 As our software is in such early stages that we will not have legacy releases to maintain, the benefits of gitflow are negligible when compared to the organizational costs.
-The documents however will use a linear commiting style to master as documents are easier to merge and there is a good deal of value in everyone being aware of unfinished sections of the document.
+The documents however will use a linear committing style to master as documents are easier to merge and there is a good deal of value in everyone being aware of unfinished sections of the document.
 
 \section{Proof of Concept Demonstration Plan}
-As a proof of concept, we plan on producing a form of the application with more limited functionality as it will require the appropriate placement of the resistor within the image. The proof of concept will most likely lack the ability to identify resistors in an arbitrary part of the image, a feature which is inteded to be included in the final release.
+As a proof of concept, we plan on producing a form of the application with more limited functionality as it will require the appropriate placement of the resistor within the image. The resistor will be placed in the center of the image, oriented horizontally with the tolerance band on either side of the resistor. Two resistors will be used for the demonstration; one 20E3 resistor, and one 10E3 resistor, both of which will have a tolerance of 5\%.
 
 \section{Technology}
 Ohm will be written in Java, with the desktop and potentially Android as our target platform. Gradle will be used a build tool and dependency manager. OpenCV, an open source image processing and computer vision library, will allow us to perform the required analysis of the input images of resistors.

@@ -33,12 +33,14 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
+import org.opencv.imgproc.CLAHE;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import ca.ryanmarks.ohm.ImageProcessing.BandReader;
 import ca.ryanmarks.ohm.ValueIdentification.ResistorColour;
@@ -158,15 +160,33 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Mat processed = inputFrame.rgba();
 
-        Point left = new Point(processed.width() / 4, processed.height() / 2);
-        Point right = new Point(processed.width() * 3 / 4 , processed.height() / 2);
+
+
+        Point left = new Point(processed.width() * 2 / 5, processed.height() / 2);
+        Point right = new Point(processed.width() * 3 / 5 , processed.height() / 2);
+
+        Mat img_hist_equalized = new Mat();
+        Imgproc.cvtColor(processed,img_hist_equalized,Imgproc.COLOR_RGB2Lab);
+        List<Mat> matList = new Vector<Mat>();
+        Core.split(img_hist_equalized,matList);
+
+
+        CLAHE clahe = Imgproc.createCLAHE();
+        clahe.setClipLimit(1);
+        Mat dst = new Mat();
+        clahe.apply(matList.get(0),dst);
+        dst.copyTo(matList.get(0));
+
+        //Imgproc.equalizeHist(matList.get(0),matList.get(0));
+
+        Core.merge(matList,img_hist_equalized);
+        Imgproc.cvtColor(img_hist_equalized,processed,Imgproc.COLOR_Lab2RGB);
 
 
 
-        final int nSamples = 500;
+        final int nSamples = processed.width()/5;
         double[][] samples = BandReader.sample(processed,left, right, nSamples);
-        final int bandWidth = nSamples / 20;
-        final int gapTolerance = 10;
+        final int gapTolerance = 1;
 
         int runLength = 0;
         int runningColor = -1;
@@ -174,6 +194,8 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
         Log.w("ohm", "---------------------------");
         List<Pair<Integer, Integer>> runs = new ArrayList<>(6);
+
+
 
         for(double[] s:samples){
             int color = ResistorColour.fit((float) s[0], (float)s[1], (float)s[2]);
@@ -184,10 +206,14 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                 runLength++;
                 gapLength++;
             }else{
+
+
                 runs.add(new Pair<>(color,runLength));
+                Log.w("ohm", color+" run: "+runLength);
                 gapLength = 0;
                 runLength = 0;
                 runningColor = color;
+
             }
         }
 
@@ -195,16 +221,14 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
         for (Pair<Integer, Integer> run:runs){
             if (run.getKey() >= 0 && run.getKey() <= 9) {
+                if (run.getValue() > 5)
                 values.add(ResistorColour.fromCode(run.getKey()));
-                Log.w("ohm", run.getKey()+" run: "+run.getValue());
-
             }
         }
 
-        values.add(ResistorColour.GOLD);
 
-        if (values.size() == 4) {
-            ValueCalculator vc = new ValueCalculator(values.get(0), values.get(1), values.get(2), values.get(3));
+        if (values.size() >= 3) {
+            ValueCalculator vc = new ValueCalculator(values.get(0), values.get(1), values.get(2));
             resistance = vc.getValue();
         }
         Imgproc.putText(processed, resistance, new Point(100, 200), 1, 6, new Scalar(0, 0, 0), 5);
