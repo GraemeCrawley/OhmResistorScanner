@@ -43,17 +43,20 @@
 
 \begin{document}
 
-\maketitle
 
-\begin{table}[h]
-\caption{\bf Revision History}
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-11/13/2016 & 1.0 & Initial Revision\\
+11/13/2016 & Ryan M, Jonathan B, Graeme C & Initial Revision\\
+11/18/2016 & Ryan M, Jonathan B, Graeme C & Second Revision\\
+12/04/2016 & Graeme C & Third Revision\\
 \bottomrule
 \end{tabularx}
 \end{table}
+
 
 \newpage
 \pagenumbering{roman}
@@ -256,7 +259,7 @@ If a dash (\emph{--}) is shown, this means that the module is not a leaf and wil
 
 \begin{description}
 \item[Secrets:] Method of calculating resistance.
-\item[Services:] Calculates the resistance of the resistor based on the 
+\item[Services:] Calculates the resistance of the resistor based on the input provided by M6.
 \item[Implemented By:] ohm
 \end{description}
 
