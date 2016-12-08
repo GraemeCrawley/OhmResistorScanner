@@ -40,8 +40,8 @@ public class Zoomcameraview extends JavaCameraView {
 
         Camera.Parameters params = mCamera.getParameters();
 
-        if(params.isZoomSupported())
-            params.setZoom(params.getMaxZoom());
+        //if(params.isZoomSupported())
+        //    params.setZoom(params.getMaxZoom());
 
         List<String> focusModes = params.getSupportedFocusModes();
         Log.d("ohm", "focusModes=" + focusModes);

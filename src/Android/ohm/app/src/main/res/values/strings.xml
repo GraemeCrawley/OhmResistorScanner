@@ -3,4 +3,10 @@
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="dialog_message">
+        Ohm was developed for hobbyists and non-professional use.
+        This application should not be used in any safety critical environments.
+        \n \n
+        Use: Align the red line with the body of the resistor, ensuring the resistor is in full view and focused.</string>
+    <string name="dialog_title">Liability Release &amp; Instructions</string>
 </resources>

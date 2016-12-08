@@ -7,18 +7,18 @@ package ca.ryanmarks.ohm.ValueIdentification;
  *@{
  */
 
-import au.com.bytecode.opencsv.CSVReader;
-import org.opencv.core.Core;
+import android.graphics.Color;
+
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
+import org.opencv.ml.KNearest;
 import org.opencv.ml.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.Reader;
 import java.util.List;
 
+import au.com.bytecode.opencsv.CSVReader;
 
 /**
  * @brief Enum containing all of the possible colours that a resistor can take on. Also features member functions used to map the colours of bands to values used in the calculation process.
@@ -35,15 +35,15 @@ public enum ResistorColour {
     GREY(8),
     WHITE(9),
     GOLD(11),
-    //SILVER(),
     BASE(10);
+
     int value;
     static KNearest KNN;
     static DTrees dt;
 
-    public static void train(Reader csvTrainingSet) {
-        try {
-            CSVReader reader = new CSVReader(csvTrainingSet);
+    public static void trainNN(Reader trainingData){
+        try{
+            CSVReader reader = new CSVReader(trainingData);
             List values = reader.readAll();
             List trainValues = values.subList(1,values.size());
             String[] row = (String []) trainValues.get(0);
@@ -60,43 +60,12 @@ public enum ResistorColour {
 
         }
         catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException("Training file failed");
         }
     }
 
-    public static ResistorColour fromCode(int i) {
-        switch (i) {
-            case 0:
-                return BLACK;
-            case 1:
-                return BROWN;
-            case 2:
-                return RED;
-            case 3:
-                return ORANGE;
-            case 4:
-                return YELLOW;
-            case 5:
-                return GREEN;
-            case 6:
-                return BLUE;
-            case 7:
-                return VIOLET;
-            case 8:
-                return GREY;
-            case 9:
-                return WHITE;
-            case 10:
-                return BASE;
-            case 11:
-                return GOLD;
-            default:
-                throw new RuntimeException();
-        }
-    }
-
-    private static Integer getIntegerRepresentation(String color) {
-        switch (color) {
+    private static Integer getIntegerRepresentation(String color){
+        switch (color){
             case "BROWN":
                 return 1;
             case "RED":
@@ -237,7 +206,13 @@ public enum ResistorColour {
         lab[2] = (float) (bs + .5) + 128;
     }
 
-
+    /**
+     * Function takes in a sampled colour from the images and attempts to fit it to the closest known colour a resistor can possess.
+     * @param r The red colour value of the colour to be fit.
+     * @param g The green colour value of the colour to be fit.
+     * @param b The blue colour value of the colour to be fit.
+     * @return The known colour that best represents the sampled colour.
+     */
     public static int fit(float r, float g, float b){
         float[] rgb = new float[] {r,g,b};
         float[] lab = new float[3];
@@ -249,7 +224,9 @@ public enum ResistorColour {
         return (int) result.get(0,0)[0];
     }
 
+
     /**
+     * Function takes in a sampled colour from the images and attempts to fit it to the closest known colour a resistor can possess.
      * Function takes in a sampled colour from the images and attempts to fitOld it to the closest known colour a resistor can possess.
      * @param r The red colour value of the colour to be fitOld.
      * @param g The green colour value of the colour to be fitOld.
@@ -259,25 +236,6 @@ public enum ResistorColour {
     public static int fit(int r, int g, int b, int colorSpace){
         return fit((float) r, (float) g, (float) b);
     }
-
-
-    /**
-     * Function takes in a sampled colour from the images and attempts to fitOld it to the closest known colour a resistor can possess.
-     * @param r The red colour value of the colour to be fitOld.
-     * @param g The green colour value of the colour to be fitOld.
-     * @param b The blue colour value of the colour to be fitOld.
-     * @return The known colour that best represents the sampled colour.
-     */
-    public static int fit(double r, double g, double b, int colorSpace){
-        return fit((float) r, (float) g, (float) b);
-    }
-
-    public static void main(String[] args){
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        System.out.println(fit(243,68,46));
-    }
-
-
 }
 
 /** @} */
