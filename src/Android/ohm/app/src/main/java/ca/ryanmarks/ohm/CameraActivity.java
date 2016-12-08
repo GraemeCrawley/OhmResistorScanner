@@ -1,6 +1,7 @@
 package ca.ryanmarks.ohm;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,6 +85,12 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         mOpenCvCameraView.setMaxFrameSize(590,360);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.dialog_message)
+                .setTitle(R.string.dialog_title)
+                .setCancelable(true)
+                .show();
     }
 
     @Override
@@ -157,7 +164,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
         if (values.size() == 4){
             ValueCalculator vc = new ValueCalculator(values.get(0),values.get(1), values.get(2),values.get(3));
-            Imgproc.putText(processed,vc.getValue(), new Point(0,340),2,1.5,new Scalar(0,0,0),2
+            Imgproc.putText(processed,vc.getValue(), new Point(0,40),2,1.5,new Scalar(0,0,0),2
             );
         }
 
