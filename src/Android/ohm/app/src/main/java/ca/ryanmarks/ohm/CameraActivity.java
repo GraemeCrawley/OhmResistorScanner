@@ -33,6 +33,7 @@ import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                 case LoaderCallbackInterface.SUCCESS: {
                     Log.i(TAG, "OpenCV loaded successfully");
                     mOpenCvCameraView.enableView();
+                    ResistorColour.trainNN(new InputStreamReader(getApplicationContext().getResources().openRawResource(R.raw.train)));
                 }
                 break;
                 default: {
@@ -79,7 +81,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         setContentView(R.layout.activity_camera);
 
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.camera_view);
-        mOpenCvCameraView.setMaxFrameSize(640/2,310/2);
+        mOpenCvCameraView.setMaxFrameSize(590,360);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
     }
@@ -96,6 +98,7 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+            ResistorColour.trainNN(new InputStreamReader(getApplicationContext().getResources().openRawResource(R.raw.train)));
         } else {
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
@@ -124,47 +127,40 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
 
 
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        int width = 300;
-        int height = 150;
         Mat processed =  inputFrame.rgba();
-        int centreY = processed.height()/2;
-        int centreX = processed.width()/2;
 
-        //processed = processed.submat(centreY-height/2,centreY+height/2,centreX-width/2, centreX+width/2);
-        Mat labFrame = processed.clone();
-        Imgproc.cvtColor(processed,labFrame, Imgproc.COLOR_RGB2Lab);
+        Point scanLineLeft = new Point(processed.width() * 1 / 5, processed.height() / 2);
+        Point scanLineRight = new Point(processed.width() * 4 / 5 , processed.height() / 2);
 
-        Point left = new Point(processed.width()/8,processed.height()/2);
-        Point right = new Point(processed.width()*7/8,processed.height()/2);
+        List<Point> points = BandReader.read(processed,scanLineLeft, scanLineRight);
 
-
-        List<Point> points = BandReader.read(processed,left,right);
-
-
-        ArrayList<ResistorColour> values = new ArrayList<ResistorColour>();
+        ArrayList<Integer> values = new ArrayList<Integer>();
         for (int i = 0; i < Math.min(points.size()-1, 7); i = i + 2){
             Point p1 = points.get(i);
             Point p2 = points.get(i+1);
             Point midpoint = new Point((p1.x + p2.x)/2, (p1.y + p2.y)/2);
-            Scalar colourAtMidpoint = new Scalar(labFrame.get((int) midpoint.y, (int) midpoint.x));
-            ResistorColour resistorColourAtMidpoint = ResistorColour
-                    .fit(colourAtMidpoint.val[0], colourAtMidpoint.val[1],
-                            colourAtMidpoint.val[2], 1);
+            Scalar colourAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
+            int resistorColourAtMidpoint =
+                    ResistorColour.fit((float)colourAtMidpoint.val[0],
+                                        (float) colourAtMidpoint.val[1],
+                                        (float) colourAtMidpoint.val[2]);
             Scalar rgbAtMidpoint = new Scalar(processed.get((int) midpoint.y, (int) midpoint.x));
             Imgproc.circle(processed, p1, 1, new Scalar(0, 0, 255), 2);
             Imgproc.circle(processed, p2, 1, new Scalar(0, 0, 255), 2);
             Imgproc.circle(processed, midpoint, 10, rgbAtMidpoint, 2);
             Imgproc.putText(processed,
-                    Integer.toString(resistorColourAtMidpoint.value),p1,1,1,new Scalar(255,255,255));
+                    Integer.toString(resistorColourAtMidpoint),p1,1,1,new Scalar(255,255,255));
             values.add(resistorColourAtMidpoint);
         }
 
-        Imgproc.line(processed,left,right,new Scalar(255,0,0),1);
+        Imgproc.line(processed, scanLineLeft, scanLineRight, new Scalar(255, 0, 0));
 
         if (values.size() == 4){
             ValueCalculator vc = new ValueCalculator(values.get(0),values.get(1), values.get(2),values.get(3));
-            Imgproc.putText(processed,vc.getValue(), new Point(200,340),1,3,new Scalar(0,0,0));
+            Imgproc.putText(processed,vc.getValue(), new Point(0,340),2,1.5,new Scalar(0,0,0),2
+            );
         }
+
 
         return processed;
     }

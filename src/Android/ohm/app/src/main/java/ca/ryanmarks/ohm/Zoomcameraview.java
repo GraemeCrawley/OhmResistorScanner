@@ -31,8 +31,8 @@ public class Zoomcameraview extends JavaCameraView {
 
         Camera.Parameters params = mCamera.getParameters();
 
-        if(params.isZoomSupported())
-            params.setZoom(params.getMaxZoom());
+        //if(params.isZoomSupported())
+        //    params.setZoom(params.getMaxZoom());
 
         params.setFlashMode(Parameters.FLASH_MODE_TORCH);
         mCamera.setParameters(params);

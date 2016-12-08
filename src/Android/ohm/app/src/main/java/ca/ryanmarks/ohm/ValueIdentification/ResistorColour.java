@@ -9,43 +9,126 @@ package ca.ryanmarks.ohm.ValueIdentification;
 
 import android.graphics.Color;
 
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfFloat;
+import org.opencv.ml.KNearest;
+import org.opencv.ml.*;
+
+import java.io.Reader;
+import java.util.List;
+
+import au.com.bytecode.opencsv.CSVReader;
+
 /**
  * @brief Enum containing all of the possible colours that a resistor can take on. Also features member functions used to map the colours of bands to values used in the calculation process.
  */
 public enum ResistorColour {
-    BLACK(0,20,20,20),
-    BROWN(1,122,73,40),
-    RED(2,155,20,35),
-    ORANGE(3,245,105,30),
-    YELLOW(4,200,200,55),
-    GREEN(5,20,75,40),
-    BLUE(6,5,70,170),
-    VIOLET(7,50,33,80),
-    GREY(8,125,125,125),
-    WHITE(9,200,200,200),
-    GOLD(-5,140,110,50);
-    //SILVER(),
-    //BASE(-1,200,170,145);
-    public int value;
-    float[] rgb;
-    float[] hsb;
-    float[] lab;
+    BLACK(0),
+    BROWN(1),
+    RED(2),
+    ORANGE(3),
+    YELLOW(4),
+    GREEN(5),
+    BLUE(6),
+    VIOLET(7),
+    GREY(8),
+    WHITE(9),
+    GOLD(11),
+    BASE(10);
+
+    int value;
+    static KNearest KNN;
+    static DTrees dt;
+
+    public static void trainNN(Reader trainingData){
+        try{
+            CSVReader reader = new CSVReader(trainingData);
+            List values = reader.readAll();
+            List trainValues = values.subList(1,values.size());
+            String[] row = (String []) trainValues.get(0);
+            Mat trainSamples = new Mat(trainValues.size(), row.length-1, CvType.CV_32FC1);
+            Mat trainResponses = new Mat(trainValues.size(), 1, CvType.CV_32SC1);
+            createSamples(trainValues,trainSamples);
+            createResults(trainValues,trainResponses);
+            KNN = KNearest.create();
+            KNN.train(trainSamples,0,trainResponses);
+            //dt = DTrees.create();
+            //dt.train(trainSamples,0,trainResponses);
+//            System.out.println(dt.isTrained());
+            //          System.out.println(dt.isClassifier());
+
+        }
+        catch (Exception e){
+            throw new RuntimeException("Training file failed");
+        }
+    }
+
+    private static Integer getIntegerRepresentation(String color){
+        switch (color){
+            case "BROWN":
+                return 1;
+            case "RED":
+                return 2;
+            case "ORANGE":
+                return 3;
+            case "YELLOW":
+                return 4;
+            case "GREEN":
+                return 5;
+            case "BLUE":
+                return 6;
+            case "VIOLET":
+                return 7;
+            case "GREY":
+                return 8;
+            case "WHITE":
+                return 9;
+            case "BLACK":
+                return 0;
+            case "BASE":
+                return 10;
+            case "GOLD":
+                return 11;
+            case "SILVER":
+                return 12;
+            default:
+                return null;
+        }
+    }
+
+    private static void createSamples(List values, Mat samples){
+        int i = 0;
+        for(Object value: values){
+            String[] array = (String[]) value;
+            float[] lab = new float[3];
+            float[] rgb = new float[3];
+            for (int j = 0; j < array.length-1; j++){
+                rgb[j] = Float.parseFloat(array[j]);
+            }
+            rgb2lab(rgb[0],rgb[1],rgb[2],lab);
+            for(int j = 0; j < array.length-1; j++){
+                samples.put(i,j,new float[] {lab[j]});
+            }
+            i++;
+        }
+    }
+
+    private static void createResults(List values, Mat results){
+        int i = 0;
+        for(Object value: values){
+            String[] array = (String[]) value;
+            results.put(i,0, new int[] {getIntegerRepresentation(array[array.length-1])});
+            i++;
+        }
+    }
+
     /**
      *
      * @param v The number represented by the colour in the calculation of the resistor's ohmage.
-     * @param r The red value of the colour in RGB space. Ranges between 0 and 255.
-     * @param g The green value of the colour in RGB space. Ranges between 0 and 255.
-     * @param b The blue value of the colour in RGB space. Ranges between 0 and 255.
      */
-    ResistorColour(int v, int r, int g, int b){
+    ResistorColour(int v){
         value = v;
-        rgb = new float[3];
-        rgb[0] = r; rgb[1] = g; rgb[2] = b;
-        hsb = new float[3];
-        Color.RGBToHSV(r,g,b,hsb);
-        hsb[0] = hsb[0] * 360;
-        lab = new float[3];
-        rgb2lab(r,g,b,lab);
     }
 
 
@@ -123,29 +206,6 @@ public enum ResistorColour {
         lab[2] = (float) (bs + .5) + 128;
     }
 
-    public static ResistorColour fit(float r, float g, float b, int colorSpace){
-        float[] labSamplePixel = new float[3];
-        if (colorSpace == 5){ // ColorSpace.TYPE_RGB
-            float[] rgbSamplePixel = {r,g,b};
-            rgb2lab(r,g,b,labSamplePixel);
-        }
-        else if (colorSpace == 1){//ColorSpace.TYPE_Lab
-            labSamplePixel[0] = r; labSamplePixel[1] = g; labSamplePixel[2] = b;
-        }
-        double minDistance = Double.MAX_VALUE;
-        ResistorColour closestColour = null;
-        for (ResistorColour colour : ResistorColour.values()){
-            //double distance = Math.sqrt(RGBDistance(r,g,b,colour)*HSBDistance(r,g,b,colour));
-            double distance = LABDistance(labSamplePixel[0],labSamplePixel[1],labSamplePixel[2],colour);
-            if (distance < minDistance){
-                closestColour = colour;
-                minDistance = distance;
-            }
-        }
-        if (closestColour == null) throw new RuntimeException();
-        return closestColour;
-    }
-
     /**
      * Function takes in a sampled colour from the images and attempts to fit it to the closest known colour a resistor can possess.
      * @param r The red colour value of the colour to be fit.
@@ -153,79 +213,29 @@ public enum ResistorColour {
      * @param b The blue colour value of the colour to be fit.
      * @return The known colour that best represents the sampled colour.
      */
-    public static ResistorColour fit(int r, int g, int b, int colorSpace){
-        return fit((float) r, (float) g, (float) b, colorSpace);
+    public static int fit(float r, float g, float b){
+        float[] rgb = new float[] {r,g,b};
+        float[] lab = new float[3];
+        rgb2lab(r,g,b,lab);
+        Mat testSample = new MatOfFloat(lab).t();
+        Mat result = new Mat(1,1,CvType.CV_32SC1);
+        KNN.findNearest(testSample,1,result);
+        //dt.predict(testSample,result,0);
+        return (int) result.get(0,0)[0];
     }
 
 
     /**
      * Function takes in a sampled colour from the images and attempts to fit it to the closest known colour a resistor can possess.
-     * @param r The red colour value of the colour to be fit.
-     * @param g The green colour value of the colour to be fit.
-     * @param b The blue colour value of the colour to be fit.
+     * Function takes in a sampled colour from the images and attempts to fitOld it to the closest known colour a resistor can possess.
+     * @param r The red colour value of the colour to be fitOld.
+     * @param g The green colour value of the colour to be fitOld.
+     * @param b The blue colour value of the colour to be fitOld.
      * @return The known colour that best represents the sampled colour.
      */
-    public static ResistorColour fit(double r, double g, double b, int colorSpace){
-        return ResistorColour.fit((float) r, (float) g, (float) b, colorSpace);
+    public static int fit(int r, int g, int b, int colorSpace){
+        return fit((float) r, (float) g, (float) b);
     }
-
-    /**
-     *
-     * @param r The red colour value of the colour to be fit.
-     * @param g The green colour value of the colour to be fit.
-     * @param b The blue colour value of the colour to be fit.
-     * @param c The ResistorColour that the sample colour is being compared to.
-     * @return The distance in RGB space between the sample colour and the known resistor colour.
-     */
-    private static double RGBDistance(float r, float g, float b, ResistorColour c){
-        if (c == null) throw new IllegalArgumentException("C cannot be null");
-        final double dR = c.rgb[0] - r;
-        final double dG = c.rgb[1] - g;
-        final double dB = c.rgb[2] - b;
-        final double distance = Math.sqrt(dR*dR + dG*dG + dB*dB);
-        return distance;
-    }
-
-
-    private static float LABDistance(float l, float a, float b, ResistorColour c){
-        if (c == null) throw new IllegalArgumentException("C cannot be null");
-        final float dL = Math.abs(c.lab[0] - l);
-        final float dA = Math.abs(c.lab[1] - a);
-        final float dB = Math.abs(c.lab[2] - b);
-        final float distance = (float)  Math.pow(dL*dL*dL + dA*dA*dA + dB*dB*dB, .3333);
-        return distance;
-
-    }
-
-    /**
-     *
-     * @param r The red colour value of the colour to be fit.
-     * @param g The green colour value of the colour to be fit.
-     * @param b The blue colour value of the colour to be fit.
-     * @param c The ResistorColour that the sample colour is being compared to.
-     * @return The distance in R/G, R/B space between the sample colour and the known resistor colour.
-     */
-    private static double HSBDistance(int r, int g, int b, ResistorColour c){
-        if (c == null) throw new IllegalArgumentException("C cannot be null");
-        float[] hsv = new float[3];
-        Color.RGBToHSV(r,g,b, hsv);
-        int hue = (int) (hsv[0]*360);
-        return Math.abs(c.hsb[0] - hue);
-    }
-
-    private boolean isShadeOfGrey(int r, int g, int b){
-        return false;
-    }
-
-    public static void main(String[] args){
-        for (ResistorColour i: ResistorColour.values()){
-            System.out.println(i.toString() + "  " + ((int)i.rgb[0])+ "  " + ((int)i.rgb[1])+ "  " + ((int)i.rgb[2]));
-            System.out.println(i.toString() + "  " + (i.hsb[0])+ "  " + (i.hsb[1])+ "  " + (i.hsb[2]));
-            System.out.println(i.toString() + "  " + i.lab[0] + "  " + i.lab[1]+ "  " + i.lab[2]);
-        }
-    }
-
-
 }
 
 /** @} */
