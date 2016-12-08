@@ -77,7 +77,7 @@ All members of Group 4, Jonathan Brown, Graeme Crawley, and Ryan Marks will be r
 \subsection{Automated Testing Approach}
 Automated testing is inherently difficult with respect to this problem, as much of the testing conducted is required to be supervised and manual. What automated testing can be done will be completed during the unit testing phase and completed using JUnit.
 \subsection{Testing Tools}
-\par JUnit 4 will be the tool for unit testing of the software. JCov will be used to ensure 95\%+ testing coverage.
+\par JUnit 4 will be the tool for unit testing of the software.
 \subsection{Testing Schedule}
 Please reference the Gantt chart in the project schedule folder of this repository.
 
@@ -93,7 +93,7 @@ Please reference the Gantt chart in the project schedule folder of this reposito
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is not open
+App is not yet launched. Phone is turned on with app installed and available for launch.
 					
 Input: 
 App is launched
@@ -108,7 +108,7 @@ The user will launch the app which will automatically display a warning box upon
 Type: Unit, Dynamic, Manual
 					
 Initial State: 
-Warning box is displayed
+Warning box is displayed on screen.
 					
 Input: 
 "X" on the box is pressed
@@ -123,7 +123,7 @@ The user will press the "X" on the warning box, which will then close the warnin
 Type: Unit, Dynamic, Manual
 					
 Initial State: 
-Warning box is displayed
+Warning box is displayed on screen.
 					
 Input: 
 Screen is pressed anywhere that isn't the "X" on the warning box
@@ -142,7 +142,7 @@ The user will press the space around "X" on the warning box, which will do nothi
 Type: Unit, Dynamic, Manual
 					
 Initial State: 
-App is open, ready to scan
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Screen is tapped
@@ -161,7 +161,7 @@ The user will  tap the screen while the app is running, resulting in no change
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Camera is pointed at resistor in incorrect orientation
@@ -176,7 +176,7 @@ The user will point the camera at a resistor without lining up the red line on t
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Camera is pointed at resistor in correct orientation with red line crossing through first stripe from either side
@@ -191,7 +191,7 @@ The user will point the camera at a resistor with the red line intersecting one 
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Camera is pointed at resistor in correct orientation with red line crossing through two stripes from either side
@@ -206,7 +206,7 @@ The user will point the camera at a resistor with the red line intersecting two 
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Camera is pointed at resistor in correct orientation with red line crossing through three stripes from either side
@@ -221,7 +221,7 @@ The user will point the camera at a resistor with the red line intersecting thre
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Camera is pointed at resistor in correct orientation with red line crossing through four stripes from either side
@@ -236,7 +236,7 @@ The user will point the camera at a resistor with the red line intersecting all 
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Camera is on with no resistor visible on screen
@@ -263,7 +263,7 @@ The user will point the camera so that no resistor is visible on screen.
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input/Condition: 
 100 resistors scanned
@@ -278,7 +278,7 @@ How test will be performed:
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Give the app and a resistor to a user between the ages of 8 and 70
@@ -293,7 +293,7 @@ The user will be given a resistor and the app. The app will be easy to use and a
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is open, camera is on
+App is open with camera display live video to the screen. Red horizontal line is visible and camera feed is operational, indicating readiness to scan.
 					
 Input: 
 Give the app to a user who doesn't have Internet connection
@@ -311,7 +311,7 @@ The user will be given a resistor and the app. The app will be easy to use and a
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is not open
+App is not yet launched. Phone is turned on with app installed and available for launch.
 					
 Input: 
 App is launched
@@ -326,7 +326,7 @@ The app will be launched and display a warning box which contains text. The text
 Type: Functional, Dynamic, Manual
 					
 Initial State: 
-App is not open
+App is not yet launched. Phone is turned on with app installed and available for launch.
 					
 Input: 
 App is launched
@@ -350,7 +350,7 @@ The app be launched and display the warning box within 5 seconds
 \\
 Type: Functional, Dynamic, Manual
 					
-Initial State: Software not running
+Initial State: Software not yet running. Software ready to be executed.
 					
 Input: Run Command
 					
@@ -362,7 +362,7 @@ How test will be performed: Manual execution.
 \\
 Type: Functional, Dynamic, Manual.
 					
-Initial State: Software running, no axis selected
+Initial State: Software running with image displayed on screen for axis selection, no axis selected
 					
 Input: Select axis directly across resistor body.
 					
@@ -374,7 +374,7 @@ How test will be performed:  Manual execution.
 \\
 Type: Functional, Dynamic, Manual
 					
-Initial State: Software not running
+Initial State: Software running with image displayed on screen for axis selection, no axis selected
 					
 Input: Select axis incorrectly.
 					
@@ -387,14 +387,19 @@ How test will be performed: Manual execution.
 \section{Comparison to Existing Implementation}
 There are two tests that compare the program to the Existing Implementation of the program. Please refer to:
 \begin{itemize}
-\item test F-FDM-9 in Resistor Scanning for Functional Requirements
-\item test NF-FDM-15 in Launch Tests for Nonfunctional Requirements 
+\item test F-FDM-9 in Resistor Scanning for Functional Requirements\\
+\\
+This test shows the core functionality of the application and its similarity to the existing implementation. Both applications used a red line to align the resistor to the center of the screen, and outputted the calculated resistance to the screen.
+\\
+\item test NF-FDM-15 in Launch Tests for Nonfunctional Requirements\\
+\\
+This test shows that the application performs similarly to the existing application in its speed and performance.
 \end{itemize}
 
 \section{Unit Testing Plan}	
-\par JUnit4 will be used to perform unit testing for this application.	
+\par JUnit4 will be used to perform unit testing for this application. Due to the lack of well defined correctness for the problem, the coverage of testing is not something that will be a focus. However, unit tests will be done for the Colour Mapping Module due to the well defined expected outcome for individual colours and the need to test a large collection of samples in a small period of time.
 \subsection{Unit testing of internal functions}
-\par Unit testing will be performed on any independent functions where comparison to expected results is possible. This project features several prime candidates for such testing: expected band locations, and expected colour selection. Once this unit testing is performed these individual modules can be combined and automated dynamic and functional testing can be performed to verify the final resistance output. Modules featuring image processing (the majority of them) will be tested using a stub to pass them static images in place of camera input. The application behaves quite linearly, allowing for complete test coverage.
+\par Unit testing will be performed on any independent functions where comparison to expected results is possible. This project features several prime candidates for such testing: expected band locations, and expected colour selection. Once this unit testing is performed these individual modules can be combined and automated dynamic and functional testing can be performed to verify the final resistance output. Modules featuring image processing (the majority of them) will be tested using a stub to pass them static images in place of camera input.
 \subsection{Unit testing of output files}		
 \par This project does not feature any output files.
 \bibliographystyle{plainnat}
