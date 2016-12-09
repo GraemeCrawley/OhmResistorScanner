@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="PCM" company="McMaster, CAS Department" webLink="" view-date="2016-10-16" view-index="1" gantt-divider-location="399" resource-divider-location="472" version="2.8.1" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="PCM" company="McMaster, CAS Department" webLink="" view-date="2016-10-09" view-index="0" gantt-divider-location="498" resource-divider-location="472" version="2.8.1" locale="en_CA">
     <description><![CDATA[Simulation of temperature over time for a solar water heating tank incorporating phase change material (PCM).]]></description>
     <view zooming-state="default:5" id="gantt-chart">
-        <field id="tpd3" name="Name" width="213" order="0"/>
-        <field id="tpd4" name="Begin date" width="80" order="1"/>
-        <field id="tpd5" name="End date" width="85" order="2"/>
+        <field id="tpd3" name="Name" width="248" order="0"/>
+        <field id="tpd4" name="Begin date" width="123" order="1"/>
+        <field id="tpd5" name="End date" width="123" order="2"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="295" order="0"/>
-        <field id="1" name="Default role" width="171" order="1"/>
+        <field id="0" name="Name" width="296" order="0"/>
+        <field id="1" name="Default role" width="172" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -38,84 +38,63 @@
             <depend id="113" type="2" difference="0" hardness="Strong"/>
             <depend id="133" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="113" name="Development Plan" color="#8cb6ce" meeting="false" start="2016-09-24" duration="8" complete="0" expand="true"/>
-        <task id="154" name="Write Requirements Doc (rev0)" meeting="false" start="2016-09-05" duration="1" complete="0" expand="true">
-            <depend id="120" type="2" difference="0" hardness="Strong"/>
+        <task id="113" name="Development Plan" color="#8cb6ce" meeting="false" start="2016-09-24" duration="7" complete="0" expand="true">
+            <depend id="280" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="109" name="Requirements Doc Due (rev0)" color="#8cb6ce" meeting="true" start="2016-10-07" duration="0" complete="0" expand="true">
-            <depend id="73" type="2" difference="0" hardness="Strong"/>
-            <depend id="120" type="2" difference="0" hardness="Strong"/>
-            <depend id="133" type="2" difference="0" hardness="Strong"/>
+        <task id="280" name="Requirements Doc (rev0)" color="#8cb6ce" meeting="false" start="2016-10-01" duration="7" complete="0" expand="true"/>
+        <task id="187" name="Proof of Concept Demo" color="#8cb6ce" meeting="true" start="2016-10-17" duration="0" complete="0" expand="true"/>
+        <task id="206" name="Test Plan" color="#8cb6ce" meeting="false" start="2016-10-17" duration="12" complete="0" expand="true">
+            <task id="208" name="General Information" color="#8cb6ce" meeting="false" start="2016-10-17" duration="12" complete="0" expand="true"/>
+            <task id="210" name="Plan" color="#8cb6ce" meeting="false" start="2016-10-17" duration="12" complete="0" expand="true"/>
+            <task id="212" name="System Test Description" color="#8cb6ce" meeting="false" start="2016-10-17" duration="12" complete="0" expand="true"/>
+            <task id="216" name="Tests for Proof of Concept" color="#8cb6ce" meeting="false" start="2016-10-17" duration="12" complete="0" expand="true"/>
+            <task id="218" name="Comparison to Existing Implemetation" color="#8cb6ce" meeting="false" start="2016-10-17" duration="12" complete="0" expand="true"/>
+            <task id="230" name="Unit Testing" color="#8cb6ce" meeting="false" start="2016-10-17" duration="12" complete="0" expand="true"/>
+            <task id="235" name="Appendix" color="#8cb6ce" meeting="false" start="2016-10-17" duration="12" complete="0" expand="true"/>
         </task>
-        <task id="187" name="Proof of Conecpt Demo" color="#8cb6ce" meeting="true" start="2016-10-26" duration="0" complete="0" expand="true"/>
-        <task id="0" name="Write Design Doc" color="#8cb6ce" meeting="false" project="true" start="2016-10-09" duration="40" complete="0" expand="true" cost-manual-value="20.0" cost-calculated="false">
+        <task id="2" name="Design Doc Rev0 Due" color="#8cb6ce" meeting="true" start="2016-11-11" duration="0" complete="0" expand="true"/>
+        <task id="44" name="Implementation (rev0) [Phase 1]" color="#8cb6ce" meeting="false" start="2016-10-29" duration="15" complete="0" expand="true">
+            <task id="276" name="Camera Input Module" color="#8cb6ce" meeting="false" start="2016-10-29" duration="1" complete="0" expand="true"/>
+            <task id="277" name="Image Input Module" color="#8cb6ce" meeting="false" start="2016-10-30" duration="1" complete="0" expand="true"/>
+            <task id="271" name="Resistor ID Module" color="#8cb6ce" meeting="false" start="2016-10-31" duration="5" complete="0" expand="true"/>
+            <task id="272" name="Band Location Module" color="#8cb6ce" meeting="false" start="2016-11-05" duration="4" complete="0" expand="true"/>
+            <task id="273" name="Colour Mapping Module" color="#8cb6ce" meeting="false" start="2016-11-09" duration="1" complete="0" expand="true"/>
+            <task id="274" name="Value Calculator Module" color="#8cb6ce" meeting="false" start="2016-11-10" duration="1" complete="0" expand="true"/>
+            <task id="275" name="User Interface Module" color="#8cb6ce" meeting="false" start="2016-11-11" duration="2" complete="0" expand="true"/>
+        </task>
+        <task id="0" name="Write Design Doc" color="#8cb6ce" meeting="false" project="true" start="2016-11-13" duration="5" complete="0" expand="true" cost-manual-value="20.0" cost-calculated="false">
             <depend id="120" type="2" difference="0" hardness="Strong"/>
             <task id="29" name="MG" color="#8cb6ce" meeting="false" start="2016-11-13" duration="3" complete="0" expand="true">
                 <depend id="31" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="31" name="MIS" color="#8cb6ce" meeting="false" start="2016-11-16" duration="2" complete="0" expand="true"/>
-            <task id="32" name="Schedule" color="#8cb6ce" meeting="false" start="2016-10-09" duration="12" complete="0" expand="true"/>
         </task>
-        <task id="2" name="Design Doc Rev0 Due" color="#8cb6ce" meeting="true" start="2016-11-11" duration="0" complete="0" expand="true"/>
-        <task id="206" name="Test Plan" color="#8cb6ce" meeting="false" start="2016-10-21" duration="8" complete="0" expand="true">
-            <task id="208" name="General Information" color="#8cb6ce" meeting="false" start="2016-10-21" duration="8" complete="0" expand="true"/>
-            <task id="210" name="Plan" color="#8cb6ce" meeting="false" start="2016-10-21" duration="8" complete="0" expand="true"/>
-            <task id="212" name="System Test Description" color="#8cb6ce" meeting="false" start="2016-10-21" duration="8" complete="0" expand="true"/>
-            <task id="216" name="Tests for Proof of Concept" color="#8cb6ce" meeting="false" start="2016-10-21" duration="8" complete="0" expand="true"/>
-            <task id="218" name="Comparison to Existing Implemetation" color="#8cb6ce" meeting="false" start="2016-10-21" duration="8" complete="0" expand="true"/>
-            <task id="230" name="Unit Testing" color="#8cb6ce" meeting="false" start="2016-10-21" duration="8" complete="0" expand="true"/>
-            <task id="235" name="Appendix" color="#8cb6ce" meeting="false" start="2016-10-21" duration="8" complete="0" expand="true"/>
-        </task>
-        <task id="44" name="Implementation (rev0)" color="#8cb6ce" meeting="false" start="2016-10-29" duration="35" complete="0" expand="true">
-            <task id="191" name="Phase 1" color="#8cb6ce" meeting="false" start="2016-10-29" duration="15" complete="0" expand="true">
-                <task id="276" name="Camera Input Module" color="#8cb6ce" meeting="false" start="2016-10-29" duration="1" complete="0" expand="true"/>
-                <task id="277" name="Image Input Module" color="#8cb6ce" meeting="false" start="2016-10-30" duration="1" complete="0" expand="true"/>
-                <task id="271" name="Resistor ID Module" color="#8cb6ce" meeting="false" start="2016-10-31" duration="5" complete="0" expand="true"/>
-                <task id="272" name="Band Location Module" color="#8cb6ce" meeting="false" start="2016-11-05" duration="4" complete="0" expand="true"/>
-                <task id="273" name="Colour Mapping Module" color="#8cb6ce" meeting="false" start="2016-11-09" duration="1" complete="0" expand="true"/>
-                <task id="274" name="Value Calculator Module" color="#8cb6ce" meeting="false" start="2016-11-10" duration="1" complete="0" expand="true"/>
-                <task id="275" name="User Interface Module" color="#8cb6ce" meeting="false" start="2016-11-11" duration="2" complete="0" expand="true"/>
-            </task>
-            <task id="194" name="Phase 2" color="#8cb6ce" meeting="false" start="2016-11-21" duration="12" complete="1" expand="true"/>
-            <task id="196" name="Phase 3" color="#8cb6ce" meeting="false" start="2016-11-21" duration="12" complete="0" expand="true"/>
-        </task>
-        <task id="120" name="Testing (rev0)" color="#8cb6ce" meeting="false" start="2016-11-18" duration="2" complete="0" thirdDate="2016-11-18" thirdDate-constraint="1" expand="true">
+        <task id="21" name="Rev 0 Demo" color="#8cb6ce" meeting="true" start="2016-11-23" duration="0" complete="0" expand="true"/>
+        <task id="120" name="Testing" color="#8cb6ce" meeting="false" start="2016-11-20" duration="3" complete="0" thirdDate="2016-11-18" thirdDate-constraint="1" expand="true">
             <depend id="21" type="2" difference="0" hardness="Strong"/>
             <depend id="98" type="2" difference="0" hardness="Strong"/>
-            <depend id="183" type="2" difference="0" hardness="Strong"/>
-            <task id="245" name="Colour Mapping Module Testing" color="#8cb6ce" meeting="false" start="2016-11-18" duration="2" complete="0" expand="true"/>
-            <task id="236" name="Camera Module Testing" color="#8cb6ce" meeting="false" start="2016-11-18" duration="2" complete="0" expand="true"/>
-            <task id="239" name="File Module Testing" color="#8cb6ce" meeting="false" start="2016-11-18" duration="2" complete="0" expand="true"/>
-            <task id="241" name="Resistor ID Module Testing" color="#8cb6ce" meeting="false" start="2016-11-18" duration="2" complete="0" expand="true"/>
-            <task id="243" name="UI Module Testing" color="#8cb6ce" meeting="false" start="2016-11-18" duration="2" complete="0" expand="true"/>
-            <task id="249" name="Band Location Module Testing" color="#8cb6ce" meeting="false" start="2016-11-18" duration="2" complete="0" thirdDate="2016-10-31" thirdDate-constraint="0" expand="true"/>
-            <task id="247" name="Value Calculator Module Testing" color="#8cb6ce" meeting="false" start="2016-11-18" duration="2" complete="0" expand="true"/>
+            <task id="245" name="Colour Mapping Module Testing" color="#8cb6ce" meeting="false" start="2016-11-20" duration="3" complete="0" expand="true"/>
+            <task id="236" name="Camera Module Testing" color="#8cb6ce" meeting="false" start="2016-11-20" duration="3" complete="0" expand="true"/>
+            <task id="239" name="File Module Testin3" color="#8cb6ce" meeting="false" start="2016-11-20" duration="3" complete="0" expand="true"/>
+            <task id="241" name="Resistor ID Module Testing" color="#8cb6ce" meeting="false" start="2016-11-20" duration="3" complete="0" expand="true"/>
+            <task id="243" name="UI Module Testing" color="#8cb6ce" meeting="false" start="2016-11-20" duration="3" complete="0" expand="true"/>
+            <task id="249" name="Band Location Module Testing" color="#8cb6ce" meeting="false" start="2016-11-20" duration="3" complete="0" thirdDate="2016-10-31" thirdDate-constraint="0" expand="true"/>
+            <task id="247" name="Value Calculator Module Testing" color="#8cb6ce" meeting="false" start="2016-11-20" duration="3" complete="0" expand="true"/>
         </task>
-        <task id="21" name="Rev 0 Demo" color="#8cb6ce" meeting="true" start="2016-11-20" duration="0" complete="0" expand="true">
-            <depend id="73" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="183" name="Revision (rev1)" color="#000000" meeting="false" start="2016-11-23" duration="7" complete="0" expand="true">
-            <depend id="73" type="2" difference="0" hardness="Strong"/>
-            <depend id="133" type="2" difference="0" hardness="Strong"/>
-            <task id="184" name="Revise Implementaion" color="#8cb6ce" meeting="false" start="2016-11-23" duration="7" complete="0" expand="true"/>
-            <task id="185" name="Revise Requirements" color="#8cb6ce" meeting="false" start="2016-11-23" duration="7" complete="0" expand="true"/>
-            <task id="186" name="Revise Design Doc" color="#8cb6ce" meeting="false" start="2016-11-23" duration="7" complete="0" expand="true"/>
-        </task>
-        <task id="73" name="Testing (rev1)" color="#8cb6ce" meeting="false" start="2016-11-30" duration="8" complete="0" expand="true">
-            <depend id="98" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="98" name="Prepare Final Demo" color="#8cb6ce" meeting="false" start="2016-12-08" duration="4" complete="0" expand="true"/>
+        <task id="98" name="Prepare Final Demo" color="#8cb6ce" meeting="false" start="2016-11-23" duration="4" complete="0" expand="true"/>
         <task id="8" name="Final Demo" color="#8cb6ce" meeting="true" start="2016-11-28" duration="0" complete="0" expand="true">
             <depend id="133" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="133" name="Final Documentaion" color="#000000" meeting="false" project="true" start="2016-11-30" duration="9" complete="0" expand="true">
-            <task id="134" name="Final Design Documents" color="#8cb6ce" meeting="false" start="2016-11-30" duration="9" complete="0" thirdDate="2016-11-08" thirdDate-constraint="1" expand="true"/>
-            <task id="135" name="Final Requirements Doc" color="#8cb6ce" meeting="false" start="2016-11-30" duration="7" complete="0" expand="true"/>
-            <task id="136" name="Test Plan" color="#8cb6ce" meeting="false" start="2016-11-30" duration="7" complete="0" expand="true"/>
-            <task id="137" name="User's Guide (optional)" color="#8cb6ce" meeting="false" start="2016-11-30" duration="7" complete="0" expand="true"/>
-            <task id="138" name="Source Code" color="#8cb6ce" meeting="false" start="2016-11-30" duration="7" complete="0" expand="true"/>
+        <task id="133" name="Final Documentaion" color="#000000" meeting="false" project="true" start="2016-12-01" duration="9" complete="0" expand="true">
+            <task id="134" name="Final Design Documents" color="#8cb6ce" meeting="false" start="2016-12-01" duration="9" complete="0" thirdDate="2016-11-08" thirdDate-constraint="1" expand="true"/>
+            <task id="135" name="Final Requirements Doc" color="#8cb6ce" meeting="false" start="2016-12-01" duration="7" complete="0" expand="true"/>
+            <task id="136" name="Test Plan" color="#8cb6ce" meeting="false" start="2016-12-01" duration="7" complete="0" expand="true"/>
+            <task id="137" name="User's Guide (optional)" color="#8cb6ce" meeting="false" start="2016-12-01" duration="7" complete="0" expand="true"/>
+            <task id="138" name="Source Code" color="#8cb6ce" meeting="false" start="2016-12-01" duration="7" complete="0" expand="true"/>
         </task>
         <task id="10" name="Final Doc Due" color="#8cb6ce" meeting="true" start="2016-12-07" duration="0" complete="0" expand="true"/>
+        <task id="194" name="Phase 2" color="#8cb6ce" meeting="false" start="2017-01-01" duration="31" complete="1" expand="true"/>
+        <task id="196" name="Phase 3" color="#8cb6ce" meeting="false" start="2017-02-01" duration="29" complete="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Jonathan Brown" function="1" contacts="" phone=""/>
@@ -125,7 +104,6 @@
     <allocations>
         <allocation task-id="31" resource-id="0" function="Default:0" responsible="true" load="90.0"/>
         <allocation task-id="29" resource-id="0" function="Default:0" responsible="false" load="40.0"/>
-        <allocation task-id="32" resource-id="0" function="Default:0" responsible="true" load="0.0"/>
         <allocation task-id="208" resource-id="0" function="Default:0" responsible="true" load="25.0"/>
         <allocation task-id="210" resource-id="0" function="Default:0" responsible="true" load="25.0"/>
         <allocation task-id="216" resource-id="0" function="Default:0" responsible="true" load="25.0"/>
@@ -141,7 +119,6 @@
         <allocation task-id="243" resource-id="1" function="Default:0" responsible="true" load="50.0"/>
         <allocation task-id="271" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="275" resource-id="1" function="Default:0" responsible="true" load="100.0"/>
-        <allocation task-id="32" resource-id="1" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="29" resource-id="2" function="Default:0" responsible="false" load="40.0"/>
         <allocation task-id="31" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="212" resource-id="2" function="Default:0" responsible="true" load="33.0"/>
@@ -152,7 +129,6 @@
         <allocation task-id="276" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="277" resource-id="2" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="245" resource-id="2" function="Default:0" responsible="true" load="33.0"/>
-        <allocation task-id="32" resource-id="2" function="Default:0" responsible="false" load="60.0"/>
     </allocations>
     <vacations/>
     <previous/>
