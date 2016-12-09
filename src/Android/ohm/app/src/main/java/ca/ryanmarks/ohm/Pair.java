@@ -1,7 +1,7 @@
 package ca.ryanmarks.ohm;
 
 /**
- * Created by Ryan on 11/20/2016.
+ * This class represents a generic key, value pair.
  */
 public class Pair<T, T1> {
     private final T key;

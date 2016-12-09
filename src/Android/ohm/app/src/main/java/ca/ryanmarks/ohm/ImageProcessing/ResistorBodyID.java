@@ -1,4 +1,4 @@
-package ohm.ImageProcessing;
+package ca.ryanmarks.ohm.ImageProcessing;
 
 /**
  * @defgroup ResistorID

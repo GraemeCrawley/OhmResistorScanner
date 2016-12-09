@@ -1,4 +1,4 @@
 /**
  * @package ImageProcessing Contains the Band Location and Resistor Body Identification modules.
  */
-package ohm.ImageProcessing;
+package ca.ryanmarks.ohm.ImageProcessing;

@@ -7,12 +7,9 @@ package ca.ryanmarks.ohm.ValueIdentification;
  *@{
  */
 
-import android.graphics.Color;
-
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
-import org.opencv.ml.KNearest;
 import org.opencv.ml.*;
 
 import java.io.Reader;
@@ -133,13 +130,13 @@ public enum ResistorColour {
 
 
     /**
-     * //http://www.brucelindbloom.com
+     * Convert an RGB triple to LAB space. For more info see: http://www.brucelindbloom.com
      * @param R
      * @param G
      * @param B
      * @param lab
      */
-    public static void rgb2lab(float R, float G, float B, float[] lab) {
+    private static void rgb2lab(float R, float G, float B, float[] lab) {
 
 
         float r, g, b, X, Y, Z, fx, fy, fz, xr, yr, zr;
@@ -214,7 +211,6 @@ public enum ResistorColour {
      * @return The known colour that best represents the sampled colour.
      */
     public static int fit(float r, float g, float b){
-        float[] rgb = new float[] {r,g,b};
         float[] lab = new float[3];
         rgb2lab(r,g,b,lab);
         Mat testSample = new MatOfFloat(lab).t();
