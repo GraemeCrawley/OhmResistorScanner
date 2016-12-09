@@ -14,6 +14,17 @@ dependencies {
     compile files(OpenCVJar)
 }
 
+jar {
+    baseName = 'Ohm-Desktop'
+    version =  '1.0'
+
+    manifest {
+        attributes(
+                'Class-Path': sourceSets.main.runtimeClasspath,
+                'Main-Class': 'ohm.Ohm'
+        )
+    }
+}
 
 task copyFXML(type: Copy){
     from 'src/main/java/ohm/'
@@ -38,6 +49,22 @@ task runOhm(type: org.gradle.api.tasks.JavaExec, dependsOn: ['classes','copyFXML
 
     //Point this to your openCV installation. Configure OpenCVPath in a gradle.properties file.
     systemProperties["java.library.path"]= OpenCVPath
+
+}
+
+task buildJar(type: Jar, dependsOn: ['classes','copyFXML']) {
+    baseName = 'Ohm-Desktop'
+    version =  '1.0'
+
+    manifest {
+        attributes(
+                'Class-Path': sourceSets.main.runtimeClasspath,
+                'Main-Class': 'ohm.Ohm'
+        )
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 
 }
 

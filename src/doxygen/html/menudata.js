@@ -20,7 +20,8 @@ var menudata={children:[
 {text:'m',url:'functions.html#index_m'},
 {text:'o',url:'functions.html#index_o'},
 {text:'r',url:'functions.html#index_r'},
-{text:'s',url:'functions.html#index_s'}]},
+{text:'s',url:'functions.html#index_s'},
+{text:'v',url:'functions.html#index_v'}]},
 {text:'Functions',url:'functions_func.html',children:[
 {text:'[',url:'functions_func.html#index_0x5b'},
 {text:'a',url:'functions_func.html#index_a'},
@@ -33,4 +34,5 @@ var menudata={children:[
 {text:'m',url:'functions_func.html#index_m'},
 {text:'o',url:'functions_func.html#index_o'},
 {text:'r',url:'functions_func.html#index_r'},
-{text:'s',url:'functions_func.html#index_s'}]}]}]}]}
+{text:'s',url:'functions_func.html#index_s'},
+{text:'v',url:'functions_func.html#index_v'}]}]}]}]}

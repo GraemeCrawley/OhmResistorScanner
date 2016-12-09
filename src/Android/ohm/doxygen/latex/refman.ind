@@ -1,0 +1,87 @@
+\begin{theindex}
+
+  \item {Band\+Location}, \hyperpage{13}
+
+  \indexspace
+
+  \item {ca.\+ryanmarks.\+ohm.\+imageprocessing.\+Band\+Reader}, 
+		\hyperpage{17}
+  \item {ca.\+ryanmarks.\+ohm.\+input.\+Scanning\+Camera\+View}, 
+		\hyperpage{22}
+  \item {ca.\+ryanmarks.\+ohm.\+Pair$<$ T, T1 $>$}, \hyperpage{19}
+  \item {ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity}, 
+		\hyperpage{18}
+  \item {ca.\+ryanmarks.\+ohm.\+valueidentification.\+Resistor\+Colour}, 
+		\hyperpage{20}
+  \item {ca.\+ryanmarks.\+ohm.\+valueidentification.\+Value\+Calculator}, 
+		\hyperpage{23}
+  \item {ca\+::ryanmarks\+::ohm\+::imageprocessing\+::\+Band\+Reader}
+    \subitem {read}, \hyperpage{17}
+  \item {ca\+::ryanmarks\+::ohm\+::input\+::\+Scanning\+Camera\+View}
+    \subitem {initialize\+Camera}, \hyperpage{22}
+  \item {ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}
+    \subitem {on\+Camera\+Frame}, \hyperpage{18}
+    \subitem {on\+Camera\+View\+Started}, \hyperpage{18}
+    \subitem {on\+Camera\+View\+Stopped}, \hyperpage{19}
+    \subitem {on\+Create}, \hyperpage{19}
+    \subitem {on\+Pause}, \hyperpage{19}
+    \subitem {on\+Resume}, \hyperpage{19}
+  \item {ca\+::ryanmarks\+::ohm\+::valueidentification\+::\+Resistor\+Colour}
+    \subitem {fit}, \hyperpage{21}
+    \subitem {Resistor\+Colour}, \hyperpage{21}
+  \item {Camera\+Input}, \hyperpage{9}
+  \item {Colour\+Mapping}, \hyperpage{11}
+
+  \indexspace
+
+  \item {fit}
+    \subitem {ca\+::ryanmarks\+::ohm\+::valueidentification\+::\+Resistor\+Colour}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {imageprocessing}, \hyperpage{15}
+  \item {initialize\+Camera}
+    \subitem {ca\+::ryanmarks\+::ohm\+::input\+::\+Scanning\+Camera\+View}, 
+		\hyperpage{22}
+
+  \indexspace
+
+  \item {on\+Camera\+Frame}
+    \subitem {ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}, 
+		\hyperpage{18}
+  \item {on\+Camera\+View\+Started}
+    \subitem {ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}, 
+		\hyperpage{18}
+  \item {on\+Camera\+View\+Stopped}
+    \subitem {ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}, 
+		\hyperpage{19}
+  \item {on\+Create}
+    \subitem {ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}, 
+		\hyperpage{19}
+  \item {on\+Pause}
+    \subitem {ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}, 
+		\hyperpage{19}
+  \item {on\+Resume}
+    \subitem {ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}, 
+		\hyperpage{19}
+
+  \indexspace
+
+  \item {read}
+    \subitem {ca\+::ryanmarks\+::ohm\+::imageprocessing\+::\+Band\+Reader}, 
+		\hyperpage{17}
+  \item {Resistor\+Colour}
+    \subitem {ca\+::ryanmarks\+::ohm\+::valueidentification\+::\+Resistor\+Colour}, 
+		\hyperpage{21}
+
+  \indexspace
+
+  \item {User\+Interface}, \hyperpage{10}
+
+  \indexspace
+
+  \item {Value\+Calculator}, \hyperpage{12}
+  \item {valueidentification}, \hyperpage{15}
+
+\end{theindex}

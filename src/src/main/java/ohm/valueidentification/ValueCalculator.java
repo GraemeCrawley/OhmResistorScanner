@@ -8,12 +8,20 @@ package ohm.valueidentification;
  */
 
 /**
+ * @author Jonathan Brown
  * @brief Object used to calculate the resistance of the resistor based on the mapped colours.
  */
 public class ValueCalculator {
     final double resistance;
     final double precision;
 
+    /**
+     *
+     * @param a Leftmost band value
+     * @param b 2nd leftmost band value
+     * @param c 3rd leftmost band value
+     * @param d Rightmost band value
+     */
     public ValueCalculator(Integer a, Integer b, Integer c, Integer d){
         b = b >= 10 ? 3 : b;
         c = c >= 10 ? 3 : c;
@@ -30,7 +38,7 @@ public class ValueCalculator {
 
 
     /**
-     * {@link }
+     * Method to obtain the ohmage of the resistor calculated by the ValueCalculator.
      * @return
      */
     public String getValue(){

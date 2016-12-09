@@ -15,12 +15,13 @@ import java.io.InputStream;
 
 /**
  * @addtogroup CameraInput
+ * @author Graeme Crawley
  * @{
  */
 
 /**
  *
- * @brief Instances of this class are to be used to receive input from device camera. Currently unimplemented.
+ * @brief Class used to receive input from the camera on Desktop.
  * */
 public class CameraInput implements Input {
 
