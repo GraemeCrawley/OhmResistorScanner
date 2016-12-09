@@ -39,8 +39,10 @@ public enum ResistorColour {
     BASE(10);
     int value;
     static KNearest KNN;
-    static DTrees dt;
 
+    /**
+     * Creates and trains the KNN classifier. Based on the training set stored in train.csv.
+     */
     static {
         try{
             System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -54,10 +56,6 @@ public enum ResistorColour {
             createResults(trainValues,trainResponses);
             KNN = KNearest.create();
             KNN.train(trainSamples,0,trainResponses);
-            //dt = DTrees.create();
-            //dt.train(trainSamples,0,trainResponses);
-//            System.out.println(dt.isTrained());
-  //          System.out.println(dt.isClassifier());
 
         }
         catch (Exception e){
@@ -65,6 +63,14 @@ public enum ResistorColour {
         }
     }
 
+
+    /**
+     * Converts the string returned by the knn fit to a integer representing the value of the band
+     * @param color
+     * @return Integer between 0 and 12. 0..9 represent reistor color numbers. 10 represents the base color.
+     * 11 and 12 represent silver and gold respectively.
+     */
+    @SuppressWarnings("Duplicates")
     private static Integer getIntegerRepresentation(String color){
         switch (color){
             case "BROWN":
@@ -98,6 +104,11 @@ public enum ResistorColour {
         }
     }
 
+    /**
+     *
+     * @param values
+     * @param samples
+     */
     private static void createSamples(List values, Mat samples){
         int i = 0;
         for(Object value: values){
@@ -115,6 +126,11 @@ public enum ResistorColour {
         }
     }
 
+    /**
+     *
+     * @param values
+     * @param results
+     */
     private static void createResults(List values, Mat results){
         int i = 0;
         for(Object value: values){
@@ -125,8 +141,7 @@ public enum ResistorColour {
     }
 
     /**
-     *
-     * @param v The number represented by the colour in the calculation of the resistor's ohmage.
+     * * @param v The number represented by the colour in the calculation of the resistor's ohmage.
      */
     ResistorColour(int v){
         value = v;
@@ -134,11 +149,12 @@ public enum ResistorColour {
 
 
     /**
-     * //http://www.brucelindbloom.com
-     * @param R
-     * @param G
-     * @param B
-     * @param lab
+     * Method to convert a pixel from RGB space to lab space.
+     * Credit to: //http://www.brucelindbloom.com
+     * @param R Red value from 0f to 255f
+     * @param G Green value from 0f to 255f
+     * @param B Blue value from 0f to 255f
+     * @param lab Size three float[] containing the lab representation of the pixel.
      */
     public static void rgb2lab(float R, float G, float B, float[] lab) {
 
@@ -241,12 +257,6 @@ public enum ResistorColour {
     public static int fit(double r, double g, double b, int colorSpace){
         return fit((float) r, (float) g, (float) b);
     }
-
-    public static void main(String[] args){
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        System.out.println(fit(243,68,46));
-    }
-
 
 }
 

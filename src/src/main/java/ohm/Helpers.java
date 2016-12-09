@@ -34,31 +34,4 @@ public class Helpers {
         }
     }
 
-    /*
-    public static String[][] readCSV(String filename, int columns) {
-        String[][] retVal = new String[columns][];
-        try{
-            Scanner scanner = new Scanner(new File(filename));
-
-            //Set the delimiter used in file
-            scanner.useDelimiter(",");
-
-            //Get all tokens and store them in some data structure
-            //I am just printing them
-            while (scanner.hasNext())
-            {
-                System.out.print(scanner.next());
-            }
-
-            //Do not forget to close the scanner
-            scanner.close();
-        }
-        catch (FileNotFoundException e){
-
-        }
-
-        return retVal;
-    }*/
-
-
 }

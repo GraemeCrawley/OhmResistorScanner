@@ -28,6 +28,11 @@ public class ValueCalculator {
         }
     }
 
+
+    /**
+     * {@link }
+     * @return
+     */
     public String getValue(){
         return Double.toString((int) resistance) + " +- " + precision + "%";
     }

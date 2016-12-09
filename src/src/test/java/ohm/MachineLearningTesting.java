@@ -1,4 +1,4 @@
-package ohm.ValueIdentification;
+package ohm;
 
 import au.com.bytecode.opencsv.CSVReader;
 import org.opencv.core.*;
@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.util.List;
 
 /**
- * Created by jon on 2016-11-26.
+ * Class used test the accuracy of various machine learning algorithms. Not part of a module used by the application.
  */
 public class MachineLearningTesting {
 
@@ -69,21 +69,11 @@ public class MachineLearningTesting {
                 System.out.println();
             }
 
-
-            //ANN_MLP ml =ANN_MLP.create();
             KNearest ml = KNearest.create();
-            //NormalBayesClassifier ml = NormalBayesClassifier.create();
-            //ml.setTrainMethod(ANN_MLP.RPROP);
-            //MatOfInt layerSize = new MatOfInt(new int[] {3, 13, 13});
-            // ml.setLayerSizes(layerSize);
-            // ml.setActivationFunction(1);
             System.out.println("train samples has " + trainSamples.rows() + " rows. train responses has " + trainResponses.rows());
-            //ml.train(trainSamples, Ml.ROW_SAMPLE, trainResponses);
             System.out.println("Trained!");
             ml.train(trainSamples,0,trainResponses);
             ml.findNearest(testSamples,3,testResponses);
-            //ml.predictProb(testSamples,testResponses, testProbs);
-            //ml.predict(testSamples,testResponses,0);
             System.out.println("Predicted");
             //ml.
             double numCorrect = 0;
@@ -91,17 +81,6 @@ public class MachineLearningTesting {
             for(int i = 0; i < testResponses.rows(); i++){
                 double answer = testAnswers.get(i,0)[0];
                 double response = testResponses.get(i,0)[0];
-                //System.out.println(testAnswers.get(i,0)[0] + " : " + testResponses.get(i,0)[0] + "   : " + testProbs.get(i,0)[0]);
-
-                /*
-                double max = 0;
-                for (int j = 0; j < 13; j++){
-                    if(testResponses.get(i, j)[0] > max){
-                        max = testResponses.get(i,j)[0];
-                        response = j;
-                    }
-                }*/
-
                 System.out.println(answer + " : " + response);
 
                 if (answer == response) numCorrect++;
@@ -151,8 +130,7 @@ public class MachineLearningTesting {
         }
     }
 
-
-
+    @SuppressWarnings("Duplicates")
     private static Integer getIntegerRepresentation(String color){
         switch (color){
             case "BROWN":

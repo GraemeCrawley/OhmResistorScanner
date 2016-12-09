@@ -229,7 +229,6 @@ public class BandReader {
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
-
     public static double[] groupTerms(double[] terms, int binSize){
         double[] groupedTerms = new double[(terms.length+binSize-1)/binSize];
         for (int i = 0; i < terms.length; i++){
