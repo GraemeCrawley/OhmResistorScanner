@@ -64,6 +64,9 @@ task buildJar(type: Jar, dependsOn: ['classes','copyFXML']) {
     }
 
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from('resources') {
+        include '**/*.xml'
+    }
     with jar
 
 }
