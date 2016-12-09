@@ -1,4 +1,4 @@
-package ca.ryanmarks.ohm.ValueIdentification;
+package ca.ryanmarks.ohm.valueidentification;
 
 
 /**

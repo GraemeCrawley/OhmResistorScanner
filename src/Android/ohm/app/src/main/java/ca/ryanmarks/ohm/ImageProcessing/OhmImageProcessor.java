@@ -1,4 +1,4 @@
-package ca.ryanmarks.ohm.ImageProcessing;
+package ca.ryanmarks.ohm.imageprocessing;
 
 /**
  * @brief Module that will be used as a means of combining the algorithms outlined in BandReader and ResistorBodyID.

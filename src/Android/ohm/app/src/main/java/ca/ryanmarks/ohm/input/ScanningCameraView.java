@@ -1,4 +1,4 @@
-package ca.ryanmarks.ohm;
+package ca.ryanmarks.ohm.input;
 
 import android.content.Context;
 import android.graphics.Rect;

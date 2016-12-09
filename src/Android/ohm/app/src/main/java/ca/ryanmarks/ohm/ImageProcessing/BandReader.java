@@ -1,4 +1,4 @@
-package ca.ryanmarks.ohm.ImageProcessing;
+package ca.ryanmarks.ohm.imageprocessing;
 
 import ca.ryanmarks.ohm.Pair;
 import org.opencv.core.Mat;

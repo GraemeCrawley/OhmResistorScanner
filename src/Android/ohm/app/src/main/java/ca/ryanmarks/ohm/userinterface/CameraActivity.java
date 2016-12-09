@@ -1,11 +1,10 @@
-package ca.ryanmarks.ohm;
+package ca.ryanmarks.ohm.userinterface;
 
 import android.app.AlertDialog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.SurfaceView;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,9 +22,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.ryanmarks.ohm.ImageProcessing.BandReader;
-import ca.ryanmarks.ohm.ValueIdentification.ResistorColour;
-import ca.ryanmarks.ohm.ValueIdentification.ValueCalculator;
+import ca.ryanmarks.ohm.R;
+import ca.ryanmarks.ohm.imageprocessing.BandReader;
+import ca.ryanmarks.ohm.valueidentification.ResistorColour;
+import ca.ryanmarks.ohm.valueidentification.ValueCalculator;
 
 
 public class CameraActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {

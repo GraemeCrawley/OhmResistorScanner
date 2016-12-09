@@ -1,4 +1,4 @@
 /**
  * @package ValueIdentification Contains the Colour Mapping and Value Identification Modules
  */
-package ca.ryanmarks.ohm.ValueIdentification;
+package ca.ryanmarks.ohm.valueidentification;
