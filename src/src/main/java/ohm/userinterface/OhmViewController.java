@@ -8,14 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
-import ohm.ValueIdentification.ResistorColour;
-import ohm.ImageProcessing.BandReader;
-import ohm.Input.ImageInput;
-import ohm.Input.Input;
-import ohm.ValueIdentification.ValueCalculator;
+import ohm.valueidentification.ResistorColour;
+import ohm.imageprocessing.BandReader;
+import ohm.input.ImageInput;
+import ohm.input.Input;
+import ohm.valueidentification.ValueCalculator;
 import org.opencv.core.*;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.CLAHE;
 import org.opencv.imgproc.Imgproc;
 
 import java.awt.color.ColorSpace;
@@ -24,7 +22,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import static ohm.Helpers.*;
 

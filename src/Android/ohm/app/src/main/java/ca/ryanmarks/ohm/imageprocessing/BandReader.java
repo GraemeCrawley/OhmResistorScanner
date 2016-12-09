@@ -191,7 +191,7 @@ public class BandReader {
 
     /**
      * Calculate the magnitude of a given vector
-     * @param vect Input vector
+     * @param vect input vector
      * @return The magnitude of the input vector
      */
     private static double mag(double[] vect){

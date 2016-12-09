@@ -1,4 +1,4 @@
-package ohm.ValueIdentification;
+package ohm.valueidentification;
 
 /**
  * @defgroup ValueCalculator

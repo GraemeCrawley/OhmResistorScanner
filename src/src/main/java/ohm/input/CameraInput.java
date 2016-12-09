@@ -1,7 +1,6 @@
-package ohm.Input;
+package ohm.input;
 
 import javafx.scene.image.Image;
-import ohm.userinterface.OhmViewController;
 import org.opencv.core.Mat;
 import javafx.embed.swing.SwingFXUtils;
 import org.opencv.core.MatOfByte;
@@ -13,7 +12,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import org.opencv.imgproc.Imgproc;
 
 /**
  * @addtogroup CameraInput

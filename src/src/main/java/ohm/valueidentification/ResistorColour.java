@@ -1,4 +1,4 @@
-package ohm.ValueIdentification;
+package ohm.valueidentification;
 
 /**
  * @defgroup ColourMapping
@@ -13,9 +13,6 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
 import org.opencv.ml.*;
 
-import java.awt.Color;
-import java.awt.color.ColorSpace;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 

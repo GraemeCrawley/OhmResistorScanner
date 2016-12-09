@@ -1,7 +1,6 @@
-package ohm.Input;
+package ohm.input;
 
 import javafx.scene.image.Image;
-import org.omg.CORBA.IMP_LIMIT;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;

@@ -160,7 +160,7 @@ public class Converters {
         int count = m.rows();
         int type = m.type();
         if (m.cols() != 1)
-            throw new java.lang.IllegalArgumentException("Input Mat should have one column\n" + m);
+            throw new java.lang.IllegalArgumentException("input Mat should have one column\n" + m);
 
         pts.clear();
         if (type == CvType.CV_32SC2) {
@@ -183,7 +183,7 @@ public class Converters {
             }
         } else {
             throw new java.lang.IllegalArgumentException(
-                    "Input Mat should be of CV_32SC2, CV_32FC2 or CV_64FC2 type\n" + m);
+                    "input Mat should be of CV_32SC2, CV_32FC2 or CV_64FC2 type\n" + m);
         }
     }
 
@@ -205,7 +205,7 @@ public class Converters {
         int count = m.rows();
         int type = m.type();
         if (m.cols() != 1)
-            throw new java.lang.IllegalArgumentException("Input Mat should have one column\n" + m);
+            throw new java.lang.IllegalArgumentException("input Mat should have one column\n" + m);
 
         pts.clear();
         if (type == CvType.CV_32SC3) {
@@ -228,7 +228,7 @@ public class Converters {
             }
         } else {
             throw new java.lang.IllegalArgumentException(
-                    "Input Mat should be of CV_32SC3, CV_32FC3 or CV_64FC3 type\n" + m);
+                    "input Mat should be of CV_32SC3, CV_32FC3 or CV_64FC3 type\n" + m);
         }
     }
 
@@ -494,7 +494,7 @@ public class Converters {
             throw new java.lang.IllegalArgumentException("Output List can't be null");
 
         if (m == null)
-            throw new java.lang.IllegalArgumentException("Input Mat can't be null");
+            throw new java.lang.IllegalArgumentException("input Mat can't be null");
 
         List<Mat> mats = new ArrayList<Mat>(m.rows());
         Mat_to_vector_Mat(m, mats);
@@ -512,7 +512,7 @@ public class Converters {
             throw new java.lang.IllegalArgumentException("Output List can't be null");
 
         if (m == null)
-            throw new java.lang.IllegalArgumentException("Input Mat can't be null");
+            throw new java.lang.IllegalArgumentException("input Mat can't be null");
 
         List<Mat> mats = new ArrayList<Mat>(m.rows());
         Mat_to_vector_Mat(m, mats);
@@ -544,7 +544,7 @@ public class Converters {
             throw new java.lang.IllegalArgumentException("Output List can't be null");
 
         if (m == null)
-            throw new java.lang.IllegalArgumentException("Input Mat can't be null");
+            throw new java.lang.IllegalArgumentException("input Mat can't be null");
 
         List<Mat> mats = new ArrayList<Mat>(m.rows());
         Mat_to_vector_Mat(m, mats);
@@ -589,7 +589,7 @@ public class Converters {
             throw new java.lang.IllegalArgumentException("Output List can't be null");
 
         if (m == null)
-            throw new java.lang.IllegalArgumentException("Input Mat can't be null");
+            throw new java.lang.IllegalArgumentException("input Mat can't be null");
 
         List<Mat> mats = new ArrayList<Mat>(m.rows());
         Mat_to_vector_Mat(m, mats);
@@ -689,7 +689,7 @@ public class Converters {
             throw new java.lang.IllegalArgumentException("Output List can't be null");
 
         if (m == null)
-            throw new java.lang.IllegalArgumentException("Input Mat can't be null");
+            throw new java.lang.IllegalArgumentException("input Mat can't be null");
 
         List<Mat> mats = new ArrayList<Mat>(m.rows());
         Mat_to_vector_Mat(m, mats);
@@ -721,7 +721,7 @@ public class Converters {
             throw new java.lang.IllegalArgumentException("Output List can't be null");
 
         if (m == null)
-            throw new java.lang.IllegalArgumentException("Input Mat can't be null");
+            throw new java.lang.IllegalArgumentException("input Mat can't be null");
 
         List<Mat> mats = new ArrayList<Mat>(m.rows());
         Mat_to_vector_Mat(m, mats);

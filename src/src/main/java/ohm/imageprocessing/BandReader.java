@@ -1,9 +1,8 @@
-package ohm.ImageProcessing;
+package ohm.imageprocessing;
 
 import javafx.util.Pair;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
-import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
@@ -192,7 +191,7 @@ public class BandReader {
 
     /**
      * Calculate the magnitude of a given vector
-     * @param vect Input vector
+     * @param vect input vector
      * @return The magnitude of the input vector
      */
     public static double abmag(double[] vect){
@@ -206,7 +205,7 @@ public class BandReader {
 
     /**
      * Calculate the magnitude of a given vector
-     * @param vect Input vector
+     * @param vect input vector
      * @return The magnitude of the input vector
      */
     public static double mag(double[] vect){

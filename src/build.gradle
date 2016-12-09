@@ -42,7 +42,7 @@ task runOhm(type: org.gradle.api.tasks.JavaExec, dependsOn: ['classes','copyFXML
 }
 
 task runML(type: org.gradle.api.tasks.JavaExec, dependsOn: ['classes','copyFXML']) {
-    main = 'ohm.ValueIdentification.MachineLearning'
+    main = 'ohm.valueidentification.MachineLearning'
     classpath = sourceSets.main.runtimeClasspath
 
     //Point this to your openCV installation. Configure OpenCVPath in a gradle.properties file.
@@ -51,7 +51,7 @@ task runML(type: org.gradle.api.tasks.JavaExec, dependsOn: ['classes','copyFXML'
 }
 
 task runRC(type: org.gradle.api.tasks.JavaExec, dependsOn: ['classes','copyFXML']) {
-    main = 'ohm.ValueIdentification.ResistorColour'
+    main = 'ohm.valueidentification.ResistorColour'
     classpath = sourceSets.main.runtimeClasspath
 
     //Point this to your openCV installation. Configure OpenCVPath in a gradle.properties file.

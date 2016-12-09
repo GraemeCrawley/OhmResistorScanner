@@ -1,11 +1,9 @@
 package ohm;
 
-import ohm.ValueIdentification.ResistorColour;
+import ohm.valueidentification.ResistorColour;
 import org.junit.Test;
 
 import java.awt.color.ColorSpace;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by graeme on 06/11/16.

@@ -1,8 +1,7 @@
-package ohm.Input;
+package ohm.input;
 
 import javafx.scene.image.Image;
 import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
 
 /**
  * @author Jonathan Brown
