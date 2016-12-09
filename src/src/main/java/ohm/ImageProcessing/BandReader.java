@@ -229,6 +229,12 @@ public class BandReader {
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
+	/**
+	 * Take a large array of samples and collect the samples into bins
+	 * @param terms The array of samples
+	 * @param binSize The size of the bins
+	 * @return The binned samples
+	 */
     public static double[] groupTerms(double[] terms, int binSize){
         double[] groupedTerms = new double[(terms.length+binSize-1)/binSize];
         for (int i = 0; i < terms.length; i++){
@@ -242,6 +248,11 @@ public class BandReader {
         return groupedTerms;
     }
 
+	/**
+	 * Find all the local maxima in an array of doubles
+	 * @param values the input signal
+	 * @return A list of (index, value) Pairs representing the local maxima
+	 */
     public static List<Pair<Integer,Double>> findLocalMaxima(double[] values){
         List<Pair<Integer,Double>> indexValuePairs= new ArrayList<>(10);
         for(int i = 1; i < values.length - 1; i++){
@@ -252,6 +263,12 @@ public class BandReader {
         return indexValuePairs;
     }
 
+	/**
+	 * Get the n largest values in a sample/
+	 * @param values the input signal
+	 * @param nMaxima The number of maxima to find
+	 * @return A list of (index, value) Pairs representing the global maxima in the sample
+	 */ 
     public static List<Pair<Integer,Double>> findGlobalMaxima (double[] values, int nMaxima){
         List<Pair<Integer,Double>> indexValuePairs= new ArrayList<>(values.length);
         for (int i = 0; i < values.length; i++){
@@ -264,6 +281,13 @@ public class BandReader {
         return sortedPairs;
     }
 
+	/**
+	 * Get a point that is some fraction between two others.
+	 * @param start The starting point of the line
+	 * @param end The endpoint of the line
+	 * @param fraction The fraction of the way between start and end
+	 * @return A point that is fraction between start and end
+	 */ 
     public static Point onLine(Point start, Point end, double fraction){
         return new Point(start.x+(end.x-start.x)*fraction,start.y+(end.y-start.y)*fraction);
     }
