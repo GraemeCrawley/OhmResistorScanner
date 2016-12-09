@@ -21,23 +21,31 @@
 
 \begin{document}
 
+\maketitle
+
+\newpage
+
 \begin{table}[hp]
 \caption{Revision History} \label{TblRevisionHistory}
 \begin{tabularx}{\textwidth}{llX}
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-2016-09-26 & Ryan & Created template with section headings\\
-... & ... & ...\\
+2016-09-26 & Ryan & Created template with section headings\\ \\
+2016-12-07 & Jonathan Brown & Revised Functional \& Non Functional Requirements, added symbolic parameters\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \newpage
 
-\maketitle
+\tableofcontents
 
+\listoffigures
+ 
+\listoftables
 
+\newpage
 
 \section{Project Drivers}
 
@@ -157,13 +165,21 @@ There will not be a further prioritization of features beyond this phasing.
 
 \textbf{Description:} Display text over video stream
 \\ \textbf{Rationale:} To meet the phase 1 use case, the resistance of the scanned resistor must be displayable.
-\\ \textbf{Fit Criterion:} The criterion is exceedingly straightforward, if text can be displayed over the video stream, the requirement is met
-\\ \\
+\\ \textbf{Fit Criterion:} The criterion is exceedingly straightforward, if text can be displayed over the video stream, the requirement is met.
+\\ 
+
+\noindent
 \textbf{Description: } Identify the resistance of a resistor, two points indicating its primary axis.
 \\ \textbf{Rationale: } In Phase 1 a line will be displayed over the video stream indicating where to position the resistor.
 For greater modularity, and to allow for future phases to build on the source code, the scanning algorithm should work with an arbitrary defined or identified primary axis.
 \\ \textbf{Fit Criterion:} This requirement shall be validated by testing it against human categorized resistors with a human annotated primary axis.
-It shall have an accuracy as defined in the non-functional requirements.
+It shall have an accuracy as defined in the non-functional requirements. 
+\\
+
+\noindent
+\textbf{Description: } Display Warning on Application Launch
+\\ \textbf{Rationale: } The user should be aware that the project is still in early development and can be potentially inaccurate.
+\\ \textbf{Fit Criterion:} Warning is displayed.
 
 \subsubsection{Phase 2 Functional Requirements}
 
@@ -187,59 +203,100 @@ The recognized primary axis shall be the same format and structure as is consume
 
 \subsection{Look and Feel Requirements }
 \begin{enumerate}
-\item The application shall have a very minimal user interface focussed primarily around the view of the camera.
+\item \noindent
+\textbf{Description: } The application shall have a very minimal user interface focussed primarily around the view of the camera.
+\\ \textbf{Rationale: } This ensures a easy to understand an visually appealing UI.
+\\ \textbf{Fit Criterion:} Viewfinder occupies 80\%+ of the display.
 \end{enumerate}
 \subsection{Usability and Humanity Requirements}
 \begin{enumerate}
-\item The application shall be easily usable by people aged 8 to 70.
-\item The application shall be suitable for a user with a minimal understanding of resistor colour codes and very little training.
-\item The application shall not require the understanding of any particular language as all options symbolically.
-\item The application shall be usable by those with colour blindness.
+\item \textbf{Description: } The application shall be easily usable by people aged YOUNG\_AGE to OLD\_AGE. 
+\\ \textbf{Rationale: } This is an appropriate age for the use of electronic components and our product should accomodate all people within that range.
+\\ \textbf{Fit Criterion:} High usability among survey respondents within the desired age range.
+
+\item \textbf{Description: } The application shall be suitable for a user with a minimal understanding of resistor colour codes and very little training.
+\\ \textbf{Rationale: } The app is not particularly useful to users who are very familiar with the resistor colour code system.
+\\ \textbf{Fit Criterion:} High usability among survey respondents with no experience with reading resistors.
+
+\item \textbf{Description: } The application shall not require the understanding of any particular language as all options shall be displayed symbolically.
+\\ \textbf{Rationale: } To broaden the potential userbase of the application, avoiding the use of any specific language is necessary.
+\\ \textbf{Fit Criterion:} 
+
+\item \textbf{Description: } The application shall be usable by those with colour blindness.
+\\ \textbf{Rationale: } Those who are colour blind struggle the most to read traditional resistor colour codes.
+\\ \textbf{Fit Criterion:} High usability among survey respondents.
 \end{enumerate}
 \subsection{Performance Requirements}
-See page 36: \url{http://www11.informatik.uni-erlangen.de/Lehre/SS2015/PR-SWE/Material/volere-template.pdf}
 \subsubsection{Speed and Latency Requirements}
 \begin{enumerate}
-\item The application should launch in no more than 5 seconds.
-\item The algorithm used to process the income stream of images should be able to process between 15 and 30 images per second on a standard mobile phone.
+\item \textbf{Description: }The application should launch in no more than LAUNCHTIME seconds.
+\\ \textbf{Rationale: } A quick launch of the application is necessary to avoid frustrating users with long wait times.
+\\ \textbf{Fit Criterion:} Measured launch time is less than LAUNCHTIME 90\% of the time.
+\item \textbf{Description: } The algorithm used to process the income stream of images should be able to process between 15 and 30 images per second on a standard mobile phone.
+\\ \textbf{Rationale: } Frame rates between 15 (old animations) and 30 frames per second (standard in many video recording formats and video games) are widely viewed as acceptable and usable by most users.
+\\ \textbf{Fit Criterion:} Framerate exceeds 15 frames per second.
 \end{enumerate}
 \subsubsection{Precision or Accuracy Requirements}
 \begin{enumerate}
-\item The application should identify an input as the correct class of resistor 95\% of the time.
+\item \textbf{Description: } The application should identify an input as the correct class of resistor 95\% of the time
+\\ \textbf{Rationale: } For the application to be consistantly useful it must be able to classify colours reliably.
+\\ \textbf{Fit Criterion:} N/A
 \end{enumerate}
+
 \subsubsection{Reliability and Availability Requirements}
 \begin{enumerate}
-\item The application will not require internet access.
+\item \textbf{Description: } The application will not require internet access.
+\\ \textbf{Rationale: } Making the application functional in remote or outdoor environments is a desirable trait.
+\\ \textbf{Fit Criterion:} N/A
 \end{enumerate}
+
 \subsection{Operational and Environmental Requirements}
 \subsubsection{Expected Physical Environment}
 \begin{enumerate}
-\item The environment for the use of the application is in a household (hobbyist) or light industrial setting.
+\item \textbf{Description: } The environment for the use of the application is in a household (hobbyist) or light industrial setting.
+\\ \textbf{Rationale: } A simple app running on a smartphone best suits these settings.
+\\ \textbf{Fit Criterion:} N/A
 \end{enumerate}
+
 \subsubsection{Productization Requirements}
 \begin{enumerate}
-\item The application will be bundled as a .jar file for the desktop and as a .apk file for the Android platform.
+\item \textbf{Description: } The application will be bundled as a .jar file for the desktop and as a .apk file for the Android platform.
+\\ \textbf{Rationale: } The application must be easily installable by the user.
+\\ \textbf{Fit Criterion:} N/A
 \end{enumerate}
+
 \subsubsection{Release Requirements}
 \begin{enumerate}
-\item The project will feature one pre-release demo with two full releases scheduled for November and December.
+\item \textbf{Description: } The project will feature one pre-release demo with two full releases scheduled for November and December.
+\\ \textbf{Rationale: } These are required by the 3XA3 course.
+\\ \textbf{Fit Criterion:} N/A
 \end{enumerate}
+
 \subsection{Maintainability and Support Requirements}
 \begin{enumerate}
-\item Once the product is launched, no further maintenance is required unless there is a desire for features to be added.
-\item No live support for this product is necessary.
-\item The application will support execution on the desktop and on Android.
-\item The application might eventually be supported on iOS.
+\item \textbf{Description: } Once the product is launched, no further maintenance is required unless there is a desire for features to be added.
+\\ \textbf{Rationale: } The application should not rely on routine maintenance on the part of the developers as this will likely not be possible.
+\\ \textbf{Fit Criterion:} N/A
+\item \textbf{Description: } No live support for this product is necessary.
+\\ \textbf{Rationale: } The application should not rely on routine maintenance on the part of the developers as this will likely not be possible.
+\\ \textbf{Fit Criterion:} N/A
+\item \textbf{Description: } The application will support execution on the desktop and on Android.
+\\ \textbf{Rationale: } A multiplaform is able to garner a larger userbase.
+\\ \textbf{Fit Criterion:} N/A
+\item \textbf{Description: } The application might eventually be supported on iOS.
+\\ \textbf{Rationale: } A multiplaform is able to garner a larger userbase.
+\\ \textbf{Fit Criterion:}  Libraries used should have a rough equivalent on the iOS platform
 \end{enumerate}
 \subsection{Security Requirements}
 %\begin{enumerate}
 The application does not possess any security concerns.
 %\end{enumerate}
-\subsection{Cultural Requirements}
-The application does not feature any requirements specific to certain cultures outside of the usability requirements listed above.
 \subsection{Legal Requirements}
+
 \begin{enumerate}
-\item The application should disclaim that it is not for use in safety critical systems.
+\item \textbf{Description: } The application should disclaim that it is not for use in safety critical systems.
+\\ \textbf{Rationale: } This is an appropriate age for the use of electronic components and our product should accomodate all people within that range.
+\\ \textbf{Fit Criterion:} N/A
 \end{enumerate}
 
 \section{Project Issues}
@@ -280,6 +337,20 @@ See Phase 2 \& 3 Functional Requirements.
 Using OpenCV, colours can be "binned" a small number of colours based on a range of RGB values. \\ 
 ie: All colours with low R, low G and medium to high B can be reduced to simply one shade of blue to make identification easier. \\
 
+\section{Appendix}
+\begin{table}[h!]
+\centering
+\caption{Symbolic Parameters}
+\label{my-label}
+\begin{tabular}{cc}
+\hline
+\multicolumn{1}{l}{\textbf{Parameter Name}} & \multicolumn{1}{l}{\textbf{Parameter Value}} \\ \hline
+\textbf{LAUNCHTIME}                         & 5                                            \\ \hline
+\textbf{OLD\_AGE}                           & 70                                           \\ \hline
+\textbf{YOUNG\_AGE}                         & 8                                            \\ \hline
+\end{tabular}
+\end{table}
 
-
+\noindent
+Document used to classify requirements:\\ \url{http://www11.informatik.uni-erlangen.de/Lehre/SS2015/PR-SWE/Material/volere-template.pdf}
 \end{document}
