@@ -19,20 +19,23 @@
 \date{\today}
 \input{../Comments}
 \begin{document}
-\maketitle
-\pagenumbering{roman}
-\tableofcontents
-\newpage
-\listoftables
-\begin{table}[h]
-\caption{\bf Revision History}
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-October 31st 2016 & 0.0 & First Revision of Testing Plan\\
+2016-10-31 & Ryan M, Jonathan B, Graeme C & First Revision of Testing Plan\\
+2016-12-08 & Graeme Crawley & Updated Test Plan to address comments.\\
 \bottomrule
 \end{tabularx}
 \end{table}
+
+
+\maketitle
+\pagenumbering{roman}
+\tableofcontents
 \newpage
 \pagenumbering{arabic}
 \section{General Information}

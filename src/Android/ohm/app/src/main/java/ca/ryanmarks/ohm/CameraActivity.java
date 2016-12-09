@@ -1,21 +1,6 @@
 package ca.ryanmarks.ohm;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.SurfaceView;
-import android.view.View;
-
-import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.InstallCallbackInterface;
-import org.opencv.android.LoaderCallbackInterface;
-import org.opencv.android.OpenCVLoader;
-import org.opencv.core.Mat;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -44,36 +29,17 @@ import ca.ryanmarks.ohm.ValueIdentification.ValueCalculator;
 
 
 public class CameraActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
-    private static final String TAG = "OCVSample::Activity";
+    private static final String TAG = "ohm";
 
     private CameraBridgeViewBase mOpenCvCameraView;
-    private boolean mIsJavaCamera = true;
-    private MenuItem mItemSwitchCamera = null;
 
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS: {
-                    Log.i(TAG, "OpenCV loaded successfully");
-                    mOpenCvCameraView.enableView();
-                    ResistorColour.trainNN(new InputStreamReader(getApplicationContext().getResources().openRawResource(R.raw.train)));
-                }
-                break;
-                default: {
-                    super.onManagerConnected(status);
-                }
-                break;
-            }
-        }
-    };
+    private BaseLoaderCallback mLoaderCallback;
 
     /**
-     * Called when the activity is first created.
+     * Called when the activity is first created by Android.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "called onCreate");
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -86,6 +52,30 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
 
+        showDisclaimer();
+
+        // This callback is called when OpenCV loads. It starts the view and trains the KNN
+        mLoaderCallback = new BaseLoaderCallback(this) {
+            @Override
+            public void onManagerConnected(int status) {
+                switch (status) {
+                    case LoaderCallbackInterface.SUCCESS: {
+                        Log.i(TAG, "OpenCV loaded successfully");
+                        mOpenCvCameraView.enableView();
+                        ResistorColour.trainNN(new InputStreamReader(getApplicationContext().getResources().openRawResource(R.raw.train)));
+                    }
+                    break;
+                    default: {
+                        super.onManagerConnected(status);
+                    }
+                    break;
+                }
+            }
+        };
+    }
+
+
+    private void showDisclaimer(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.dialog_message)
                 .setTitle(R.string.dialog_title)
@@ -93,19 +83,26 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
                 .show();
     }
 
+
+    /**
+     * Disable camera acquisition while the application is paused
+     */
     @Override
     public void onPause() {
         super.onPause();
         disableCamera();
     }
 
+
+    /**
+     * Whenever the application resumes ensures opencv is loaded.
+     */
     @Override
     public void onResume() {
         super.onResume();
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
-            ResistorColour.trainNN(new InputStreamReader(getApplicationContext().getResources().openRawResource(R.raw.train)));
         } else {
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
@@ -117,22 +114,36 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
         disableCamera();
     }
 
-    public void disableCamera() {
+    /**
+     * Disable the camera to conserve resources
+     */
+    private void disableCamera() {
         if (mOpenCvCameraView != null)
             mOpenCvCameraView.disableView();
     }
 
+    /**
+     * Unneeded interface method from openCV
+     * @param width -  the width of the frames that will be delivered
+     * @param height - the height of the frames that will be delivered
+     */
+    @Override
     public void onCameraViewStarted(int width, int height) {
     }
 
+    /**
+     * Unneeded interface method from openCV
+     */
+    @Override
     public void onCameraViewStopped() {
     }
 
-    Mat mRgba;
-    Mat mGray;
-
-
-
+    /**
+     * This method performs the transformation from the acquired camera frame to the image
+     * that is shown to the user. It identifies resistances and overlays the resistance value
+     * @param inputFrame The camera frame captured
+     * @return The image to be shown to the user
+     */
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Mat processed =  inputFrame.rgba();
 

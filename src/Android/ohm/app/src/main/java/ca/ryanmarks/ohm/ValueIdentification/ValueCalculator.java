@@ -10,8 +10,8 @@ package ca.ryanmarks.ohm.ValueIdentification;
  * @brief Object used to calculate the resistance of the resistor based on the mapped colours.
  */
 public class ValueCalculator {
-    final double resistance;
-    final double precision;
+    private final double resistance;
+    private final double precision;
 
     public ValueCalculator(Integer a, Integer b, Integer c, Integer d){
         b = b >= 10 ? 3 : b;

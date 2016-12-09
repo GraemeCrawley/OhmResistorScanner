@@ -1,18 +1,29 @@
-\documentclass{article}
+\documentclass[12pt, titlepage]{article}
 
+\usepackage{fullpage}
+\usepackage[round]{natbib}
+\usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
 \usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\title{SE 3XA3: Development Plan \\Ohm: Resistor Scanner}
 
-\title{SE 3XA3: Development Plan \\ohm}
-
-\author{Team 4, ohm
+\author{Team 4, Ohm
 		\\Jonathan Brown, brownjs2
 		\\Graeme Crawley, crawleg
 		\\Ryan Marks, marksr2
 }
 
-\date{}
+\date{\today}
 
 \input{../Comments}
 
@@ -33,6 +44,8 @@
 \newpage
 
 \maketitle
+
+\newpage
 
 Ohm will be developed with the end user always in mind. It is with that direction that we have planned to build ohm in a way that allows for constant development and improvement, always iterating on a previous design while ensuring the core functionality is kept intact.
 

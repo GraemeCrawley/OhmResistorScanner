@@ -3,13 +3,10 @@ package ca.ryanmarks.ohm.ImageProcessing;
 import ca.ryanmarks.ohm.Pair;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
-import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @defgroup BandLocation
@@ -33,9 +30,8 @@ public class BandReader {
      * @return List of points along the line that are likely band edges.
      */
     public static List<Point> read(Mat frame, Point p1, Point p2){
-        Mat img = frame;
-        Imgproc.medianBlur(img,img,13);
-        double[][] sample = boxSample(img,p1, p2,(int)dist(p1,p2),20);
+        Imgproc.medianBlur(frame, frame,13);
+        double[][] sample = boxSample(frame,p1, p2,(int)dist(p1,p2),20);
         double[][] diff = diff(sample);
         double[][] averaged = rollingAverageFilter(diff,1);
         double[] terms = new double[averaged.length];
@@ -64,7 +60,7 @@ public class BandReader {
      * @param boxWidth the length of the normal sampling line.
      * @return An array containing the average rgb values (represented as double[]) in the sampling window.
      */
-    public static double[][] boxSample(Mat mat, Point start, Point end, int nSamples, double boxWidth){
+    private static double[][] boxSample(Mat mat, Point start, Point end, int nSamples, double boxWidth){
         // Both points must be in the bounds of the matrix
         assert (mat.height() > start.y);
         assert (mat.height() > end.y);
@@ -99,7 +95,7 @@ public class BandReader {
      * @param windowRadius The number of samples on either side of a given sample to incorporate into the average
      * @return An array containing the average RGB value sampled along the line.
      */
-    public static double[][] rollingAverageFilter(double[][] sample, int windowRadius){
+    private static double[][] rollingAverageFilter(double[][] sample, int windowRadius){
         int windowWidth = 1 + windowRadius;
         double[][] filtered = new double[sample.length][];
         for (int n = 0; n < sample.length; n++){
@@ -128,7 +124,7 @@ public class BandReader {
      * @param samples Array of RGB vectors represented as double[]
      * @return The average of all vectors within the input array (represented as a double[])
      */
-    public static double[] componentwiseMean(double[][] samples){
+    private static double[] componentwiseMean(double[][] samples){
         double[] mean = new double[samples[0].length];
 
         for (int i = 0; i < mean.length; i++){
@@ -152,7 +148,7 @@ public class BandReader {
      * @param nSamples The number of samples to take along the line.
      * @return The samples taken
      */
-    public static double[][] sample(Mat mat, Point start, Point end, int nSamples){
+    private static double[][] sample(Mat mat, Point start, Point end, int nSamples){
         // Both points must be in the bounds of the matrix
         assert (mat.height() > start.y);
         assert (mat.height() > end.y);
@@ -179,7 +175,7 @@ public class BandReader {
      * @param y A series of vectors
      * @return y', the derivative of the input represented as a array of vectors (double[]).
      */
-    public static double[][] diff (double[][] y){
+    private static double[][] diff(double[][] y){
         double[][] result = new double[y.length - 1][];
 
         for (int n = 0; n < result.length; n++){
@@ -198,7 +194,7 @@ public class BandReader {
      * @param vect Input vector
      * @return The magnitude of the input vector
      */
-    public static double mag(double[] vect){
+    private static double mag(double[] vect){
         double sumComponentsSquared = 0;
         for (double component:vect) {
             sumComponentsSquared += component * component;
@@ -207,19 +203,19 @@ public class BandReader {
     }
 
     /**
-     * Calcualte the distance between two points.
+     * Calcualate the distance between two points.
      * @param p1 Point 1.
      * @param p2 Point 2.
      * @return Distance between p1 and p2.
      */
-    public static double dist(Point p1,Point p2){
+    private static double dist(Point p1, Point p2){
         double deltaX = p1.x - p2.x;
         double deltaY = p1.y - p2.y;
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
 
-    public static double[] groupTerms(double[] terms, int binSize){
+    private static double[] groupTerms(double[] terms, int binSize){
         double[] groupedTerms = new double[(terms.length+binSize-1)/binSize];
         for (int i = 0; i < terms.length; i++){
             int n = i / binSize;
@@ -232,7 +228,7 @@ public class BandReader {
         return groupedTerms;
     }
 
-    public static List<Pair<Integer,Double>> findLocalMaxima(double[] values){
+    private static List<Pair<Integer,Double>> findLocalMaxima(double[] values){
         List<Pair<Integer,Double>> indexValuePairs= new ArrayList<>(10);
         for(int i = 1; i < values.length - 1; i++){
             if (values[i] > values[i-1] && values[i] > values[i+1]){
@@ -256,7 +252,7 @@ public class BandReader {
     }
 */
 
-    public static Point onLine(Point start, Point end, double fraction){
+    private static Point onLine(Point start, Point end, double fraction){
         return new Point(start.x+(end.x-start.x)*fraction,start.y+(end.y-start.y)*fraction);
     }
 }
