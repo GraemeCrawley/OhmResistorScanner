@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['liveimageview',['LiveImageView',['../classohm_1_1userinterface_1_1_live_image_view.html',1,'ohm::userinterface']]]
+  ['helpers',['Helpers',['../classohm_1_1_helpers.html',1,'ohm']]]
 ];

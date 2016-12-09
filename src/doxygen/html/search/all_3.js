@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['fit',['fit',['../enumohm_1_1_value_identification_1_1_resistor_colour.html#aead22df994fb608ab337abbac6f19b7d',1,'ohm.valueidentification.ResistorColour.fit(int r, int g, int b)'],['../enumohm_1_1_value_identification_1_1_resistor_colour.html#acd456d0acac74c0dc7ad3c13eafdb6d0',1,'ohm.valueidentification.ResistorColour.fit(double r, double g, double b)']]]
+  ['camerainput',['CameraInput',['../classohm_1_1input_1_1_camera_input.html',1,'ohm::input']]],
+  ['camerainput',['CameraInput',['../group___camera_input.html',1,'']]],
+  ['colourmapping',['ColourMapping',['../group___colour_mapping.html',1,'']]],
+  ['componentwisemean',['componentwiseMean',['../classohm_1_1imageprocessing_1_1_band_reader.html#a7a65be0d91e263ba95be40a839a1e9dd',1,'ohm::imageprocessing::BandReader']]]
 ];

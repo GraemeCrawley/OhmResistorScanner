@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['boxsample',['boxSample',['../classohm_1_1_image_processing_1_1_band_reader.html#a2e83767f5674f1463cb0168df8d073fa',1,'ohm::imageprocessing::BandReader']]]
+  ['_5bstatic_20initializer_5d',['[static initializer]',['../enumohm_1_1valueidentification_1_1_resistor_colour.html#ada1c80467eac208be473beadf83f968f',1,'ohm::valueidentification::ResistorColour']]]
 ];

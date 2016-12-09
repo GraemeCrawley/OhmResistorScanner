@@ -28,6 +28,15 @@ import ca.ryanmarks.ohm.valueidentification.ResistorColour;
 import ca.ryanmarks.ohm.valueidentification.ValueCalculator;
 
 
+/**
+ * @defgroup UserInterface
+ * @author Ryan Marks
+ * @{
+ */
+
+/**
+ * @brief
+ */
 public class CameraActivity extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private static final String TAG = "ohm";
 
@@ -184,3 +193,5 @@ public class CameraActivity extends AppCompatActivity implements CameraBridgeVie
     }
 
 }
+
+/** @} */

@@ -1,0 +1,46 @@
+\hypertarget{classca_1_1ryanmarks_1_1ohm_1_1imageprocessing_1_1_band_reader}{}\section{ca.\+ryanmarks.\+ohm.\+imageprocessing.\+Band\+Reader Class Reference}
+\label{classca_1_1ryanmarks_1_1ohm_1_1imageprocessing_1_1_band_reader}\index{ca.\+ryanmarks.\+ohm.\+imageprocessing.\+Band\+Reader@{ca.\+ryanmarks.\+ohm.\+imageprocessing.\+Band\+Reader}}
+
+
+Module used to analyze the line of pixels selected by the user through the UI. It uses high values of the differential of the R\+GB colours to detect edges of bands.  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static List$<$ Point $>$ \hyperlink{classca_1_1ryanmarks_1_1ohm_1_1imageprocessing_1_1_band_reader_a0cfd4ae277def310bec0748a4b9ec647}{read} (Mat frame, Point p1, Point p2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Module used to analyze the line of pixels selected by the user through the UI. It uses high values of the differential of the R\+GB colours to detect edges of bands. 
+
+\begin{DoxyAuthor}{Author}
+Ryan Marks \& Jonathan Brown 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classca_1_1ryanmarks_1_1ohm_1_1imageprocessing_1_1_band_reader_a0cfd4ae277def310bec0748a4b9ec647}{}\label{classca_1_1ryanmarks_1_1ohm_1_1imageprocessing_1_1_band_reader_a0cfd4ae277def310bec0748a4b9ec647} 
+\index{ca\+::ryanmarks\+::ohm\+::imageprocessing\+::\+Band\+Reader@{ca\+::ryanmarks\+::ohm\+::imageprocessing\+::\+Band\+Reader}!read@{read}}
+\index{read@{read}!ca\+::ryanmarks\+::ohm\+::imageprocessing\+::\+Band\+Reader@{ca\+::ryanmarks\+::ohm\+::imageprocessing\+::\+Band\+Reader}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily static List$<$Point$>$ ca.\+ryanmarks.\+ohm.\+imageprocessing.\+Band\+Reader.\+read (\begin{DoxyParamCaption}\item[{Mat}]{frame,  }\item[{Point}]{p1,  }\item[{Point}]{p2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em frame} & Image to Sample. \\
+\hline
+{\em p1} & Starting point of the sampling line. \\
+\hline
+{\em p2} & Ending point of the sampling line. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+List of points along the line that are likely band edges. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ca/ryanmarks/ohm/imageprocessing/Band\+Reader.\+java\end{DoxyCompactItemize}

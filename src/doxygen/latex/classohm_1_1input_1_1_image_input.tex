@@ -1,0 +1,101 @@
+\hypertarget{classohm_1_1input_1_1_image_input}{}\section{ohm.\+input.\+Image\+Input Class Reference}
+\label{classohm_1_1input_1_1_image_input}\index{ohm.\+input.\+Image\+Input@{ohm.\+input.\+Image\+Input}}
+
+
+A source of input data, uses static images.  
+
+
+Inheritance diagram for ohm.\+input.\+Image\+Input\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classohm_1_1input_1_1_image_input}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classohm_1_1input_1_1_image_input_af8fb2e251e80452993fd0400ae596628}{Image\+Input} ()
+\item 
+\hyperlink{classohm_1_1input_1_1_image_input_a3c9f1be5fc0574d2e2470c86fb1dbe90}{Image\+Input} (String name)
+\item 
+Mat \hyperlink{classohm_1_1input_1_1_image_input_aad0a18c0396fba14d5e1d74c08a592e6}{get\+R\+GB} ()
+\item 
+Image \hyperlink{classohm_1_1input_1_1_image_input_a68160a9bd9d395f7b2646e9b55388198}{get\+Image} ()
+\item 
+Mat \hyperlink{classohm_1_1input_1_1_image_input_a4f55591040c8129f3768948525d34863}{get\+L\+AB} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A source of input data, uses static images. 
+
+\begin{DoxyAuthor}{Author}
+Jonathan Brown 
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classohm_1_1input_1_1_image_input_af8fb2e251e80452993fd0400ae596628}{}\label{classohm_1_1input_1_1_image_input_af8fb2e251e80452993fd0400ae596628} 
+\index{ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}!Image\+Input@{Image\+Input}}
+\index{Image\+Input@{Image\+Input}!ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}}
+\subsubsection{\texorpdfstring{Image\+Input()}{ImageInput()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ohm.\+input.\+Image\+Input.\+Image\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor creates an instance using a default image. \hypertarget{classohm_1_1input_1_1_image_input_a3c9f1be5fc0574d2e2470c86fb1dbe90}{}\label{classohm_1_1input_1_1_image_input_a3c9f1be5fc0574d2e2470c86fb1dbe90} 
+\index{ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}!Image\+Input@{Image\+Input}}
+\index{Image\+Input@{Image\+Input}!ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}}
+\subsubsection{\texorpdfstring{Image\+Input()}{ImageInput()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ohm.\+input.\+Image\+Input.\+Image\+Input (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
+
+Constructor featuring a name parameter. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the input image. Do not include an extension. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classohm_1_1input_1_1_image_input_a68160a9bd9d395f7b2646e9b55388198}{}\label{classohm_1_1input_1_1_image_input_a68160a9bd9d395f7b2646e9b55388198} 
+\index{ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}!get\+Image@{get\+Image}}
+\index{get\+Image@{get\+Image}!ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}}
+\subsubsection{\texorpdfstring{get\+Image()}{getImage()}}
+{\footnotesize\ttfamily Image ohm.\+input.\+Image\+Input.\+get\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Used to retrieve a image representation of the input (used by Java\+FX). \begin{DoxyReturn}{Returns}
+Image representation of input. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfaceohm_1_1input_1_1_input_aecea73d845b9c88e69294dadcd15e4fe}{ohm.\+input.\+Input}.
+
+\hypertarget{classohm_1_1input_1_1_image_input_a4f55591040c8129f3768948525d34863}{}\label{classohm_1_1input_1_1_image_input_a4f55591040c8129f3768948525d34863} 
+\index{ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}!get\+L\+AB@{get\+L\+AB}}
+\index{get\+L\+AB@{get\+L\+AB}!ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}}
+\subsubsection{\texorpdfstring{get\+L\+A\+B()}{getLAB()}}
+{\footnotesize\ttfamily Mat ohm.\+input.\+Image\+Input.\+get\+L\+AB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Used to retrieve a rgb matrix representation of the input (used by Opencv libraries). \begin{DoxyReturn}{Returns}
+Matrix representation of input. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfaceohm_1_1input_1_1_input_a3264bf8e72c6442076453b5d356b6534}{ohm.\+input.\+Input}.
+
+\hypertarget{classohm_1_1input_1_1_image_input_aad0a18c0396fba14d5e1d74c08a592e6}{}\label{classohm_1_1input_1_1_image_input_aad0a18c0396fba14d5e1d74c08a592e6} 
+\index{ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}!get\+R\+GB@{get\+R\+GB}}
+\index{get\+R\+GB@{get\+R\+GB}!ohm\+::input\+::\+Image\+Input@{ohm\+::input\+::\+Image\+Input}}
+\subsubsection{\texorpdfstring{get\+R\+G\+B()}{getRGB()}}
+{\footnotesize\ttfamily Mat ohm.\+input.\+Image\+Input.\+get\+R\+GB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Method returns a Open\+CV Matrix of the loaded image. \begin{DoxyReturn}{Returns}
+Open\+CV Matrix representation of the image. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfaceohm_1_1input_1_1_input_ac9877f2cacdb85c06af084fd426495fd}{ohm.\+input.\+Input}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+java/ohm/input/Image\+Input.\+java\end{DoxyCompactItemize}

@@ -1,0 +1,85 @@
+\hypertarget{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity}{}\section{ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity Class Reference}
+\label{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity}\index{ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity@{ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity}}
+Inheritance diagram for ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.911263cm]{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_afa73d36e5322e895558c6663acb190bf}{on\+Create} (Bundle saved\+Instance\+State)
+\item 
+void \hyperlink{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a34efe943c0d3769ad9b9f9866974836f}{on\+Pause} ()
+\item 
+void \hyperlink{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a9178d308984ee4f944f051adc205373d}{on\+Resume} ()
+\item 
+\hypertarget{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_ada3e30d69cbb69ed1f34827cf20ca17d}{}\label{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_ada3e30d69cbb69ed1f34827cf20ca17d} 
+void {\bfseries on\+Destroy} ()
+\item 
+void \hyperlink{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a57e9b0251cfc888e8514a45f88bec4a4}{on\+Camera\+View\+Started} (int width, int height)
+\item 
+void \hyperlink{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a33cb29ef55f85b3459231b01d15db6c3}{on\+Camera\+View\+Stopped} ()
+\item 
+Mat \hyperlink{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a91c2f08d2f0fa30ee24c1c8420d0b420}{on\+Camera\+Frame} (Camera\+Bridge\+View\+Base.\+Cv\+Camera\+View\+Frame input\+Frame)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a91c2f08d2f0fa30ee24c1c8420d0b420}{}\label{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a91c2f08d2f0fa30ee24c1c8420d0b420} 
+\index{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}!on\+Camera\+Frame@{on\+Camera\+Frame}}
+\index{on\+Camera\+Frame@{on\+Camera\+Frame}!ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}}
+\subsubsection{\texorpdfstring{on\+Camera\+Frame()}{onCameraFrame()}}
+{\footnotesize\ttfamily Mat ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity.\+on\+Camera\+Frame (\begin{DoxyParamCaption}\item[{Camera\+Bridge\+View\+Base.\+Cv\+Camera\+View\+Frame}]{input\+Frame }\end{DoxyParamCaption})}
+
+This method performs the transformation from the acquired camera frame to the image that is shown to the user. It identifies resistances and overlays the resistance value 
+\begin{DoxyParams}{Parameters}
+{\em input\+Frame} & The camera frame captured \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The image to be shown to the user 
+\end{DoxyReturn}
+\hypertarget{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a57e9b0251cfc888e8514a45f88bec4a4}{}\label{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a57e9b0251cfc888e8514a45f88bec4a4} 
+\index{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}!on\+Camera\+View\+Started@{on\+Camera\+View\+Started}}
+\index{on\+Camera\+View\+Started@{on\+Camera\+View\+Started}!ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}}
+\subsubsection{\texorpdfstring{on\+Camera\+View\+Started()}{onCameraViewStarted()}}
+{\footnotesize\ttfamily void ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity.\+on\+Camera\+View\+Started (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height }\end{DoxyParamCaption})}
+
+Unneeded interface method from open\+CV 
+\begin{DoxyParams}{Parameters}
+{\em width} & -\/ the width of the frames that will be delivered \\
+\hline
+{\em height} & -\/ the height of the frames that will be delivered \\
+\hline
+\end{DoxyParams}
+\hypertarget{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a33cb29ef55f85b3459231b01d15db6c3}{}\label{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a33cb29ef55f85b3459231b01d15db6c3} 
+\index{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}!on\+Camera\+View\+Stopped@{on\+Camera\+View\+Stopped}}
+\index{on\+Camera\+View\+Stopped@{on\+Camera\+View\+Stopped}!ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}}
+\subsubsection{\texorpdfstring{on\+Camera\+View\+Stopped()}{onCameraViewStopped()}}
+{\footnotesize\ttfamily void ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity.\+on\+Camera\+View\+Stopped (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Unneeded interface method from open\+CV \hypertarget{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_afa73d36e5322e895558c6663acb190bf}{}\label{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_afa73d36e5322e895558c6663acb190bf} 
+\index{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}!on\+Create@{on\+Create}}
+\index{on\+Create@{on\+Create}!ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}}
+\subsubsection{\texorpdfstring{on\+Create()}{onCreate()}}
+{\footnotesize\ttfamily void ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity.\+on\+Create (\begin{DoxyParamCaption}\item[{Bundle}]{saved\+Instance\+State }\end{DoxyParamCaption})}
+
+Called when the activity is first created by Android. \hypertarget{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a34efe943c0d3769ad9b9f9866974836f}{}\label{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a34efe943c0d3769ad9b9f9866974836f} 
+\index{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}!on\+Pause@{on\+Pause}}
+\index{on\+Pause@{on\+Pause}!ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}}
+\subsubsection{\texorpdfstring{on\+Pause()}{onPause()}}
+{\footnotesize\ttfamily void ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity.\+on\+Pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Disable camera acquisition while the application is paused \hypertarget{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a9178d308984ee4f944f051adc205373d}{}\label{classca_1_1ryanmarks_1_1ohm_1_1userinterface_1_1_camera_activity_a9178d308984ee4f944f051adc205373d} 
+\index{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}!on\+Resume@{on\+Resume}}
+\index{on\+Resume@{on\+Resume}!ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity@{ca\+::ryanmarks\+::ohm\+::userinterface\+::\+Camera\+Activity}}
+\subsubsection{\texorpdfstring{on\+Resume()}{onResume()}}
+{\footnotesize\ttfamily void ca.\+ryanmarks.\+ohm.\+userinterface.\+Camera\+Activity.\+on\+Resume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Whenever the application resumes ensures opencv is loaded. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ca/ryanmarks/ohm/userinterface/Camera\+Activity.\+java\end{DoxyCompactItemize}

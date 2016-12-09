@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['read',['read',['../classohm_1_1_image_processing_1_1_band_reader.html#a509d4c14ff8fd2816a0e6e8341fd549b',1,'ohm::imageprocessing::BandReader']]],
-  ['resistorcolour',['ResistorColour',['../enumohm_1_1_value_identification_1_1_resistor_colour.html#a55d151fdd193107e23c51646774744a8',1,'ohm::valueidentification::ResistorColour']]],
-  ['rollingaveragefilter',['rollingAverageFilter',['../classohm_1_1_image_processing_1_1_band_reader.html#aabe4b424365cdc920b0ff8f4e7194f0f',1,'ohm::imageprocessing::BandReader']]]
+  ['imageinput',['ImageInput',['../classohm_1_1input_1_1_image_input.html#af8fb2e251e80452993fd0400ae596628',1,'ohm.input.ImageInput.ImageInput()'],['../classohm_1_1input_1_1_image_input.html#a3c9f1be5fc0574d2e2470c86fb1dbe90',1,'ohm.input.ImageInput.ImageInput(String name)']]],
+  ['initialize',['initialize',['../classohm_1_1userinterface_1_1_ohm_view_controller.html#aa1653060f9f810ea5cd6a0f917b02521',1,'ohm::userinterface::OhmViewController']]]
 ];

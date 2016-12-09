@@ -18,6 +18,7 @@ import java.util.List;
 import au.com.bytecode.opencsv.CSVReader;
 
 /**
+ * @author Jonathan Brown
  * @brief Enum containing all of the possible colours that a resistor can take on. Also features member functions used to map the colours of bands to values used in the calculation process.
  */
 public enum ResistorColour {

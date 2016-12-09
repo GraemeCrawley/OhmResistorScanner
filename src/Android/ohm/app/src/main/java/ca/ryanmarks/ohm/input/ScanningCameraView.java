@@ -10,7 +10,15 @@ import org.opencv.android.JavaCameraView;
 
 import java.util.Collections;
 
+/**
+ * @defgroup CameraInput
+ * @author Ryan Marks
+ * @{
+ */
 
+/**
+ * @brief
+ */
 public class ScanningCameraView extends JavaCameraView {
 
     public ScanningCameraView(Context context, int cameraId) {
@@ -43,3 +51,5 @@ public class ScanningCameraView extends JavaCameraView {
         return ret;
     }
 }
+
+/** @} */

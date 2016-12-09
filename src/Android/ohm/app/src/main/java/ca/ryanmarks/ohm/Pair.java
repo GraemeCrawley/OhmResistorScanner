@@ -1,7 +1,8 @@
 package ca.ryanmarks.ohm;
 
 /**
- * This class represents a generic key, value pair.
+ * @brief This class represents a generic key, value pair.
+ * @author Ryan Marks
  */
 public class Pair<T, T1> {
     private final T key;
