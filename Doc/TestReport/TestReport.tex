@@ -1,0 +1,376 @@
+\documentclass[12pt, titlepage]{article}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+\title{SE 3XA3: Test Plan\\ Ohm: Resistor Scanner}
+\author{Team 4, ohm
+		\\ Jonathan Brown, brownjs2
+		\\ Graeme Crawley, crawleg
+		\\ Ryan Marks, marksr2
+}
+\date{\today}
+\input{../Comments}
+\begin{document}
+\maketitle
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\listoftables
+\begin{table}[h]
+\caption{\bf Revision History}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+December 8th 2016 & 1.0 & First Revision of Testing Report\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\newpage
+\pagenumbering{arabic}
+\section{General Information}
+\subsection{Purpose}
+\par This document will describe the testing results and improvements from testing of Group 4's 3XA3 Project, Ohm.
+Wholistic testing has been valuable in tuning key algorithms.
+Unit tests have allowed for iteration without fear of feature regression in key components.
+\subsection{Scope}
+\par The tests described in this test report verify the efficacy of the resistor band detection, the colour selection, the resistor body detection, and general user interface behaviors.
+
+%\subsection{Acronyms, Abbreviations, and Symbols}	
+%\begin{table}[hbp]
+%\caption{\textbf{Table of Abbreviations}} \label{Table}
+%\begin{tabularx}{\textwidth}{p{3cm}X}
+%\toprule
+%\textbf{Abbreviation} & \textbf{Definition} \\
+%\midrule
+%Abbreviation1 & Definition1\\
+%Abbreviation2 & Definition2\\
+%\bottomrule
+%\end{tabularx}
+%\end{table}
+%\begin{table}[!htbp]
+%\caption{\textbf{Table of Definitions}} \label{Table}
+%\begin{tabularx}{\textwidth}{p{3cm}X}
+%\toprule
+%\textbf{Term} & \textbf{Definition}\\
+%\midrule
+%Term1 & Definition1\\
+%Term2 & Definition2\\
+%\bottomrule
+%\end{tabularx}
+%\end{table}	
+	
+\section{Tests for Functional Requirements}
+\subsection{User Input}
+\paragraph{Warning Box}
+\begin{enumerate}
+\item{F-FDM-1\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+Camera starts, warning AlertDialog appears over camera view
+					
+Results: 
+The user launches the app, the AlertDialog containing our on-launch disclaimer appears.
+
+\item{F-UDM-2\\}
+Type: Unit, Dynamic, Manual
+					
+Initial State: 
+Warning AlertDialog is displayed
+					
+Input: 
+The user taps anywhere on screen
+					
+Output: 
+Warning AlertDialog closes, showing camera
+					
+Results:
+The user presses anywhere on screen and the AlertDialog dismisses.
+
+\end{enumerate}
+
+\paragraph{Screen}
+\begin{enumerate}
+\item{F-UDM-4\\}
+Type: Unit, Dynamic, Manual
+					
+Initial State: 
+App is open, ready to scan
+					
+Input: 
+Screen is tapped
+					
+Output: 
+No output
+					
+Results: 
+Any screen touches have no effect on the application.
+
+\end{enumerate}
+
+\subsection{Resistor Scanning}
+\begin{enumerate}
+\item{F-FDM-5\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in incorrect orientation
+					
+Output: 
+No output
+					
+Result:
+Touching the screen has no effect while the camera preview is being displayed.
+					
+\item{F-FDM-6\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in correct orientation with red line crossing through first stripe from either side
+					
+Output: 
+No output
+
+Result
+When the camera is pointed at a resistor with the red line intersecting one of the four bands of the resistor,
+no resistance can be identified, so no text is shown on screen.
+
+\item{F-FDM-7\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in correct orientation with red line crossing through two stripes from either side
+					
+Output: 
+No output	
+
+Result
+When the camera is pointed at a resistor with the red line intersecting two of the four bands of the resistor,
+no resistance can be identified, so no text is shown on screen.
+
+\item{F-FDM-8\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in correct orientation with red line crossing through three stripes from either side
+					
+Output: 
+No output	
+
+Result
+When the camera is pointed at a resistor with the red line intersecting three of the four bands of the resistor,
+no resistance can be identified, so no text is shown on screen.
+
+\item{F-FDM-9\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is pointed at resistor in correct orientation with red line crossing through four stripes from either side
+					
+Output: 
+Resistance value is displayed on the screen	
+
+Result
+When the camera is pointed at a resistor with the red line intersecting all four bands of the resistor.
+A resistance value is likely shown, however it is rarely correct as very rarely are all 4 colors identified with complete correctness.
+
+\item{F-FDM-10\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Camera is on with no resistor visible on screen
+					
+Output: 
+No output
+
+Result:
+The camera preview and red line are shown on the page
+
+\end{enumerate}
+
+\section{Tests for Nonfunctional Requirements}
+\subsection{User Tests}
+\begin{enumerate}
+\item{NF-FDM-11\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input/Condition: 
+100 resistors scanned
+					
+Output/Result: 
+95 resistors or more will be identified accurately
+					
+Results:
+This testing was not conducted because color identification never reached sufficient accuracy that resistance identification was ever meaningful.
+					
+\item{NF-FDM-12\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Give the app and a resistor to a user between the ages of 8 and 70
+					
+Output: 
+The user will be able to identify the value of the resistor.
+					
+Results:
+This testing was not conducted because color identification never reached sufficient accuracy that resistance identification was ever meaningful.
+
+\item{NF-FDM-13\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is open, camera is on
+					
+Input: 
+Give the app to a user who doesn't have Internet connection
+					
+Output: 
+The user will be able to identify the value of the resistor
+					
+Result:
+The application does not require the android Internet permission, the application cannot connect to the internet
+
+\end{enumerate}
+\subsection{Launch Tests}
+\begin{enumerate}
+\item{NF-FDM-14\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+The warning box will display text
+					
+How test will be performed: 
+The app will be launched and display a warning box which contains text. The text will notify the user that the app should not be used in safety critical systems.
+
+\item{NF-FDM-15\\}
+Type: Functional, Dynamic, Manual
+					
+Initial State: 
+App is not open
+					
+Input: 
+App is launched
+					
+Output: 
+The app will display the warning box within 5 seconds
+					
+Results: 
+The app reliably launches reliably in less than five seconds on all available test phones. 
+
+
+\end{enumerate}
+
+\subsection{Band Identification}
+\begin{enumerate}
+\item{PC-BI-1\\}
+\\
+Type: Functional, Dynamic, Manual
+					
+Initial State: Software not running
+					
+Input: Run Command
+					
+Output: Software displays static image of resistor with no bands selected.
+					
+Results:
+The software launches to a resistor image preselected, and no sampling line selected.
+					
+\item{PC-BI-2\\}
+\\
+Type: Functional, Dynamic, Manual.
+					
+Initial State: Software running, no axis selected
+					
+Input: Select axis directly across resistor body.
+					
+Output:  A ring centered around each band of the appropriate colour.
+					
+Results:
+After selecting an axis, most of the time, the bands will be identified and rings will be drawn.
+
+\item{PC-BI-3\\}
+\\
+Type: Functional, Dynamic, Manual
+					
+Initial State: Software not running
+					
+Input: Select axis incorrectly.
+					
+Output: Exception is thrown
+					
+How test will be performed: Manual execution.
+
+\end{enumerate}
+
+\section{Comparison to Existing Implementation}
+There are two tests that compare the program to the Existing Implementation of the program. Please refer to:
+\begin{itemize}
+\item test F-FDM-9 in Resistor Scanning for Functional Requirements
+
+Result: The resistance is close to recognized, but some bands are recognized incorrectly leading to incorrect resistances
+
+\item test NF-FDM-15 in Launch Tests for Nonfunctional Requirements 
+Result: The application launches similarly quickly. Both are limited by loading the OpenCV library.
+
+Result 
+\end{itemize}
+
+\section{Unit Testing Results}
+
+\par Unit Testing was exceptionally valuable for being able to rapidly improve the Color Mapping module.
+By having a set of tests that verify the correct mapping of known colors, the development team was able to confidently move from identifying colors by euclidean distance to reference values to an approach of using a k-nearest neighbors algorithm.
+This iteration would have been appreciably slower with manual testing.
+
+\par However, there is far from 100\% unit test coverage.
+As this problem is difficult and poorly defined, many modules lack a rigid form of correct behavior.
+Therefore we've focused on the development of development modes of the application that will show the tester an image produced by algorithmic components.
+This allows us to use a human developer's subjective opinion of the algorithm's performance so it can be further adjusted and tuned.
+
+
+\bibliographystyle{plainnat}
+\bibliography{SRS}
+\end{document}

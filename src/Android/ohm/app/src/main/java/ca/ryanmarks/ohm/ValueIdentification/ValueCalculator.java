@@ -6,24 +6,29 @@ package ca.ryanmarks.ohm.ValueIdentification;
  *@{
  */
 
-import java.text.DecimalFormat;
-
 /**
  * @brief Object used to calculate the resistance of the resistor based on the mapped colours.
  */
 public class ValueCalculator {
     final double resistance;
+    final double precision;
 
-    private static DecimalFormat df2 = new DecimalFormat("00E0");
+    public ValueCalculator(Integer a, Integer b, Integer c, Integer d){
+        b = b >= 10 ? 3 : b;
+        c = c >= 10 ? 3 : c;
 
-
-    public ValueCalculator(ResistorColour a, ResistorColour b, ResistorColour c){
-        resistance = (a.value * 10 + b.value)*Math.pow(10,c.value);
+        if (d >= 10){
+            resistance = (a * 10 + b)*Math.pow(10,c);
+            precision = 5;
+        }
+        else{
+            resistance = (d * 10 + c)*Math.pow(10,b);
+            precision = 5;
+        }
     }
 
     public String getValue(){
-
-        return df2.format(resistance);
+        return Double.toString((int) resistance) + " +- " + precision + "%";
     }
 }
 
