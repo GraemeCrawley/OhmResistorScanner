@@ -60,11 +60,12 @@ public class OhmViewController implements Initializable {
 
     private void loadImage(File imageFile){
 
-        String imageName = imageFile.getName();
+        String imageName = imageFile.getAbsolutePath();
+        System.out.println(imageName);
         int pos = imageName.lastIndexOf(".");
         String imageNameNoExt = pos > 0 ? imageName.substring(0, pos) : imageName;
 
-        Input imageInput = new ImageInput(imageNameNoExt);
+        Input imageInput = new ImageInput(imageName );
         final Image src = imageInput.getImage();
         final Mat rgbframe = imageInput.getRGB();
         final Mat labframe = imageInput.getLAB();

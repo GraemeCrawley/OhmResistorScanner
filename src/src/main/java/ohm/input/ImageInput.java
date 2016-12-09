@@ -44,12 +44,10 @@ public class ImageInput implements Input {
      * @param name The name of the input image. Do not include an extension.
      */
     public ImageInput(String name){
-        img = new Image("file:resources/" + name + ".jpg");
-        rgb = Imgcodecs.imread("resources/" + name + ".jpg");
+        img = new Image("file:" + name);
+        rgb = Imgcodecs.imread(name);
         Imgproc.resize(rgb, rgb,new Size(576,360));
         Mat temp = rgb.clone();
-        Imgproc.medianBlur(rgb,temp,15);
-        Imgcodecs.imwrite("resources/" + name + "-blurred.jpg",temp);
         Imgproc.cvtColor(rgb,rgb,Imgproc.COLOR_BGR2RGB);
         lab = rgb.clone();
         Imgproc.cvtColor(rgb,lab,Imgproc.COLOR_RGB2Lab);
